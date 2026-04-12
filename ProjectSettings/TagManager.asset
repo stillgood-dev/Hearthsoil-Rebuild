@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 3
-  tags: []
+  tags:
+  - Receiveable
   layers:
   - Default
   - TransparentFX
@@ -43,6 +44,9 @@ TagManager:
     locked: 0
   - name: Ground
     uniqueID: 2490068025
+    locked: 0
+  - name: Obstacles
+    uniqueID: 2910268823
     locked: 0
   - name: Characters
     uniqueID: 3221676853

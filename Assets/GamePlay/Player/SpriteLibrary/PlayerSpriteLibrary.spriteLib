@@ -98,8 +98,18 @@ MonoBehaviour:
       m_Sprite: {fileID: -6837157005970470131, guid: c75575d48e08c6346bcad905bf9c719e, type: 3}
       m_FromMain: 0
       m_SpriteOverride: {fileID: -6837157005970470131, guid: c75575d48e08c6346bcad905bf9c719e, type: 3}
+    - m_Name: Receive
+      m_Hash: 550373549
+      m_Sprite: {fileID: 5799667391094170347, guid: 3db2e69ccb4133546b8c38480a9a97c5, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 5799667391094170347, guid: 3db2e69ccb4133546b8c38480a9a97c5, type: 3}
+    - m_Name: Receive_Blink
+      m_Hash: 601480161
+      m_Sprite: {fileID: -6789567731522243855, guid: 3db2e69ccb4133546b8c38480a9a97c5, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -6789567731522243855, guid: 3db2e69ccb4133546b8c38480a9a97c5, type: 3}
     m_FromMain: 0
-    m_EntryOverrideCount: 8
+    m_EntryOverrideCount: 10
   - m_Name: East
     m_Hash: 400640276
     m_CategoryList: []
@@ -193,5 +203,5 @@ MonoBehaviour:
     m_FromMain: 0
     m_EntryOverrideCount: 8
   m_PrimaryLibraryGUID: 
-  m_ModificationHash: 639115303132452421
+  m_ModificationHash: 639116007232504612
   m_Version: 1

@@ -16,4 +16,4 @@ UserSettings/
 *.pdb
 *.mdb
 *.opendb
-*.VC.db
+*.VC.db.vs/
