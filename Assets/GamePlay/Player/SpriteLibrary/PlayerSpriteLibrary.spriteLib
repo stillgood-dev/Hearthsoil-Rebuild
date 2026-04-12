@@ -1,0 +1,197 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &1
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5e6fedc2472449cead18ef23b5cb30d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Library:
+  - m_Name: North
+    m_Hash: 501948358
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: Idle_N_Still
+      m_Hash: 527671402
+      m_Sprite: {fileID: -774439810289496432, guid: df9daf93dc0b31347af26a996bb906d2, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -774439810289496432, guid: df9daf93dc0b31347af26a996bb906d2, type: 3}
+    - m_Name: Jog_N_0
+      m_Hash: 490155410
+      m_Sprite: {fileID: -922603391279904441, guid: 16c9d52382e6bfe448b72542982339ef, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -922603391279904441, guid: 16c9d52382e6bfe448b72542982339ef, type: 3}
+    - m_Name: Jog_N_1
+      m_Hash: 707796228
+      m_Sprite: {fileID: -3373804710350211370, guid: 16c9d52382e6bfe448b72542982339ef, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -3373804710350211370, guid: 16c9d52382e6bfe448b72542982339ef, type: 3}
+    - m_Name: Jog_N_2
+      m_Hash: 859393214
+      m_Sprite: {fileID: -3334439128222876529, guid: 16c9d52382e6bfe448b72542982339ef, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -3334439128222876529, guid: 16c9d52382e6bfe448b72542982339ef, type: 3}
+    - m_Name: Jog_N_3
+      m_Hash: 71203880
+      m_Sprite: {fileID: -1286227622476289885, guid: 16c9d52382e6bfe448b72542982339ef, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -1286227622476289885, guid: 16c9d52382e6bfe448b72542982339ef, type: 3}
+    - m_Name: Jog_N_4
+      m_Hash: 442165643
+      m_Sprite: {fileID: 8598167308364427723, guid: 16c9d52382e6bfe448b72542982339ef, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 8598167308364427723, guid: 16c9d52382e6bfe448b72542982339ef, type: 3}
+    - m_Name: Jog_N_5
+      m_Hash: 761125149
+      m_Sprite: {fileID: 7031094167137988841, guid: 16c9d52382e6bfe448b72542982339ef, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 7031094167137988841, guid: 16c9d52382e6bfe448b72542982339ef, type: 3}
+    m_FromMain: 0
+    m_EntryOverrideCount: 7
+  - m_Name: South
+    m_Hash: 13916784
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: Idle_S_Still
+      m_Hash: 427449700
+      m_Sprite: {fileID: 2675033416346331317, guid: 71ef71498d3edb449a04da84c77a67c3, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 2675033416346331317, guid: 71ef71498d3edb449a04da84c77a67c3, type: 3}
+    - m_Name: Idle_S_Blink
+      m_Hash: 1023765255
+      m_Sprite: {fileID: -3145005149342092107, guid: 71ef71498d3edb449a04da84c77a67c3, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -3145005149342092107, guid: 71ef71498d3edb449a04da84c77a67c3, type: 3}
+    - m_Name: Jog_S_0
+      m_Hash: 164175281
+      m_Sprite: {fileID: 1731109116653380074, guid: c75575d48e08c6346bcad905bf9c719e, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 1731109116653380074, guid: c75575d48e08c6346bcad905bf9c719e, type: 3}
+    - m_Name: Jog_S_1
+      m_Hash: 1053699367
+      m_Sprite: {fileID: 1660849936272337890, guid: c75575d48e08c6346bcad905bf9c719e, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 1660849936272337890, guid: c75575d48e08c6346bcad905bf9c719e, type: 3}
+    - m_Name: Jog_S_2
+      m_Hash: 667384989
+      m_Sprite: {fileID: -7225616052528523426, guid: c75575d48e08c6346bcad905bf9c719e, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -7225616052528523426, guid: c75575d48e08c6346bcad905bf9c719e, type: 3}
+    - m_Name: Jog_S_3
+      m_Hash: 281037835
+      m_Sprite: {fileID: 7149829978199729751, guid: c75575d48e08c6346bcad905bf9c719e, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 7149829978199729751, guid: c75575d48e08c6346bcad905bf9c719e, type: 3}
+    - m_Name: Jog_S_4
+      m_Hash: 245684648
+      m_Sprite: {fileID: -8658071678471087998, guid: c75575d48e08c6346bcad905bf9c719e, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -8658071678471087998, guid: c75575d48e08c6346bcad905bf9c719e, type: 3}
+    - m_Name: Jog_S_5
+      m_Hash: 967043390
+      m_Sprite: {fileID: -6837157005970470131, guid: c75575d48e08c6346bcad905bf9c719e, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -6837157005970470131, guid: c75575d48e08c6346bcad905bf9c719e, type: 3}
+    m_FromMain: 0
+    m_EntryOverrideCount: 8
+  - m_Name: East
+    m_Hash: 400640276
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: Idle_E_Still
+      m_Hash: 494204048
+      m_Sprite: {fileID: -5497195286953832846, guid: 5b90c279c98890f4db90d761362f08e0, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -5497195286953832846, guid: 5b90c279c98890f4db90d761362f08e0, type: 3}
+    - m_Name: Idle_E_Blink
+      m_Hash: 957072115
+      m_Sprite: {fileID: -7862603179147197714, guid: 5b90c279c98890f4db90d761362f08e0, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -7862603179147197714, guid: 5b90c279c98890f4db90d761362f08e0, type: 3}
+    - m_Name: Jog_E_0
+      m_Hash: 291684979
+      m_Sprite: {fileID: 8703985523733837832, guid: 4f54acb33fe587e47805c13f5d4a4e07, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 8703985523733837832, guid: 4f54acb33fe587e47805c13f5d4a4e07, type: 3}
+    - m_Name: Jog_E_1
+      m_Hash: 644215525
+      m_Sprite: {fileID: -4668308316023302438, guid: 4f54acb33fe587e47805c13f5d4a4e07, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -4668308316023302438, guid: 4f54acb33fe587e47805c13f5d4a4e07, type: 3}
+    - m_Name: Jog_E_2
+      m_Hash: 1064084319
+      m_Sprite: {fileID: -6373847030417011285, guid: 4f54acb33fe587e47805c13f5d4a4e07, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -6373847030417011285, guid: 4f54acb33fe587e47805c13f5d4a4e07, type: 3}
+    - m_Name: Jog_E_3
+      m_Hash: 141267913
+      m_Sprite: {fileID: 889543656910398721, guid: 4f54acb33fe587e47805c13f5d4a4e07, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 889543656910398721, guid: 4f54acb33fe587e47805c13f5d4a4e07, type: 3}
+    - m_Name: Jog_E_4
+      m_Hash: 370083434
+      m_Sprite: {fileID: 8078836611085698179, guid: 4f54acb33fe587e47805c13f5d4a4e07, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 8078836611085698179, guid: 4f54acb33fe587e47805c13f5d4a4e07, type: 3}
+    - m_Name: Jog_E_5
+      m_Hash: 554186492
+      m_Sprite: {fileID: 6184913789126274571, guid: 4f54acb33fe587e47805c13f5d4a4e07, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 6184913789126274571, guid: 4f54acb33fe587e47805c13f5d4a4e07, type: 3}
+    m_FromMain: 0
+    m_EntryOverrideCount: 8
+  - m_Name: West
+    m_Hash: 720928476
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: Idle_W_Still
+      m_Hash: 758479223
+      m_Sprite: {fileID: -6594290103842191892, guid: 767c150976c7f144abd7156e1e1c86c0, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -6594290103842191892, guid: 767c150976c7f144abd7156e1e1c86c0, type: 3}
+    - m_Name: Idle_W_Blink
+      m_Hash: 155864852
+      m_Sprite: {fileID: 1509144293646876716, guid: 767c150976c7f144abd7156e1e1c86c0, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 1509144293646876716, guid: 767c150976c7f144abd7156e1e1c86c0, type: 3}
+    - m_Name: Jog_W_0
+      m_Hash: 247510381
+      m_Sprite: {fileID: 6064885917606411998, guid: 31ccf87994660804b86f0f70a21e0aa8, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 6064885917606411998, guid: 31ccf87994660804b86f0f70a21e0aa8, type: 3}
+    - m_Name: Jog_W_1
+      m_Hash: 969377275
+      m_Sprite: {fileID: -4964851091156713026, guid: 31ccf87994660804b86f0f70a21e0aa8, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -4964851091156713026, guid: 31ccf87994660804b86f0f70a21e0aa8, type: 3}
+    - m_Name: Jog_W_2
+      m_Hash: 550425665
+      m_Sprite: {fileID: 3537003554623484089, guid: 31ccf87994660804b86f0f70a21e0aa8, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 3537003554623484089, guid: 31ccf87994660804b86f0f70a21e0aa8, type: 3}
+    - m_Name: Jog_W_3
+      m_Hash: 399107287
+      m_Sprite: {fileID: 4893190306773230977, guid: 31ccf87994660804b86f0f70a21e0aa8, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 4893190306773230977, guid: 31ccf87994660804b86f0f70a21e0aa8, type: 3}
+    - m_Name: Jog_W_4
+      m_Hash: 162361716
+      m_Sprite: {fileID: 8603399948790076301, guid: 31ccf87994660804b86f0f70a21e0aa8, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 8603399948790076301, guid: 31ccf87994660804b86f0f70a21e0aa8, type: 3}
+    - m_Name: Jog_W_5
+      m_Hash: 1051345378
+      m_Sprite: {fileID: -1351838945417351264, guid: 31ccf87994660804b86f0f70a21e0aa8, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -1351838945417351264, guid: 31ccf87994660804b86f0f70a21e0aa8, type: 3}
+    m_FromMain: 0
+    m_EntryOverrideCount: 8
+  m_PrimaryLibraryGUID: 
+  m_ModificationHash: 639115303132452421
+  m_Version: 1
