@@ -3,6 +3,9 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
+    [Header("References")]
+    [SerializeField] private PlayerActionState actionState;
+
     [Header("Movement")]
     [SerializeField] private float moveSpeed = 2f;
     private Vector2 movementInput;
@@ -28,6 +31,7 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        actionState = GetComponent<PlayerActionState>();
 
         // Default to south on startup
         animator.SetFloat(lastFacingX, 0f);
@@ -100,10 +104,13 @@ public class PlayerController : MonoBehaviour
 
     public void OnMove(InputValue value)
     {
+        if (actionState.IsBusy) return;
         // cache movement input
         movementInput = value.Get<Vector2>();
 
         if (showDebugMessages)
             Debug.Log($"Move Input: {movementInput}");
     }
+
+    
 }
