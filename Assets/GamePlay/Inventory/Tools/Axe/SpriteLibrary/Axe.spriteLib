@@ -1,0 +1,152 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &1
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5e6fedc2472449cead18ef23b5cb30d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Library:
+  - m_Name: North
+    m_Hash: 501948358
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: Axe_SideChop_N_0
+      m_Hash: 13839728
+      m_Sprite: {fileID: 858021425, guid: 986605e77f867d74db36a11a44dfbb3a, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 858021425, guid: 986605e77f867d74db36a11a44dfbb3a, type: 3}
+    - m_Name: Axe_SideChop_N_1
+      m_Hash: 936648166
+      m_Sprite: {fileID: 588369405, guid: 986605e77f867d74db36a11a44dfbb3a, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 588369405, guid: 986605e77f867d74db36a11a44dfbb3a, type: 3}
+    - m_Name: Axe_SideChop_N_2
+      m_Hash: 786254940
+      m_Sprite: {fileID: 1645922040, guid: 986605e77f867d74db36a11a44dfbb3a, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 1645922040, guid: 986605e77f867d74db36a11a44dfbb3a, type: 3}
+    - m_Name: Blank
+      m_Hash: 1038805857
+      m_Sprite: {fileID: 6200118337827907677, guid: a0b1a2ed63d1d634faa13baae6ccc375, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 6200118337827907677, guid: a0b1a2ed63d1d634faa13baae6ccc375, type: 3}
+    m_FromMain: 0
+    m_EntryOverrideCount: 4
+  - m_Name: South
+    m_Hash: 13916784
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: Axe_SideChop_S_0
+      m_Hash: 338500947
+      m_Sprite: {fileID: 96336604, guid: 8b7f5256391e6fa4eb74445d3e14af5f, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 96336604, guid: 8b7f5256391e6fa4eb74445d3e14af5f, type: 3}
+    - m_Name: Axe_SideChop_S_1
+      m_Hash: 589966789
+      m_Sprite: {fileID: -2121288668, guid: 8b7f5256391e6fa4eb74445d3e14af5f, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -2121288668, guid: 8b7f5256391e6fa4eb74445d3e14af5f, type: 3}
+    - m_Name: Axe_SideChop_S_2
+      m_Hash: 975404159
+      m_Sprite: {fileID: 154562829, guid: 8b7f5256391e6fa4eb74445d3e14af5f, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 154562829, guid: 8b7f5256391e6fa4eb74445d3e14af5f, type: 3}
+    - m_Name: Axe_SideChop_S_3
+      m_Hash: 220482793
+      m_Sprite: {fileID: 386553898, guid: 8b7f5256391e6fa4eb74445d3e14af5f, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 386553898, guid: 8b7f5256391e6fa4eb74445d3e14af5f, type: 3}
+    - m_Name: Axe_SideChop_S_4
+      m_Hash: 323017034
+      m_Sprite: {fileID: -1985667023, guid: 8b7f5256391e6fa4eb74445d3e14af5f, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -1985667023, guid: 8b7f5256391e6fa4eb74445d3e14af5f, type: 3}
+    - m_Name: Blank
+      m_Hash: 1038805857
+      m_Sprite: {fileID: 6200118337827907677, guid: a0b1a2ed63d1d634faa13baae6ccc375, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 6200118337827907677, guid: a0b1a2ed63d1d634faa13baae6ccc375, type: 3}
+    m_FromMain: 0
+    m_EntryOverrideCount: 6
+  - m_Name: East
+    m_Hash: 400640276
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: Axe_SideChop_E_0
+      m_Hash: 210158225
+      m_Sprite: {fileID: -1797567063, guid: 8511a48dd7de5e54b90393711b5044a4, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -1797567063, guid: 8511a48dd7de5e54b90393711b5044a4, type: 3}
+    - m_Name: Axe_SideChop_E_1
+      m_Hash: 998371847
+      m_Sprite: {fileID: 268800150, guid: 8511a48dd7de5e54b90393711b5044a4, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 268800150, guid: 8511a48dd7de5e54b90393711b5044a4, type: 3}
+    - m_Name: Axe_SideChop_E_2
+      m_Hash: 579380157
+      m_Sprite: {fileID: 1003833768, guid: 8511a48dd7de5e54b90393711b5044a4, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 1003833768, guid: 8511a48dd7de5e54b90393711b5044a4, type: 3}
+    - m_Name: Axe_SideChop_E_3
+      m_Hash: 361730859
+      m_Sprite: {fileID: 645023919, guid: 8511a48dd7de5e54b90393711b5044a4, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 645023919, guid: 8511a48dd7de5e54b90393711b5044a4, type: 3}
+    - m_Name: Axe_SideChop_E_4
+      m_Hash: 199952008
+      m_Sprite: {fileID: 1712972584, guid: 8511a48dd7de5e54b90393711b5044a4, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 1712972584, guid: 8511a48dd7de5e54b90393711b5044a4, type: 3}
+    - m_Name: Blank
+      m_Hash: 1038805857
+      m_Sprite: {fileID: 6200118337827907677, guid: a0b1a2ed63d1d634faa13baae6ccc375, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 6200118337827907677, guid: a0b1a2ed63d1d634faa13baae6ccc375, type: 3}
+    m_FromMain: 0
+    m_EntryOverrideCount: 6
+  - m_Name: West
+    m_Hash: 720928476
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: Axe_SideChop_W_0
+      m_Hash: 321172879
+      m_Sprite: {fileID: -2075049773, guid: b6633ba9711e56a47a820a227b32cf65, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -2075049773, guid: b6633ba9711e56a47a820a227b32cf65, type: 3}
+    - m_Name: Axe_SideChop_W_1
+      m_Hash: 606307609
+      m_Sprite: {fileID: 1689687065, guid: b6633ba9711e56a47a820a227b32cf65, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 1689687065, guid: b6633ba9711e56a47a820a227b32cf65, type: 3}
+    - m_Name: Axe_SideChop_W_2
+      m_Hash: 1026217123
+      m_Sprite: {fileID: -1067689079, guid: b6633ba9711e56a47a820a227b32cf65, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -1067689079, guid: b6633ba9711e56a47a820a227b32cf65, type: 3}
+    - m_Name: Axe_SideChop_W_3
+      m_Hash: 170779701
+      m_Sprite: {fileID: 243902113, guid: b6633ba9711e56a47a820a227b32cf65, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 243902113, guid: b6633ba9711e56a47a820a227b32cf65, type: 3}
+    - m_Name: Axe_SideChop_W_4
+      m_Hash: 340357526
+      m_Sprite: {fileID: 1276947661, guid: b6633ba9711e56a47a820a227b32cf65, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 1276947661, guid: b6633ba9711e56a47a820a227b32cf65, type: 3}
+    - m_Name: Blank
+      m_Hash: 1038805857
+      m_Sprite: {fileID: 6200118337827907677, guid: a0b1a2ed63d1d634faa13baae6ccc375, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 6200118337827907677, guid: a0b1a2ed63d1d634faa13baae6ccc375, type: 3}
+    m_FromMain: 0
+    m_EntryOverrideCount: 6
+  m_PrimaryLibraryGUID: 
+  m_ModificationHash: 639122160255045799
+  m_Version: 1

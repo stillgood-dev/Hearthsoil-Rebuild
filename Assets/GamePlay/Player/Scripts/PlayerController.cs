@@ -1,6 +1,14 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+public enum FacingDirection
+{
+    North,
+    South,
+    East,
+    West
+}
+
 public class PlayerController : MonoBehaviour
 {
     [Header("References")]
@@ -10,6 +18,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float moveSpeed = 2f;
     private Vector2 movementInput;
     private Rigidbody2D rb; // must be Dynamic to work with Unity 2D Physics
+    [SerializeField] private FacingDirection facing;
+    public FacingDirection Facing => facing;
 
     [Header("Animator Parameters")]
     private Animator animator;
@@ -38,6 +48,8 @@ public class PlayerController : MonoBehaviour
         animator.SetFloat(lastFacingY, -1f);
         animator.SetFloat(facingX, 0f);
         animator.SetFloat(facingY, -1f);
+
+        facing = FacingDirection.South;
     }
 
     private void Update()
@@ -82,6 +94,24 @@ public class PlayerController : MonoBehaviour
             animator.SetFloat(lastFacingY, faceY);
             animator.SetFloat(facingX, faceX);
             animator.SetFloat(facingY, faceY);
+
+            // Set facing direction so other scripts can read which direction the player is facing
+            if (faceY == 1)
+            {
+                facing = FacingDirection.North;
+            }
+            else if (faceY == -1)
+            {
+                facing = FacingDirection.South;
+            }
+            else if (faceX == 1)
+            {
+                facing = FacingDirection.East;
+            }
+            else if (faceX == -1)
+            {
+                facing = FacingDirection.West;
+            }
         }
         else
         {
@@ -90,6 +120,7 @@ public class PlayerController : MonoBehaviour
         }
 
         animator.SetFloat(speedParam, moving ? 1f : 0f);
+
     }
 
     private void FixedUpdate()
@@ -104,7 +135,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnMove(InputValue value)
     {
-        if (actionState.IsBusy) return;
+        if (actionState.LockMovement) return;
         // cache movement input
         movementInput = value.Get<Vector2>();
 

@@ -3,20 +3,32 @@
   "WorkspaceRootPath": "C:\\Users\\sunro\\Documents\\GitHub\\Hearthsoil-Rebuild\\Hearthsoil-Rebuild\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{9D461387-B892-04F0-B27D-6E23DB3987F3}|Assembly-CSharp.csproj|C:\\Users\\sunro\\Documents\\GitHub\\Hearthsoil-Rebuild\\Hearthsoil-Rebuild\\assets\\gameplay\\universalscripts\\receivableobjectcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9D461387-B892-04F0-B27D-6E23DB3987F3}|Assembly-CSharp.csproj|solutionrelative:assets\\gameplay\\universalscripts\\receivableobjectcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{9D461387-B892-04F0-B27D-6E23DB3987F3}|Assembly-CSharp.csproj|c:\\users\\sunro\\documents\\github\\hearthsoil-rebuild\\hearthsoil-rebuild\\assets\\gameplay\\player\\scripts\\playeraxecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9D461387-B892-04F0-B27D-6E23DB3987F3}|Assembly-CSharp.csproj|solutionrelative:assets\\gameplay\\player\\scripts\\playeraxecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9D461387-B892-04F0-B27D-6E23DB3987F3}|Assembly-CSharp.csproj|c:\\users\\sunro\\documents\\github\\hearthsoil-rebuild\\hearthsoil-rebuild\\assets\\gameplay\\player\\scripts\\playerreceivecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9D461387-B892-04F0-B27D-6E23DB3987F3}|Assembly-CSharp.csproj|solutionrelative:assets\\gameplay\\player\\scripts\\playerreceivecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{9D461387-B892-04F0-B27D-6E23DB3987F3}|Assembly-CSharp.csproj|C:\\Users\\sunro\\Documents\\GitHub\\Hearthsoil-Rebuild\\Hearthsoil-Rebuild\\assets\\gameplay\\player\\scripts\\playercarrycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9D461387-B892-04F0-B27D-6E23DB3987F3}|Assembly-CSharp.csproj|solutionrelative:assets\\gameplay\\player\\scripts\\playercarrycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9D461387-B892-04F0-B27D-6E23DB3987F3}|Assembly-CSharp.csproj|C:\\Users\\sunro\\Documents\\GitHub\\Hearthsoil-Rebuild\\Hearthsoil-Rebuild\\assets\\gameplay\\player\\scripts\\playeractionstate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{9D461387-B892-04F0-B27D-6E23DB3987F3}|Assembly-CSharp.csproj|C:\\Users\\sunro\\Documents\\GitHub\\Hearthsoil-Rebuild\\Hearthsoil-Rebuild\\assets\\gameplay\\universalscripts\\carryableobjectcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9D461387-B892-04F0-B27D-6E23DB3987F3}|Assembly-CSharp.csproj|solutionrelative:assets\\gameplay\\universalscripts\\carryableobjectcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9D461387-B892-04F0-B27D-6E23DB3987F3}|Assembly-CSharp.csproj|c:\\users\\sunro\\documents\\github\\hearthsoil-rebuild\\hearthsoil-rebuild\\assets\\gameplay\\player\\scripts\\playeractionstate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{9D461387-B892-04F0-B27D-6E23DB3987F3}|Assembly-CSharp.csproj|solutionrelative:assets\\gameplay\\player\\scripts\\playeractionstate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{9D461387-B892-04F0-B27D-6E23DB3987F3}|Assembly-CSharp.csproj|C:\\Users\\sunro\\Documents\\GitHub\\Hearthsoil-Rebuild\\Hearthsoil-Rebuild\\assets\\gameplay\\player\\scripts\\playercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{9D461387-B892-04F0-B27D-6E23DB3987F3}|Assembly-CSharp.csproj|solutionrelative:assets\\gameplay\\player\\scripts\\playercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9D461387-B892-04F0-B27D-6E23DB3987F3}|Assembly-CSharp.csproj|C:\\Users\\sunro\\Documents\\GitHub\\Hearthsoil-Rebuild\\Hearthsoil-Rebuild\\assets\\gameplay\\player\\scripts\\playerreceivecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9D461387-B892-04F0-B27D-6E23DB3987F3}|Assembly-CSharp.csproj|solutionrelative:assets\\gameplay\\player\\scripts\\playerreceivecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9D461387-B892-04F0-B27D-6E23DB3987F3}|Assembly-CSharp.csproj|C:\\Users\\sunro\\Documents\\GitHub\\Hearthsoil-Rebuild\\Hearthsoil-Rebuild\\assets\\gameplay\\universalscripts\\receivableobjectcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9D461387-B892-04F0-B27D-6E23DB3987F3}|Assembly-CSharp.csproj|solutionrelative:assets\\gameplay\\universalscripts\\receivableobjectcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -31,52 +43,90 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "ReceivableObjectController.cs",
-              "DocumentMoniker": "C:\\Users\\sunro\\Documents\\GitHub\\Hearthsoil-Rebuild\\Hearthsoil-Rebuild\\Assets\\GamePlay\\UniversalScripts\\ReceivableObjectController.cs",
-              "RelativeDocumentMoniker": "Assets\\GamePlay\\UniversalScripts\\ReceivableObjectController.cs",
-              "ToolTip": "C:\\Users\\sunro\\Documents\\GitHub\\Hearthsoil-Rebuild\\Hearthsoil-Rebuild\\Assets\\GamePlay\\UniversalScripts\\ReceivableObjectController.cs",
-              "RelativeToolTip": "Assets\\GamePlay\\UniversalScripts\\ReceivableObjectController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAD4AAAAAAAAAAAAAAA==",
+              "Title": "PlayerAxeController.cs",
+              "DocumentMoniker": "C:\\Users\\sunro\\Documents\\GitHub\\Hearthsoil-Rebuild\\Hearthsoil-Rebuild\\Assets\\GamePlay\\Player\\Scripts\\PlayerAxeController.cs",
+              "RelativeDocumentMoniker": "Assets\\GamePlay\\Player\\Scripts\\PlayerAxeController.cs",
+              "ToolTip": "C:\\Users\\sunro\\Documents\\GitHub\\Hearthsoil-Rebuild\\Hearthsoil-Rebuild\\Assets\\GamePlay\\Player\\Scripts\\PlayerAxeController.cs",
+              "RelativeToolTip": "Assets\\GamePlay\\Player\\Scripts\\PlayerAxeController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-18T18:21:35.095Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "PlayerActionState.cs",
-              "DocumentMoniker": "C:\\Users\\sunro\\Documents\\GitHub\\Hearthsoil-Rebuild\\Hearthsoil-Rebuild\\Assets\\GamePlay\\Player\\Scripts\\PlayerActionState.cs",
-              "RelativeDocumentMoniker": "Assets\\GamePlay\\Player\\Scripts\\PlayerActionState.cs",
-              "ToolTip": "C:\\Users\\sunro\\Documents\\GitHub\\Hearthsoil-Rebuild\\Hearthsoil-Rebuild\\Assets\\GamePlay\\Player\\Scripts\\PlayerActionState.cs",
-              "RelativeToolTip": "Assets\\GamePlay\\Player\\Scripts\\PlayerActionState.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACIAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-12T18:59:39.807Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "PlayerReceiveController.cs",
-              "DocumentMoniker": "C:\\Users\\sunro\\Documents\\GitHub\\Hearthsoil-Rebuild\\Hearthsoil-Rebuild\\Assets\\GamePlay\\Player\\Scripts\\PlayerReceiveController.cs",
-              "RelativeDocumentMoniker": "Assets\\GamePlay\\Player\\Scripts\\PlayerReceiveController.cs",
-              "ToolTip": "C:\\Users\\sunro\\Documents\\GitHub\\Hearthsoil-Rebuild\\Hearthsoil-Rebuild\\Assets\\GamePlay\\Player\\Scripts\\PlayerReceiveController.cs",
-              "RelativeToolTip": "Assets\\GamePlay\\Player\\Scripts\\PlayerReceiveController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAA2AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-12T18:56:28.839Z",
+              "WhenOpened": "2026-04-19T21:34:22.561Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
+              "Title": "PlayerActionState.cs",
+              "DocumentMoniker": "C:\\Users\\sunro\\Documents\\GitHub\\Hearthsoil-Rebuild\\Hearthsoil-Rebuild\\Assets\\GamePlay\\Player\\Scripts\\PlayerActionState.cs",
+              "RelativeDocumentMoniker": "Assets\\GamePlay\\Player\\Scripts\\PlayerActionState.cs",
+              "ToolTip": "C:\\Users\\sunro\\Documents\\GitHub\\Hearthsoil-Rebuild\\Hearthsoil-Rebuild\\Assets\\GamePlay\\Player\\Scripts\\PlayerActionState.cs",
+              "RelativeToolTip": "Assets\\GamePlay\\Player\\Scripts\\PlayerActionState.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-19T19:37:49.826Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "CarryableObjectController.cs",
+              "DocumentMoniker": "C:\\Users\\sunro\\Documents\\GitHub\\Hearthsoil-Rebuild\\Hearthsoil-Rebuild\\Assets\\GamePlay\\UniversalScripts\\CarryableObjectController.cs",
+              "RelativeDocumentMoniker": "Assets\\GamePlay\\UniversalScripts\\CarryableObjectController.cs",
+              "ToolTip": "C:\\Users\\sunro\\Documents\\GitHub\\Hearthsoil-Rebuild\\Hearthsoil-Rebuild\\Assets\\GamePlay\\UniversalScripts\\CarryableObjectController.cs",
+              "RelativeToolTip": "Assets\\GamePlay\\UniversalScripts\\CarryableObjectController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEcAAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-19T16:17:53.344Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "PlayerCarryController.cs",
+              "DocumentMoniker": "C:\\Users\\sunro\\Documents\\GitHub\\Hearthsoil-Rebuild\\Hearthsoil-Rebuild\\Assets\\GamePlay\\Player\\Scripts\\PlayerCarryController.cs",
+              "RelativeDocumentMoniker": "Assets\\GamePlay\\Player\\Scripts\\PlayerCarryController.cs",
+              "ToolTip": "C:\\Users\\sunro\\Documents\\GitHub\\Hearthsoil-Rebuild\\Hearthsoil-Rebuild\\Assets\\GamePlay\\Player\\Scripts\\PlayerCarryController.cs",
+              "RelativeToolTip": "Assets\\GamePlay\\Player\\Scripts\\PlayerCarryController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAFwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-19T15:37:02.309Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "PlayerReceiveController.cs",
+              "DocumentMoniker": "C:\\Users\\sunro\\Documents\\GitHub\\Hearthsoil-Rebuild\\Hearthsoil-Rebuild\\Assets\\GamePlay\\Player\\Scripts\\PlayerReceiveController.cs",
+              "RelativeDocumentMoniker": "Assets\\GamePlay\\Player\\Scripts\\PlayerReceiveController.cs",
+              "ToolTip": "C:\\Users\\sunro\\Documents\\GitHub\\Hearthsoil-Rebuild\\Hearthsoil-Rebuild\\Assets\\GamePlay\\Player\\Scripts\\PlayerReceiveController.cs",
+              "RelativeToolTip": "Assets\\GamePlay\\Player\\Scripts\\PlayerReceiveController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACwAAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-12T18:56:28.839Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "PlayerController.cs",
               "DocumentMoniker": "C:\\Users\\sunro\\Documents\\GitHub\\Hearthsoil-Rebuild\\Hearthsoil-Rebuild\\Assets\\GamePlay\\Player\\Scripts\\PlayerController.cs",
               "RelativeDocumentMoniker": "Assets\\GamePlay\\Player\\Scripts\\PlayerController.cs",
               "ToolTip": "C:\\Users\\sunro\\Documents\\GitHub\\Hearthsoil-Rebuild\\Hearthsoil-Rebuild\\Assets\\GamePlay\\Player\\Scripts\\PlayerController.cs",
               "RelativeToolTip": "Assets\\GamePlay\\Player\\Scripts\\PlayerController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAEwAAAAAAAAAAAAcwI8AAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-04-11T23:27:04.972Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "ReceivableObjectController.cs",
+              "DocumentMoniker": "C:\\Users\\sunro\\Documents\\GitHub\\Hearthsoil-Rebuild\\Hearthsoil-Rebuild\\Assets\\GamePlay\\UniversalScripts\\ReceivableObjectController.cs",
+              "RelativeDocumentMoniker": "Assets\\GamePlay\\UniversalScripts\\ReceivableObjectController.cs",
+              "ToolTip": "C:\\Users\\sunro\\Documents\\GitHub\\Hearthsoil-Rebuild\\Hearthsoil-Rebuild\\Assets\\GamePlay\\UniversalScripts\\ReceivableObjectController.cs",
+              "RelativeToolTip": "Assets\\GamePlay\\UniversalScripts\\ReceivableObjectController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADwAAABGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-18T18:21:35.095Z"
             }
           ]
         }

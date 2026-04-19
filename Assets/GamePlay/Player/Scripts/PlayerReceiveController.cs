@@ -6,22 +6,18 @@ public class PlayerReceiveController : MonoBehaviour
     [Header("Player References")]
     [SerializeField] private Transform receiveAnchor;
     [SerializeField] private PlayerActionState actionState;
-    [SerializeField] private PlayerController playerController;
     [SerializeField] private Animator animator;
 
     [Header("Receiveable Object")]
     [SerializeField] private ReceivableObjectController receivableObject;
-    [SerializeField] private BoxCollider2D objectCollider;
-    [SerializeField] private Animator objectAnimator;
     [SerializeField] private bool hasReceivedObject = false;
     [SerializeField] private bool inInventory = false;
 
-    public bool HasReceivedObject => hasReceivedObject;
+    public bool InInventory => inInventory;
 
     private void Awake()
     {
         if(!animator) animator = GetComponent<Animator>();
-        if(!playerController) playerController = GetComponent<PlayerController>();
         if(!actionState) actionState = GetComponent<PlayerActionState>();
     }
 
