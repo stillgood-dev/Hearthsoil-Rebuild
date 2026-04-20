@@ -23,6 +23,7 @@ public class PlayerActionState : MonoBehaviour
 
     public bool LockMovement =>
         state == PlayerState.Receiving ||
+        state == PlayerState.Chopping ||
         state == PlayerState.Dialogue;
 
     // other scripts can set states

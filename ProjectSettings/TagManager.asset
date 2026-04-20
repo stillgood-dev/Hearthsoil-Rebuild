@@ -54,5 +54,8 @@ TagManager:
   - name: Characters
     uniqueID: 3221676853
     locked: 0
+  - name: Occluders
+    uniqueID: 2054090331
+    locked: 0
   m_RenderingLayers:
   - Default

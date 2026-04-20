@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: SideSwing_Axe_S
+  m_Name: PineTree_Fell_E
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -23,7 +23,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 6.725609e-37
+        value: 0.001868533
         inSlope: Infinity
         outSlope: Infinity
         tangentMode: 103
@@ -31,8 +31,8 @@ AnimationClip:
         inWeight: 0
         outWeight: 0
       - serializedVersion: 3
-        time: 0.2
-        value: 0.00000021227162
+        time: 0.25
+        value: 1.5028278e-30
         inSlope: Infinity
         outSlope: Infinity
         tangentMode: 103
@@ -40,8 +40,8 @@ AnimationClip:
         inWeight: 0
         outWeight: 0
       - serializedVersion: 3
-        time: 0.22727273
-        value: 1.3343435e-11
+        time: 0.41666666
+        value: 2.5297481e-26
         inSlope: Infinity
         outSlope: Infinity
         tangentMode: 103
@@ -49,8 +49,8 @@ AnimationClip:
         inWeight: 0
         outWeight: 0
       - serializedVersion: 3
-        time: 0.25454545
-        value: 4.9125092e-23
+        time: 0.5833333
+        value: 2.7508311e-17
         inSlope: Infinity
         outSlope: Infinity
         tangentMode: 103
@@ -58,8 +58,8 @@ AnimationClip:
         inWeight: 0
         outWeight: 0
       - serializedVersion: 3
-        time: 0.43636364
-        value: 1.6115422e-36
+        time: 0.75
+        value: 0.07479388
         inSlope: Infinity
         outSlope: Infinity
         tangentMode: 103
@@ -67,8 +67,8 @@ AnimationClip:
         inWeight: 0
         outWeight: 0
       - serializedVersion: 3
-        time: 0.48181817
-        value: 0.00000003309912
+        time: 0.9166667
+        value: 1.52258e-32
         inSlope: Infinity
         outSlope: Infinity
         tangentMode: 103
@@ -76,8 +76,53 @@ AnimationClip:
         inWeight: 0
         outWeight: 0
       - serializedVersion: 3
-        time: 0.5090909
-        value: 6.725609e-37
+        time: 1.1666666
+        value: 3.8193336e-27
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1.3333334
+        value: 6.266045e-17
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1.5416666
+        value: 0.00000016333664
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1.7916666
+        value: 4.946398e-37
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 2.0833333
+        value: 3.2496721e-21
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 2.3333333
+        value: 2.1558226e-13
         inSlope: Infinity
         outSlope: Infinity
         tangentMode: 103
@@ -88,12 +133,12 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_SpriteHash
-    path: Appearance
+    path: 
     classID: 114
     script: {fileID: 11500000, guid: ed8b1ae4e4e52b34ea557c1c11e076fc, type: 3}
     flags: 1
   m_PPtrCurves: []
-  m_SampleRate: 110
+  m_SampleRate: 24
   m_WrapMode: 0
   m_Bounds:
     m_Center: {x: 0, y: 0, z: 0}
@@ -101,7 +146,7 @@ AnimationClip:
   m_ClipBindingConstant:
     genericBindings:
     - serializedVersion: 2
-      path: 3857613120
+      path: 0
       attribute: 3843704414
       script: {fileID: 11500000, guid: ed8b1ae4e4e52b34ea557c1c11e076fc, type: 3}
       typeID: 114
@@ -115,7 +160,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.5090909
+    m_StopTime: 2.3333333
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -137,7 +182,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 6.725609e-37
+        value: 0.001868533
         inSlope: Infinity
         outSlope: Infinity
         tangentMode: 103
@@ -145,8 +190,8 @@ AnimationClip:
         inWeight: 0
         outWeight: 0
       - serializedVersion: 3
-        time: 0.2
-        value: 0.00000021227162
+        time: 0.25
+        value: 1.5028278e-30
         inSlope: Infinity
         outSlope: Infinity
         tangentMode: 103
@@ -154,8 +199,8 @@ AnimationClip:
         inWeight: 0
         outWeight: 0
       - serializedVersion: 3
-        time: 0.22727273
-        value: 1.3343435e-11
+        time: 0.41666666
+        value: 2.5297481e-26
         inSlope: Infinity
         outSlope: Infinity
         tangentMode: 103
@@ -163,8 +208,8 @@ AnimationClip:
         inWeight: 0
         outWeight: 0
       - serializedVersion: 3
-        time: 0.25454545
-        value: 4.9125092e-23
+        time: 0.5833333
+        value: 2.7508311e-17
         inSlope: Infinity
         outSlope: Infinity
         tangentMode: 103
@@ -172,8 +217,8 @@ AnimationClip:
         inWeight: 0
         outWeight: 0
       - serializedVersion: 3
-        time: 0.43636364
-        value: 1.6115422e-36
+        time: 0.75
+        value: 0.07479388
         inSlope: Infinity
         outSlope: Infinity
         tangentMode: 103
@@ -181,8 +226,8 @@ AnimationClip:
         inWeight: 0
         outWeight: 0
       - serializedVersion: 3
-        time: 0.48181817
-        value: 0.00000003309912
+        time: 0.9166667
+        value: 1.52258e-32
         inSlope: Infinity
         outSlope: Infinity
         tangentMode: 103
@@ -190,8 +235,53 @@ AnimationClip:
         inWeight: 0
         outWeight: 0
       - serializedVersion: 3
-        time: 0.5090909
-        value: 6.725609e-37
+        time: 1.1666666
+        value: 3.8193336e-27
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1.3333334
+        value: 6.266045e-17
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1.5416666
+        value: 0.00000016333664
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1.7916666
+        value: 4.946398e-37
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 2.0833333
+        value: 3.2496721e-21
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 2.3333333
+        value: 2.1558226e-13
         inSlope: Infinity
         outSlope: Infinity
         tangentMode: 103
@@ -202,7 +292,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_SpriteHash
-    path: Appearance
+    path: 
     classID: 114
     script: {fileID: 11500000, guid: ed8b1ae4e4e52b34ea557c1c11e076fc, type: 3}
     flags: 1
@@ -210,15 +300,15 @@ AnimationClip:
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
   m_Events:
-  - time: 0.25454545
-    functionName: OnAxeImpact
+  - time: 1.1666666
+    functionName: OnFalling
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.5
-    functionName: EndChop
+  - time: 2.3333333
+    functionName: OnTreeFell
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

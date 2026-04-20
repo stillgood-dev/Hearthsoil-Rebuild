@@ -1,0 +1,187 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &1
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5e6fedc2472449cead18ef23b5cb30d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Library:
+  - m_Name: Standing
+    m_Hash: 418179214
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: PineTree_Idle_0
+      m_Hash: 1047521357
+      m_Sprite: {fileID: -5332806649020860485, guid: 0f550499f31c3f44bb288f9264ade257, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -5332806649020860485, guid: 0f550499f31c3f44bb288f9264ade257, type: 3}
+    - m_Name: PineTree_Stump_0
+      m_Hash: 96528214
+      m_Sprite: {fileID: 6982103732606457233, guid: 35df4fc871ad04341aae883c7f786217, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 6982103732606457233, guid: 35df4fc871ad04341aae883c7f786217, type: 3}
+    - m_Name: PineTree_Idle_Shadow_0
+      m_Hash: 689405241
+      m_Sprite: {fileID: -6478972994857715804, guid: 3610847b49064404c9f6db2a17a4823e, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -6478972994857715804, guid: 3610847b49064404c9f6db2a17a4823e, type: 3}
+    - m_Name: PineTree_Spawn_0
+      m_Hash: 573418883
+      m_Sprite: {fileID: -2752330313731431705, guid: 7e1fc88f9aacb674882e41d6e1faf704, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -2752330313731431705, guid: 7e1fc88f9aacb674882e41d6e1faf704, type: 3}
+    m_FromMain: 0
+    m_EntryOverrideCount: 4
+  - m_Name: Fell_E
+    m_Hash: 851000980
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: PineTree_Fell_E_0
+      m_Hash: 291034999
+      m_Sprite: {fileID: -2392984444765795267, guid: 42d436d2440b0a74fbfe4bd26b44ce2b, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -2392984444765795267, guid: 42d436d2440b0a74fbfe4bd26b44ce2b, type: 3}
+    - m_Name: PineTree_Fell_E_1
+      m_Hash: 643819489
+      m_Sprite: {fileID: -3303823707638857278, guid: 42d436d2440b0a74fbfe4bd26b44ce2b, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -3303823707638857278, guid: 42d436d2440b0a74fbfe4bd26b44ce2b, type: 3}
+    - m_Name: PineTree_Fell_E_2
+      m_Hash: 1062647387
+      m_Sprite: {fileID: -6960193750041257747, guid: 42d436d2440b0a74fbfe4bd26b44ce2b, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -6960193750041257747, guid: 42d436d2440b0a74fbfe4bd26b44ce2b, type: 3}
+    - m_Name: PineTree_Fell_E_3
+      m_Hash: 139560653
+      m_Sprite: {fileID: -2155903699318064049, guid: 42d436d2440b0a74fbfe4bd26b44ce2b, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -2155903699318064049, guid: 42d436d2440b0a74fbfe4bd26b44ce2b, type: 3}
+    - m_Name: PineTree_Fell_E_4
+      m_Hash: 372577134
+      m_Sprite: {fileID: -1276538632112971137, guid: 42d436d2440b0a74fbfe4bd26b44ce2b, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -1276538632112971137, guid: 42d436d2440b0a74fbfe4bd26b44ce2b, type: 3}
+    - m_Name: PineTree_Fell_E_5
+      m_Hash: 556934136
+      m_Sprite: {fileID: 4407859593008837184, guid: 42d436d2440b0a74fbfe4bd26b44ce2b, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 4407859593008837184, guid: 42d436d2440b0a74fbfe4bd26b44ce2b, type: 3}
+    - m_Name: PineTree_Fell_E_6
+      m_Hash: 943419970
+      m_Sprite: {fileID: -7875301775426283461, guid: 42d436d2440b0a74fbfe4bd26b44ce2b, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -7875301775426283461, guid: 42d436d2440b0a74fbfe4bd26b44ce2b, type: 3}
+    - m_Name: PineTree_Fell_E_7
+      m_Hash: 255607508
+      m_Sprite: {fileID: -2064145487141364423, guid: 42d436d2440b0a74fbfe4bd26b44ce2b, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -2064145487141364423, guid: 42d436d2440b0a74fbfe4bd26b44ce2b, type: 3}
+    - m_Name: PineTree_Fell_E_8
+      m_Hash: 528703301
+      m_Sprite: {fileID: -5835024009272977569, guid: 42d436d2440b0a74fbfe4bd26b44ce2b, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -5835024009272977569, guid: 42d436d2440b0a74fbfe4bd26b44ce2b, type: 3}
+    - m_Name: PineTree_Fell_E_9
+      m_Hash: 679768019
+      m_Sprite: {fileID: 6900994609319055072, guid: 42d436d2440b0a74fbfe4bd26b44ce2b, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 6900994609319055072, guid: 42d436d2440b0a74fbfe4bd26b44ce2b, type: 3}
+    - m_Name: PineTree_Fell_E_10
+      m_Hash: 590369320
+      m_Sprite: {fileID: -7849988649491488130, guid: 42d436d2440b0a74fbfe4bd26b44ce2b, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -7849988649491488130, guid: 42d436d2440b0a74fbfe4bd26b44ce2b, type: 3}
+    - m_Name: PineTree_Fell_E_11
+      m_Hash: 339174078
+      m_Sprite: {fileID: 3948724856422139519, guid: 42d436d2440b0a74fbfe4bd26b44ce2b, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 3948724856422139519, guid: 42d436d2440b0a74fbfe4bd26b44ce2b, type: 3}
+    m_FromMain: 0
+    m_EntryOverrideCount: 12
+  - m_Name: Fell_W
+    m_Hash: 16797660
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: PineTree_Fell_W_0
+      m_Hash: 251306089
+      m_Sprite: {fileID: -3860604585192260299, guid: 41fb7cc0ef1da3a4abc409e6440b5c19, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -3860604585192260299, guid: 41fb7cc0ef1da3a4abc409e6440b5c19, type: 3}
+    - m_Name: PineTree_Fell_W_1
+      m_Hash: 972919039
+      m_Sprite: {fileID: 8508113112563295703, guid: 41fb7cc0ef1da3a4abc409e6440b5c19, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 8508113112563295703, guid: 41fb7cc0ef1da3a4abc409e6440b5c19, type: 3}
+    - m_Name: PineTree_Fell_W_2
+      m_Hash: 552911173
+      m_Sprite: {fileID: -380104463090382877, guid: 41fb7cc0ef1da3a4abc409e6440b5c19, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -380104463090382877, guid: 41fb7cc0ef1da3a4abc409e6440b5c19, type: 3}
+    - m_Name: PineTree_Fell_W_3
+      m_Hash: 401863123
+      m_Sprite: {fileID: -6350702915818002281, guid: 41fb7cc0ef1da3a4abc409e6440b5c19, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -6350702915818002281, guid: 41fb7cc0ef1da3a4abc409e6440b5c19, type: 3}
+    - m_Name: PineTree_Fell_W_4
+      m_Hash: 160916592
+      m_Sprite: {fileID: 8149269852265639694, guid: 41fb7cc0ef1da3a4abc409e6440b5c19, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 8149269852265639694, guid: 41fb7cc0ef1da3a4abc409e6440b5c19, type: 3}
+    - m_Name: PineTree_Fell_W_5
+      m_Hash: 1049646310
+      m_Sprite: {fileID: -1714120691274577460, guid: 41fb7cc0ef1da3a4abc409e6440b5c19, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -1714120691274577460, guid: 41fb7cc0ef1da3a4abc409e6440b5c19, type: 3}
+    - m_Name: PineTree_Fell_W_6
+      m_Hash: 664339804
+      m_Sprite: {fileID: -7801078908524007829, guid: 41fb7cc0ef1da3a4abc409e6440b5c19, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -7801078908524007829, guid: 41fb7cc0ef1da3a4abc409e6440b5c19, type: 3}
+    - m_Name: PineTree_Fell_W_7
+      m_Hash: 278803914
+      m_Sprite: {fileID: -2750682186475386432, guid: 41fb7cc0ef1da3a4abc409e6440b5c19, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -2750682186475386432, guid: 41fb7cc0ef1da3a4abc409e6440b5c19, type: 3}
+    - m_Name: PineTree_Fell_W_8
+      m_Hash: 2173019
+      m_Sprite: {fileID: 3150147763983738382, guid: 41fb7cc0ef1da3a4abc409e6440b5c19, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 3150147763983738382, guid: 41fb7cc0ef1da3a4abc409e6440b5c19, type: 3}
+    - m_Name: PineTree_Fell_W_9
+      m_Hash: 925243597
+      m_Sprite: {fileID: 4228923392502151626, guid: 41fb7cc0ef1da3a4abc409e6440b5c19, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 4228923392502151626, guid: 41fb7cc0ef1da3a4abc409e6440b5c19, type: 3}
+    - m_Name: PineTree_Fell_W_10
+      m_Hash: 421580092
+      m_Sprite: {fileID: 8203759703148214343, guid: 41fb7cc0ef1da3a4abc409e6440b5c19, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 8203759703148214343, guid: 41fb7cc0ef1da3a4abc409e6440b5c19, type: 3}
+    - m_Name: PineTree_Fell_W_11
+      m_Hash: 774372778
+      m_Sprite: {fileID: 7182020935470416063, guid: 41fb7cc0ef1da3a4abc409e6440b5c19, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 7182020935470416063, guid: 41fb7cc0ef1da3a4abc409e6440b5c19, type: 3}
+    m_FromMain: 0
+    m_EntryOverrideCount: 12
+  - m_Name: Blank
+    m_Hash: 1038805857
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: Blank
+      m_Hash: 1038805857
+      m_Sprite: {fileID: 6200118337827907677, guid: a0b1a2ed63d1d634faa13baae6ccc375, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 6200118337827907677, guid: a0b1a2ed63d1d634faa13baae6ccc375, type: 3}
+    m_FromMain: 0
+    m_EntryOverrideCount: 1
+  m_PrimaryLibraryGUID: 
+  m_ModificationHash: 639122915983603680
+  m_Version: 1

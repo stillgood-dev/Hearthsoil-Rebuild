@@ -1,14 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public enum FacingDirection
-{
-    North,
-    South,
-    East,
-    West
-}
-
 public class PlayerController : MonoBehaviour
 {
     [Header("References")]
@@ -55,6 +47,20 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         if (!animator) return;
+
+        // force player to per direction idle if movement locked
+        if (actionState.LockMovement)
+        {
+            IsMoving = false;
+            debugIsMoving = false;
+
+            animator.SetFloat(speedParam, 0f);
+            animator.SetFloat(facingX, animator.GetFloat(lastFacingX));
+            animator.SetFloat(facingY, animator.GetFloat(lastFacingY));
+            return;
+        }
+
+        
 
         float x = movementInput.x;
         float y = movementInput.y;
@@ -125,6 +131,12 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        // force stop movement if movement locked
+        if (actionState.LockMovement)
+        {
+            rb.linearVelocity = Vector2.zero;
+            return;
+        }
         Vector2 move = movementInput;
 
         if (move.sqrMagnitude > 1f)
@@ -134,9 +146,8 @@ public class PlayerController : MonoBehaviour
     }
 
     public void OnMove(InputValue value)
-    {
-        if (actionState.LockMovement) return;
-        // cache movement input
+    {  
+        // cache movement input (keeps reading input if held down)
         movementInput = value.Get<Vector2>();
 
         if (showDebugMessages)
