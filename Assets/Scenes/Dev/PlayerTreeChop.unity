@@ -2701,7 +2701,7 @@ MonoBehaviour:
   lastHitDirection: 0
   animator: {fileID: 0}
   hitFlashSprite: {fileID: 0}
-  hitFlashFrameCount: 15
+  hitFlashFrameCount: 30
   fadeZone: {fileID: 0}
   stumpShadow: {fileID: 0}
   standingCollider: {fileID: 0}

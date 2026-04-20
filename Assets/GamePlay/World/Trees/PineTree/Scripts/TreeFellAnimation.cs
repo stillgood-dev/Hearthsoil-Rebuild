@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class TreeFellAnimationRelay : MonoBehaviour
+public class TreeFellAnimation : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private ChoppableTreeController tree;

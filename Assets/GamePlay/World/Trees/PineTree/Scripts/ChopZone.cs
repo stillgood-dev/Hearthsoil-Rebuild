@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ChopZoneController : MonoBehaviour
+public class ChopZone : MonoBehaviour
 {
     [SerializeField] private ChoppableTreeController treeController;
     [SerializeField] private PlayerAxeController playerAxeController;
