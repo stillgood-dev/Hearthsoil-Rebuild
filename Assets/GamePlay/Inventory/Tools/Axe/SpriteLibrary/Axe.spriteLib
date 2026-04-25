@@ -17,6 +17,11 @@ MonoBehaviour:
     m_Hash: 501948358
     m_CategoryList: []
     m_OverrideEntries:
+    - m_Name: Blank
+      m_Hash: 1038805857
+      m_Sprite: {fileID: 6200118337827907677, guid: a0b1a2ed63d1d634faa13baae6ccc375, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 6200118337827907677, guid: a0b1a2ed63d1d634faa13baae6ccc375, type: 3}
     - m_Name: Axe_SideChop_N_0
       m_Hash: 13839728
       m_Sprite: {fileID: 858021425, guid: 986605e77f867d74db36a11a44dfbb3a, type: 3}
@@ -32,17 +37,32 @@ MonoBehaviour:
       m_Sprite: {fileID: 1645922040, guid: 986605e77f867d74db36a11a44dfbb3a, type: 3}
       m_FromMain: 0
       m_SpriteOverride: {fileID: 1645922040, guid: 986605e77f867d74db36a11a44dfbb3a, type: 3}
+    - m_Name: Axe_OverChop_N_0
+      m_Hash: 330103174
+      m_Sprite: {fileID: -4378346563322917350, guid: 71cb0f98a227e1a44843b54cd216de7a, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -4378346563322917350, guid: 71cb0f98a227e1a44843b54cd216de7a, type: 3}
+    - m_Name: Axe_OverChop_N_1
+      m_Hash: 615237904
+      m_Sprite: {fileID: 5837537165247476446, guid: 71cb0f98a227e1a44843b54cd216de7a, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 5837537165247476446, guid: 71cb0f98a227e1a44843b54cd216de7a, type: 3}
+    - m_Name: Axe_OverChop_N_2
+      m_Hash: 1034066090
+      m_Sprite: {fileID: 448083883, guid: 71cb0f98a227e1a44843b54cd216de7a, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 448083883, guid: 71cb0f98a227e1a44843b54cd216de7a, type: 3}
+    m_FromMain: 0
+    m_EntryOverrideCount: 7
+  - m_Name: South
+    m_Hash: 13916784
+    m_CategoryList: []
+    m_OverrideEntries:
     - m_Name: Blank
       m_Hash: 1038805857
       m_Sprite: {fileID: 6200118337827907677, guid: a0b1a2ed63d1d634faa13baae6ccc375, type: 3}
       m_FromMain: 0
       m_SpriteOverride: {fileID: 6200118337827907677, guid: a0b1a2ed63d1d634faa13baae6ccc375, type: 3}
-    m_FromMain: 0
-    m_EntryOverrideCount: 4
-  - m_Name: South
-    m_Hash: 13916784
-    m_CategoryList: []
-    m_OverrideEntries:
     - m_Name: Axe_SideChop_S_0
       m_Hash: 338500947
       m_Sprite: {fileID: 96336604, guid: 8b7f5256391e6fa4eb74445d3e14af5f, type: 3}
@@ -68,13 +88,33 @@ MonoBehaviour:
       m_Sprite: {fileID: -1985667023, guid: 8b7f5256391e6fa4eb74445d3e14af5f, type: 3}
       m_FromMain: 0
       m_SpriteOverride: {fileID: -1985667023, guid: 8b7f5256391e6fa4eb74445d3e14af5f, type: 3}
-    - m_Name: Blank
-      m_Hash: 1038805857
-      m_Sprite: {fileID: 6200118337827907677, guid: a0b1a2ed63d1d634faa13baae6ccc375, type: 3}
+    - m_Name: Axe_OverChop_S_0
+      m_Hash: 122866085
+      m_Sprite: {fileID: 2022540747902760159, guid: 99f7a1b3d0e1d80408eed65b1ddb02c4, type: 3}
       m_FromMain: 0
-      m_SpriteOverride: {fileID: 6200118337827907677, guid: a0b1a2ed63d1d634faa13baae6ccc375, type: 3}
+      m_SpriteOverride: {fileID: 2022540747902760159, guid: 99f7a1b3d0e1d80408eed65b1ddb02c4, type: 3}
+    - m_Name: Axe_OverChop_S_1
+      m_Hash: 810940723
+      m_Sprite: {fileID: -6836497985014515530, guid: 99f7a1b3d0e1d80408eed65b1ddb02c4, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -6836497985014515530, guid: 99f7a1b3d0e1d80408eed65b1ddb02c4, type: 3}
+    - m_Name: Axe_OverChop_S_2
+      m_Hash: 693938313
+      m_Sprite: {fileID: -920275034, guid: 99f7a1b3d0e1d80408eed65b1ddb02c4, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -920275034, guid: 99f7a1b3d0e1d80408eed65b1ddb02c4, type: 3}
+    - m_Name: Axe_OverChop_S_3
+      m_Hash: 509319199
+      m_Sprite: {fileID: 1157329890, guid: 99f7a1b3d0e1d80408eed65b1ddb02c4, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 1157329890, guid: 99f7a1b3d0e1d80408eed65b1ddb02c4, type: 3}
+    - m_Name: Axe_OverChop_S_4
+      m_Hash: 4132284
+      m_Sprite: {fileID: -1217010694, guid: 99f7a1b3d0e1d80408eed65b1ddb02c4, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -1217010694, guid: 99f7a1b3d0e1d80408eed65b1ddb02c4, type: 3}
     m_FromMain: 0
-    m_EntryOverrideCount: 6
+    m_EntryOverrideCount: 11
   - m_Name: East
     m_Hash: 400640276
     m_CategoryList: []
@@ -148,5 +188,5 @@ MonoBehaviour:
     m_FromMain: 0
     m_EntryOverrideCount: 6
   m_PrimaryLibraryGUID: 
-  m_ModificationHash: 639122160255045799
+  m_ModificationHash: 639127300354666379
   m_Version: 1

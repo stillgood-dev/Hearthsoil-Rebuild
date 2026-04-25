@@ -20,7 +20,7 @@ public class AxeController : MonoBehaviour
         facing = playerController.Facing;
     }
 
-    public void PlayAxeSwing()
+    public void PlayAxeSideSwing()
     {
         if (playerController == null) return;
         if(facing == FacingDirection.North)
@@ -36,6 +36,17 @@ public class AxeController : MonoBehaviour
         {
             animator.Play("Axe_SideSwing_W");
         }
+    }
+
+    public void PlayAxeOverSwingSouth()
+    {
+        animator.Play("Axe_OverSwing_S");
+    }
+
+
+    public void PlayAxeOverSwingNorth()
+    {
+        animator.Play("Axe_OverSwing_N");
     }
 
 }

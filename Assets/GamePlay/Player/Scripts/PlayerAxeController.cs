@@ -8,6 +8,7 @@ public class PlayerAxeController : MonoBehaviour
     [SerializeField] private PlayerActionState playerActionState;
     [SerializeField] private Animator animator;
     [SerializeField] private FacingDirection faceDir;
+    [SerializeField] private Vector2 toLog;
     public FacingDirection FaceDir => faceDir;
 
     [Header("Axe Refs")]
@@ -23,6 +24,10 @@ public class PlayerAxeController : MonoBehaviour
     [SerializeField] private ChoppableTreeController currentTree;
     [SerializeField] private ChoppableTreeController lockedTree;
 
+    [Header("Log Refs")]
+    [SerializeField] private FelledLogController currentLog;
+    [SerializeField] private FelledLogController lockedLog;
+
 
 
     private void Awake()
@@ -35,6 +40,7 @@ public class PlayerAxeController : MonoBehaviour
     private void Update()
     {
         faceDir = playerController.Facing;
+        
     }
 
     public void OnInteract()
@@ -45,25 +51,30 @@ public class PlayerAxeController : MonoBehaviour
 
     public void BeginChop()
     {
+        if (playerActionState.IsBusy) return;
         // prevent chopping if midchop
         if (isChopping) return;
-        // don't allow chopping if there isn't a tree nearby
-        if (currentTree == null) return;
 
         lockedTree = currentTree;
+        lockedLog = currentLog;
 
-        animator.SetBool("IsChopping", true);
-        axe.PlayAxeSwing();
-        isChopping = true;
-        playerActionState.SetActionState(PlayerState.Chopping);
-        
-        
+        if (lockedTree == null && lockedLog == null) return;
+
+        SetAnimation();
+
     }
 
     // --- animation event --- //
     public void OnAxeImpact()
     {
-        lockedTree?.RegisterHit();
+        if(lockedLog != null)
+        {
+            lockedLog?.ProcessHit();
+
+        } else
+        {
+            lockedTree?.RegisterHit();
+        }
 
     }
 
@@ -74,6 +85,7 @@ public class PlayerAxeController : MonoBehaviour
         isChopping = false;
         playerActionState.ClearActionState();
         lockedTree = null;
+        lockedLog = null;
     }
 
     // cache the tree 
@@ -87,6 +99,53 @@ public class PlayerAxeController : MonoBehaviour
     public void ClearChopTarget(ChoppableTreeController tree)
     {
         if (currentTree == tree) currentTree = null;
+    }
+
+    public void SetLogTarget(FelledLogController log)
+    {
+        if (!log) return;
+        currentLog = log;
+    }
+
+    public void ClearLogTarget(FelledLogController log)
+    {
+        if (currentLog == log) currentLog = null;
+    }
+
+    private void SetAnimation()
+    {
+        bool treeIsFelled = lockedLog != null;
+
+        if (!treeIsFelled)
+        {
+            animator.SetBool("IsChopping", true);
+            axe.PlayAxeSideSwing();
+            isChopping = true;
+            playerActionState.SetActionState(PlayerState.Chopping);
+        } else
+        {
+
+            Vector2 logPosition = lockedLog.ChopPosition;
+            Vector2 playerPosition = transform.position;
+            toLog = logPosition - playerPosition;
+
+            animator.SetTrigger(toLog.y > 0f ? "ChopNorth" : "ChopSouth");
+
+            if(toLog.y > 0f)
+            {
+                axe.PlayAxeOverSwingNorth();
+                playerController.FaceNorth();
+            } else
+            {
+                axe.PlayAxeOverSwingSouth();
+                playerController.FaceSouth();
+            }
+
+            isChopping = true;
+            playerActionState.SetActionState(PlayerState.Chopping);
+            
+
+        }
     }
 
 }

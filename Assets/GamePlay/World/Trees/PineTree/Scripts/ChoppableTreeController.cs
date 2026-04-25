@@ -11,17 +11,25 @@ public class ChoppableTreeController : MonoBehaviour
 
     [Header("Tree Refs")]
     [SerializeField] private Animator animator;
-    [SerializeField] private SpriteRenderer hitFlashSprite;
-    [SerializeField] private int hitFlashFrameCount = 15;
     [SerializeField] private GameObject fadeZone;
     [SerializeField] private SpriteRenderer stumpShadow;
-    [SerializeField] private BoxCollider2D standingCollider;
+    [SerializeField] private GameObject standingTree;
+    [SerializeField] private GameObject standingCollider;
+    [SerializeField] private GameObject standingChopZone;
+
+    [Header("Felled Tree Refs")]
+    [SerializeField] private GameObject felledTree;
+    [SerializeField] private FelledLogController felledLogControllerEast;
+    [SerializeField] private FelledLogController felledLogControllerWest;
 
     [Header("Chop Refs")]
-    [SerializeField] private int hitsToFall = 3;
+    [SerializeField] private SpriteRenderer hitFlashSprite;
+    [SerializeField] private int hitFlashFrameCount = 15;
+    [SerializeField] private int hitsToFall = 3; // will eventually depend on player stats
     [SerializeField] private int treeHits;
-    [SerializeField] private bool isFalling;
     [SerializeField] private bool isFelled;
+
+    public bool IsFelled => isFelled;
 
     // --- hit flash coroutine --- //
     private Coroutine hitFlashCoroutine;
@@ -59,7 +67,21 @@ public class ChoppableTreeController : MonoBehaviour
         if (!standingCollider)
         {
             var root = transform.parent.parent;
-            standingCollider = root?.Find("Colliders/Standing")?.GetComponent<BoxCollider2D>();
+            standingCollider = root?.Find("Colliders/Standing")?.gameObject;
+        }
+
+        if (felledLogControllerEast) felledLogControllerEast.FelledTree.SetActive(false);
+        if (felledLogControllerWest) felledLogControllerWest.FelledTree.SetActive(false);
+
+        if (!standingTree)
+        {
+            var root = transform.parent.parent;
+            standingTree = root?.Find("Tree")?.gameObject;
+        }
+        if (!standingChopZone)
+        {
+            var root = transform.parent.parent;
+            standingChopZone = root?.Find("Colliders/ChopZone")?.gameObject;
         }
 
     }
@@ -127,7 +149,6 @@ public class ChoppableTreeController : MonoBehaviour
     {
         if (treeHits == hitsToFall)
         {
-            isFalling = true;
             lastHitDirection = playerFaceDirection;
             if(lastHitDirection == FacingDirection.East ||  lastHitDirection == FacingDirection.South)
             {
@@ -143,7 +164,6 @@ public class ChoppableTreeController : MonoBehaviour
     // animation event
     public void OnTreeFall()
     {
-        isFalling = true;
         if (stumpShadow) stumpShadow.enabled = false;
         DisableFadeZone();
     }
@@ -151,9 +171,21 @@ public class ChoppableTreeController : MonoBehaviour
     // animation event
     public void OnTreeFell()
     {
-        isFalling = false;
         isFelled = true;
         DisableStandingCollider();
+
+        if(lastHitDirection == FacingDirection.East || lastHitDirection == FacingDirection.South)
+        {
+            felledTree = felledLogControllerEast.FelledTree;
+            felledTree.SetActive(true);
+  
+        } else
+        {
+            felledTree = felledLogControllerWest.FelledTree;
+            felledTree.SetActive(true);
+        }
+
+        DisableStandingTree();
     }
 
     private void DisableFadeZone()
@@ -164,7 +196,13 @@ public class ChoppableTreeController : MonoBehaviour
     private void DisableStandingCollider()
     {
         if (!standingCollider) return;
-        standingCollider.enabled = false;
+        standingCollider.SetActive(false);
+    }
+
+    private void DisableStandingTree()
+    {
+        standingTree?.SetActive(false);
+        standingChopZone?.SetActive(false);
     }
 
 

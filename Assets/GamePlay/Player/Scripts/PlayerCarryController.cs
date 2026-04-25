@@ -82,6 +82,7 @@ public class PlayerCarryController : MonoBehaviour
     // interact button
     public void OnInteract(InputValue value)
     {
+        
         if (carryableObject == null) return;
         if (holdAnchor == null) return;
 
@@ -98,6 +99,7 @@ public class PlayerCarryController : MonoBehaviour
     // first interaction loop -- pick up the object
     private void PickUpObject()
     {
+        if (actionState.IsBusy && actionState.State != PlayerState.Carrying) return;
         if (carryableObject == null) return;
 
         animator.SetBool("IsCarrying", true);

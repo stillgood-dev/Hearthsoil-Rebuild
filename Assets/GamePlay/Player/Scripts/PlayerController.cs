@@ -29,6 +29,13 @@ public class PlayerController : MonoBehaviour
 
     public bool IsMoving { get; private set; }
 
+    public void FaceNorth() => SetFacingDirection(0, 1);
+    public void FaceSouth() => SetFacingDirection(0, -1);
+    public void FaceEast() => SetFacingDirection(1, 0);
+    public void FaceWest() => SetFacingDirection(-1, 0);
+
+
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -153,6 +160,16 @@ public class PlayerController : MonoBehaviour
         if (showDebugMessages)
             Debug.Log($"Move Input: {movementInput}");
     }
+
+    public void SetFacingDirection(int x, int y)
+    {
+        animator.SetFloat(facingX, x);
+        animator.SetFloat(facingY, y);
+        animator.SetFloat(lastFacingX, x);
+        animator.SetFloat(lastFacingY, y);
+    }
+
+    
 
     
 }

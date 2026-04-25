@@ -39,6 +39,7 @@ public class PlayerReceiveController : MonoBehaviour
 
     public void OnInteract()
     {
+        if (actionState.IsBusy && actionState.State != PlayerState.Receiving) return;
         if (receivableObject == null) return;
 
         // --- accept object --- //
