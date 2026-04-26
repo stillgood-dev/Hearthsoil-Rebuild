@@ -1,0 +1,152 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &1
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5e6fedc2472449cead18ef23b5cb30d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Library:
+  - m_Name: North
+    m_Hash: 501948358
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: Blank
+      m_Hash: 1038805857
+      m_Sprite: {fileID: 6200118337827907677, guid: a0b1a2ed63d1d634faa13baae6ccc375, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 6200118337827907677, guid: a0b1a2ed63d1d634faa13baae6ccc375, type: 3}
+    - m_Name: Machete_SideSwing_N_0
+      m_Hash: 760067966
+      m_Sprite: {fileID: -3281620783138862950, guid: f5385108b0343f747bd181e9d7466cb4, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -3281620783138862950, guid: f5385108b0343f747bd181e9d7466cb4, type: 3}
+    - m_Name: Machete_SideSwing_N_1
+      m_Hash: 441092072
+      m_Sprite: {fileID: -4017981757003970082, guid: f5385108b0343f747bd181e9d7466cb4, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -4017981757003970082, guid: f5385108b0343f747bd181e9d7466cb4, type: 3}
+    - m_Name: Machete_SideSwing_N_2
+      m_Hash: 54777426
+      m_Sprite: {fileID: -576175456756614405, guid: f5385108b0343f747bd181e9d7466cb4, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -576175456756614405, guid: f5385108b0343f747bd181e9d7466cb4, type: 3}
+    m_FromMain: 0
+    m_EntryOverrideCount: 4
+  - m_Name: South
+    m_Hash: 13916784
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: Blank
+      m_Hash: 1038805857
+      m_Sprite: {fileID: 6200118337827907677, guid: a0b1a2ed63d1d634faa13baae6ccc375, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 6200118337827907677, guid: a0b1a2ed63d1d634faa13baae6ccc375, type: 3}
+    - m_Name: Machete_SideSwing_S_0
+      m_Hash: 968066909
+      m_Sprite: {fileID: 2343172434578080212, guid: 42e6e38abe5b1e941ba25201bc7da959, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 2343172434578080212, guid: 42e6e38abe5b1e941ba25201bc7da959, type: 3}
+    - m_Name: Machete_SideSwing_S_1
+      m_Hash: 246724555
+      m_Sprite: {fileID: -5634621115278952083, guid: 42e6e38abe5b1e941ba25201bc7da959, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -5634621115278952083, guid: 42e6e38abe5b1e941ba25201bc7da959, type: 3}
+    - m_Name: Machete_SideSwing_S_2
+      m_Hash: 398321265
+      m_Sprite: {fileID: -447364317754969286, guid: 42e6e38abe5b1e941ba25201bc7da959, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -447364317754969286, guid: 42e6e38abe5b1e941ba25201bc7da959, type: 3}
+    - m_Name: Machete_SideSwing_S_3
+      m_Hash: 549115623
+      m_Sprite: {fileID: 2101038759, guid: 42e6e38abe5b1e941ba25201bc7da959, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 2101038759, guid: 42e6e38abe5b1e941ba25201bc7da959, type: 3}
+    - m_Name: Machete_SideSwing_S_4
+      m_Hash: 1054753604
+      m_Sprite: {fileID: -1863023269, guid: 42e6e38abe5b1e941ba25201bc7da959, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -1863023269, guid: 42e6e38abe5b1e941ba25201bc7da959, type: 3}
+    m_FromMain: 0
+    m_EntryOverrideCount: 6
+  - m_Name: East
+    m_Hash: 400640276
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: Blank
+      m_Hash: 1038805857
+      m_Sprite: {fileID: 6200118337827907677, guid: a0b1a2ed63d1d634faa13baae6ccc375, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 6200118337827907677, guid: a0b1a2ed63d1d634faa13baae6ccc375, type: 3}
+    - m_Name: Machete_SideSwing_E_0
+      m_Hash: 555243679
+      m_Sprite: {fileID: 6105706140678769208, guid: 16ba1fa6165c6b841bd631a7ce3319a1, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 6105706140678769208, guid: 16ba1fa6165c6b841bd631a7ce3319a1, type: 3}
+    - m_Name: Machete_SideSwing_E_1
+      m_Hash: 371157001
+      m_Sprite: {fileID: 704094161379152551, guid: 16ba1fa6165c6b841bd631a7ce3319a1, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 704094161379152551, guid: 16ba1fa6165c6b841bd631a7ce3319a1, type: 3}
+    - m_Name: Machete_SideSwing_E_2
+      m_Hash: 253114803
+      m_Sprite: {fileID: -5229031466760041504, guid: 16ba1fa6165c6b841bd631a7ce3319a1, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -5229031466760041504, guid: 16ba1fa6165c6b841bd631a7ce3319a1, type: 3}
+    - m_Name: Machete_SideSwing_E_3
+      m_Hash: 940640549
+      m_Sprite: {fileID: 2570881744201351401, guid: 16ba1fa6165c6b841bd631a7ce3319a1, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 2570881744201351401, guid: 16ba1fa6165c6b841bd631a7ce3319a1, type: 3}
+    - m_Name: Machete_SideSwing_E_4
+      m_Hash: 645241990
+      m_Sprite: {fileID: 3532369388820555080, guid: 16ba1fa6165c6b841bd631a7ce3319a1, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 3532369388820555080, guid: 16ba1fa6165c6b841bd631a7ce3319a1, type: 3}
+    m_FromMain: 0
+    m_EntryOverrideCount: 6
+  - m_Name: West
+    m_Hash: 720928476
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: Blank
+      m_Hash: 1038805857
+      m_Sprite: {fileID: 6200118337827907677, guid: a0b1a2ed63d1d634faa13baae6ccc375, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 6200118337827907677, guid: a0b1a2ed63d1d634faa13baae6ccc375, type: 3}
+    - m_Name: Machete_SideSwing_W_0
+      m_Hash: 1052389249
+      m_Sprite: {fileID: 7593208948639645977, guid: a688de4cc06d8b64d856bc9e5ef9aa4b, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 7593208948639645977, guid: a688de4cc06d8b64d856bc9e5ef9aa4b, type: 3}
+    - m_Name: Machete_SideSwing_W_1
+      m_Hash: 163389207
+      m_Sprite: {fileID: -6541754475135525808, guid: a688de4cc06d8b64d856bc9e5ef9aa4b, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -6541754475135525808, guid: a688de4cc06d8b64d856bc9e5ef9aa4b, type: 3}
+    - m_Name: Machete_SideSwing_W_2
+      m_Hash: 280252077
+      m_Sprite: {fileID: 3752322592118247766, guid: a688de4cc06d8b64d856bc9e5ef9aa4b, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 3752322592118247766, guid: a688de4cc06d8b64d856bc9e5ef9aa4b, type: 3}
+    - m_Name: Machete_SideSwing_W_3
+      m_Hash: 666074683
+      m_Sprite: {fileID: -2414339865866303950, guid: a688de4cc06d8b64d856bc9e5ef9aa4b, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -2414339865866303950, guid: a688de4cc06d8b64d856bc9e5ef9aa4b, type: 3}
+    - m_Name: Machete_SideSwing_W_4
+      m_Hash: 970451864
+      m_Sprite: {fileID: -6754463138668528556, guid: a688de4cc06d8b64d856bc9e5ef9aa4b, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -6754463138668528556, guid: a688de4cc06d8b64d856bc9e5ef9aa4b, type: 3}
+    m_FromMain: 0
+    m_EntryOverrideCount: 6
+  m_PrimaryLibraryGUID: 
+  m_ModificationHash: 639128112711387178
+  m_Version: 1

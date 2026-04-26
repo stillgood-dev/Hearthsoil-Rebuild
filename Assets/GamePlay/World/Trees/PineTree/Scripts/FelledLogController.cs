@@ -19,12 +19,13 @@ public class FelledLogController : MonoBehaviour
 
     [Header("Felled Log")]
     [SerializeField] private SpriteRenderer logRenderer;
-    [SerializeField] private GameObject logCollider;
+    [SerializeField] private BoxCollider2D logCollider;
     [SerializeField] private GameObject felledLogGameObject;
 
     [Header("Stages")]
     [SerializeField] private GameObject[] branchStages;
     [SerializeField] private GameObject[] logStages;
+    [SerializeField] private GameObject[] colliderStages;
 
     [SerializeField] private int branchHits = 0;
     [SerializeField] private int branchHitsToProcess = 4;
@@ -58,6 +59,22 @@ public class FelledLogController : MonoBehaviour
         if (impactBurst != null) impactBurst.SetActive(false);
     }
 
+    // allow player to interact with the log if in chop zone
+    public void SetPlayerInChopZone(bool inRange, PlayerAxeController playerAxe)
+    {
+        playerInChopZone = inRange;
+        playerAxeController = playerAxe;
+
+        if (playerInChopZone)
+        {
+            playerAxeController.SetLogTarget(this);
+        }
+        else
+        {
+            playerAxeController.ClearLogTarget(this);
+        }
+    }
+
     private void UpdateBranchStageOnHit()
     {
         if (branchStages == null) return;
@@ -88,7 +105,7 @@ public class FelledLogController : MonoBehaviour
         {
             felledBranchesGameObject.SetActive(false);
             felledBranchesCollider.SetActive(false);
-            logCollider.SetActive(true);
+            logCollider.enabled = true;
             logOnly = true;
         }
     }
@@ -115,6 +132,7 @@ public class FelledLogController : MonoBehaviour
                 logRenderer.enabled = false;
 
             UpdateLogStageOnHit();
+            UpdateLogCollidersOnHit();
         }
     }
 
@@ -128,28 +146,49 @@ public class FelledLogController : MonoBehaviour
         }
 
         logStages[index].SetActive(true);
+        SpawnLogResourceOnHit();
 
         if (logHits == logHitsToProcess)
         {
             felledLogGameObject.SetActive(false);
-            logCollider.SetActive(false);
+            
         }
 
     }
 
-
-    public void SetPlayerInChopZone(bool inRange, PlayerAxeController playerAxe)
+    private void UpdateLogCollidersOnHit()
     {
-        playerInChopZone = inRange;
-        playerAxeController = playerAxe;
+        if (colliderStages == null) return;
+        if (logCollider == null) return;
 
-        if (playerInChopZone)
+        int index = Mathf.Clamp(logHits - 1, 0, logStages.Length - 1);
+        if (index != 0)
         {
-            playerAxeController.SetLogTarget(this);
+            colliderStages[index - 1].SetActive(false);
         }
-        else
-        {
-            playerAxeController.ClearLogTarget(this);
-        }
+        logCollider.enabled = false;
+        colliderStages[index].SetActive(true);
     }
+
+    private void SpawnLogResourceOnHit()
+    {
+        if (logResource == null) return;
+        if (logDropPoint == null) return;
+        if (logHits <= logHitsToProcess)
+        {
+            GameObject spawnedLog = Instantiate(logResource, logDropPoint.position, Quaternion.identity);
+
+            ResourcePopOut popOut = spawnedLog.GetComponent<ResourcePopOut>();
+
+            if (popOut != null)
+            {
+                popOut.Pop(playerAxeController.FaceDir, logHits);
+            }
+            logs++;
+        }
+
+    }
+
+
+
 }

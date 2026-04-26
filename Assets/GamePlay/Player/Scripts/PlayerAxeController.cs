@@ -52,14 +52,18 @@ public class PlayerAxeController : MonoBehaviour
     public void BeginChop()
     {
         if (playerActionState.IsBusy) return;
+
         // prevent chopping if midchop
         if (isChopping) return;
 
+        // Phase 2: Commit
         lockedTree = currentTree;
         lockedLog = currentLog;
 
+        // prevent player from using tool if no tree to hit
         if (lockedTree == null && lockedLog == null) return;
 
+        // Phase 3: Execute
         SetAnimation();
 
     }
@@ -84,6 +88,8 @@ public class PlayerAxeController : MonoBehaviour
         animator.SetBool("IsChopping", false);
         isChopping = false;
         playerActionState.ClearActionState();
+
+        // Phase 4: Release
         lockedTree = null;
         lockedLog = null;
     }
@@ -98,7 +104,7 @@ public class PlayerAxeController : MonoBehaviour
     // clear the tree
     public void ClearChopTarget(ChoppableTreeController tree)
     {
-        if (currentTree == tree) currentTree = null;
+        if (currentTree != null && currentTree == tree) currentTree = null;
     }
 
     public void SetLogTarget(FelledLogController log)
