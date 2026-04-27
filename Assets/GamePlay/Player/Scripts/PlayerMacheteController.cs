@@ -1,3 +1,5 @@
+using NUnit.Framework;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -24,6 +26,8 @@ public class PlayerMacheteController : MonoBehaviour
     [SerializeField] private DamageableObjectController currentObject;
     [SerializeField] private DamageableObjectController lockedObject;
 
+    private readonly List<DamageableObjectController> hitTargets = new();
+
     private void Awake()
     {
         if (!playerController) playerController = GetComponent<PlayerController>();
@@ -47,23 +51,45 @@ public class PlayerMacheteController : MonoBehaviour
     public void SetHitTarget(DamageableObjectController obj)
     {
         if (!obj) return;
-       currentObject = obj;
+
+        if (!hitTargets.Contains(obj))
+            hitTargets.Add(obj);
+
+        currentObject = obj;
     }
 
-    // clear the tree
     public void ClearHitTarget(DamageableObjectController obj)
     {
-        if (currentObject == obj) currentObject = null;
+        if (!obj) return;
+
+        hitTargets.Remove(obj);
+
+        if (currentObject == obj)
+        {
+            currentObject = GetBestHitTarget();
+        }
+    }
+
+    private DamageableObjectController GetBestHitTarget()
+    {
+        // Simple version: use the most recently added remaining target
+        for (int i = hitTargets.Count - 1; i >= 0; i--)
+        {
+            if (hitTargets[i] != null)
+                return hitTargets[i];
+        }
+
+        return null;
     }
 
     public void BeginSwing()
     {
         if (playerActionState.IsBusy) return;
-        // prevent player from using tool if there is nothing to hit
-        if (currentObject == null) return;
-
-        // prevent swinging mid swing
         if (isMacheting) return;
+
+        currentObject = GetBestHitTarget();
+
+        if (currentObject == null) return;
 
         lockedObject = currentObject;
 
@@ -71,22 +97,20 @@ public class PlayerMacheteController : MonoBehaviour
         machete.PlayMacheteSideSwing();
         isMacheting = true;
         playerActionState.SetActionState(PlayerState.Macheting);
-        
     }
 
-    // --- animation event --- //
     public void OnImpact()
     {
+        if (lockedObject == null) return;
         lockedObject.RegisterHit();
     }
 
     public void EndSwing()
     {
-        
         lockedObject = null;
         animator.SetBool("IsMacheting", false);
         isMacheting = false;
         playerActionState.ClearActionState();
-
     }
+
 }

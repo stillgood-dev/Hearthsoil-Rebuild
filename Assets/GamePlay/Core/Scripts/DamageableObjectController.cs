@@ -15,6 +15,11 @@ public class DamageableObjectController : MonoBehaviour
     [SerializeField] private int hitsToDamagedSR = 1;
     [SerializeField] private int hits;
 
+    private void Awake()
+    {
+        if(damagedSR) damagedSR.enabled = false;
+    }
+
 
 
     public void SetPlayerInHitZone(bool inRange, PlayerMacheteController playerMachete)
