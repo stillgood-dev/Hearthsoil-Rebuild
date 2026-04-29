@@ -160,11 +160,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerMacheteController: {fileID: 0}
   playerInHitZone: 0
+  damageableObject: {fileID: 2381562089609885869}
   undamagedSR: {fileID: 6695766341080672163}
   damagedSR: {fileID: 1119797176279975986}
-  objectColliders: {fileID: 4416001735894208053}
+  damageCollider: {fileID: 6811696978497723978}
   hitsToDamagedSR: 1
   hits: 0
+  isDamaged: 0
 --- !u!1 &2381562089609885869
 GameObject:
   m_ObjectHideFlags: 0

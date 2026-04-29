@@ -26,6 +26,7 @@ public class PlayerMacheteController : MonoBehaviour
     [SerializeField] private DamageableObjectController currentObject;
     [SerializeField] private DamageableObjectController lockedObject;
 
+    [SerializeField] private bool hitMultipleTargets = false;
     private readonly List<DamageableObjectController> hitTargets = new();
 
     private void Awake()
@@ -55,7 +56,7 @@ public class PlayerMacheteController : MonoBehaviour
         if (!hitTargets.Contains(obj))
             hitTargets.Add(obj);
 
-        currentObject = obj;
+        currentObject = GetClosestHitTarget();
     }
 
     public void ClearHitTarget(DamageableObjectController obj)
@@ -65,21 +66,28 @@ public class PlayerMacheteController : MonoBehaviour
         hitTargets.Remove(obj);
 
         if (currentObject == obj)
-        {
-            currentObject = GetBestHitTarget();
-        }
+            currentObject = GetClosestHitTarget();
     }
 
-    private DamageableObjectController GetBestHitTarget()
+    private DamageableObjectController GetClosestHitTarget()
     {
-        // Simple version: use the most recently added remaining target
-        for (int i = hitTargets.Count - 1; i >= 0; i--)
+        DamageableObjectController closest = null;
+        float closestDistance = Mathf.Infinity;
+
+        foreach (DamageableObjectController obj in hitTargets)
         {
-            if (hitTargets[i] != null)
-                return hitTargets[i];
+            if (!obj) continue;
+
+            float distance = Vector2.Distance(transform.position, obj.transform.position);
+
+            if (distance < closestDistance)
+            {
+                closestDistance = distance;
+                closest = obj;
+            }
         }
 
-        return null;
+        return closest;
     }
 
     public void BeginSwing()
@@ -87,7 +95,7 @@ public class PlayerMacheteController : MonoBehaviour
         if (playerActionState.IsBusy) return;
         if (isMacheting) return;
 
-        currentObject = GetBestHitTarget();
+        currentObject = GetClosestHitTarget();
 
         if (currentObject == null) return;
 
@@ -101,6 +109,22 @@ public class PlayerMacheteController : MonoBehaviour
 
     public void OnImpact()
     {
+        if (hitMultipleTargets)
+        {
+            for (int i = hitTargets.Count - 1; i >= 0; i--)
+            {
+                if (hitTargets[i] == null)
+                {
+                    hitTargets.RemoveAt(i);
+                    continue;
+                }
+
+                hitTargets[i].RegisterHit();
+            }
+
+            return;
+        }
+
         if (lockedObject == null) return;
         lockedObject.RegisterHit();
     }

@@ -7,13 +7,15 @@ public class DamageableObjectController : MonoBehaviour
     [SerializeField] private bool playerInHitZone;
 
     [Header("Object Refs")]
+    [SerializeField] private GameObject damageableObject;
     [SerializeField] private SpriteRenderer undamagedSR;
     [SerializeField] private SpriteRenderer damagedSR;
-    [SerializeField] private GameObject objectColliders;
+    [SerializeField] private PolygonCollider2D damageCollider;
 
     [Header("Hit Parameters")]
     [SerializeField] private int hitsToDamagedSR = 1;
     [SerializeField] private int hits;
+    [SerializeField] private bool isDamaged;
 
     private void Awake()
     {
@@ -40,21 +42,30 @@ public class DamageableObjectController : MonoBehaviour
     public void RegisterHit()
     {
         hits++;
-        SwapToDamagedSprite();
+
+        if (isDamaged)
+        {
+            damageableObject.SetActive(false);
+        }
+
+        if (hits == hitsToDamagedSR)
+        {
+            SwapToDamagedSprite();
+            isDamaged = true;
+        }
+        
     }
 
     private void SwapToDamagedSprite()
     {
         if (!undamagedSR) return;
         if (!damagedSR) return;
-        if (!objectColliders) return;
+        if (!damageCollider) return;
 
-        if(hits == hitsToDamagedSR)
-        {
-            undamagedSR.enabled = false;
-            objectColliders.SetActive(false);
-            damagedSR.enabled = true;
-        }
+        undamagedSR.enabled = false;
+        damagedSR.enabled = true;
+        damageCollider.enabled = false;
+
     }
 
     
