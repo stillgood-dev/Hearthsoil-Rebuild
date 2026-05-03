@@ -7,6 +7,7 @@ public enum PlayerState
     Chopping,
     Carrying,
     Macheting,
+    Hoeing,
     Dialogue // add more as we build action states
 }
 
@@ -21,12 +22,14 @@ public class PlayerActionState : MonoBehaviour
         state == PlayerState.Chopping ||
         state == PlayerState.Dialogue ||
         state == PlayerState.Macheting ||
+        state == PlayerState.Hoeing ||
         state == PlayerState.Carrying;
 
     public bool LockMovement =>
         state == PlayerState.Receiving ||
         state == PlayerState.Chopping ||
         state == PlayerState.Macheting ||
+        state == PlayerState.Hoeing ||
         state == PlayerState.Dialogue;
 
     // other scripts can set states

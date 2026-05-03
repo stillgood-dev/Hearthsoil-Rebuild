@@ -1,0 +1,182 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &1
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5e6fedc2472449cead18ef23b5cb30d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Library:
+  - m_Name: North
+    m_Hash: 501948358
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: Blank
+      m_Hash: 1038805857
+      m_Sprite: {fileID: 6200118337827907677, guid: a0b1a2ed63d1d634faa13baae6ccc375, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 6200118337827907677, guid: a0b1a2ed63d1d634faa13baae6ccc375, type: 3}
+    - m_Name: Hoe_N_0
+      m_Hash: 812150747
+      m_Sprite: {fileID: -4885224844878968830, guid: 158833925a87dd94c8efe893849eb0bd, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -4885224844878968830, guid: 158833925a87dd94c8efe893849eb0bd, type: 3}
+    - m_Name: Hoe_N_1
+      m_Hash: 124739405
+      m_Sprite: {fileID: 7794038814185424490, guid: 158833925a87dd94c8efe893849eb0bd, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 7794038814185424490, guid: 158833925a87dd94c8efe893849eb0bd, type: 3}
+    - m_Name: Hoe_N_2
+      m_Hash: 510004983
+      m_Sprite: {fileID: 6075454250036930735, guid: 158833925a87dd94c8efe893849eb0bd, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 6075454250036930735, guid: 158833925a87dd94c8efe893849eb0bd, type: 3}
+    - m_Name: Hoe_N_3
+      m_Hash: 694238817
+      m_Sprite: {fileID: -6695580334996669429, guid: 158833925a87dd94c8efe893849eb0bd, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -6695580334996669429, guid: 158833925a87dd94c8efe893849eb0bd, type: 3}
+    - m_Name: Hoe_N_4
+      m_Hash: 923118530
+      m_Sprite: {fileID: -1144874760210649109, guid: 158833925a87dd94c8efe893849eb0bd, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -1144874760210649109, guid: 158833925a87dd94c8efe893849eb0bd, type: 3}
+    - m_Name: Hoe_N_5
+      m_Hash: 170836
+      m_Sprite: {fileID: -2549233414651592174, guid: 158833925a87dd94c8efe893849eb0bd, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -2549233414651592174, guid: 158833925a87dd94c8efe893849eb0bd, type: 3}
+    m_FromMain: 0
+    m_EntryOverrideCount: 7
+  - m_Name: South
+    m_Hash: 13916784
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: Blank
+      m_Hash: 1038805857
+      m_Sprite: {fileID: 6200118337827907677, guid: a0b1a2ed63d1d634faa13baae6ccc375, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 6200118337827907677, guid: a0b1a2ed63d1d634faa13baae6ccc375, type: 3}
+    - m_Name: Hoe_S_0
+      m_Hash: 613834744
+      m_Sprite: {fileID: -8748488564923975374, guid: 05bb251ba1110dd4faba5a3c8be8f03a, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -8748488564923975374, guid: 05bb251ba1110dd4faba5a3c8be8f03a, type: 3}
+    - m_Name: Hoe_S_1
+      m_Hash: 328298350
+      m_Sprite: {fileID: -3712870760283598927, guid: 05bb251ba1110dd4faba5a3c8be8f03a, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -3712870760283598927, guid: 05bb251ba1110dd4faba5a3c8be8f03a, type: 3}
+    - m_Name: Hoe_S_2
+      m_Hash: 177749716
+      m_Sprite: {fileID: 4143229949844554369, guid: 05bb251ba1110dd4faba5a3c8be8f03a, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 4143229949844554369, guid: 05bb251ba1110dd4faba5a3c8be8f03a, type: 3}
+    - m_Name: Hoe_S_3
+      m_Hash: 1033834050
+      m_Sprite: {fileID: 3262378970131382349, guid: 05bb251ba1110dd4faba5a3c8be8f03a, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 3262378970131382349, guid: 05bb251ba1110dd4faba5a3c8be8f03a, type: 3}
+    - m_Name: Hoe_S_4
+      m_Hash: 603692001
+      m_Sprite: {fileID: -5055193781511789784, guid: 05bb251ba1110dd4faba5a3c8be8f03a, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -5055193781511789784, guid: 05bb251ba1110dd4faba5a3c8be8f03a, type: 3}
+    - m_Name: Hoe_S_5
+      m_Hash: 352103287
+      m_Sprite: {fileID: 357373157, guid: 05bb251ba1110dd4faba5a3c8be8f03a, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 357373157, guid: 05bb251ba1110dd4faba5a3c8be8f03a, type: 3}
+    m_FromMain: 0
+    m_EntryOverrideCount: 7
+  - m_Name: East
+    m_Hash: 400640276
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: Blank
+      m_Hash: 1038805857
+      m_Sprite: {fileID: 6200118337827907677, guid: a0b1a2ed63d1d634faa13baae6ccc375, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 6200118337827907677, guid: a0b1a2ed63d1d634faa13baae6ccc375, type: 3}
+    - m_Name: Hoe_E_0
+      m_Hash: 1010663482
+      m_Sprite: {fileID: 4112226826110175201, guid: 94ab512d1da3b6f4c9d327ebde2c0292, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 4112226826110175201, guid: 94ab512d1da3b6f4c9d327ebde2c0292, type: 3}
+    - m_Name: Hoe_E_1
+      m_Hash: 188395692
+      m_Sprite: {fileID: 1170655092494221175, guid: 94ab512d1da3b6f4c9d327ebde2c0292, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 1170655092494221175, guid: 94ab512d1da3b6f4c9d327ebde2c0292, type: 3}
+    - m_Name: Hoe_E_2
+      m_Hash: 305389846
+      m_Sprite: {fileID: -7405182821558073245, guid: 94ab512d1da3b6f4c9d327ebde2c0292, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -7405182821558073245, guid: 94ab512d1da3b6f4c9d327ebde2c0292, type: 3}
+    - m_Name: Hoe_E_3
+      m_Hash: 624218496
+      m_Sprite: {fileID: -4312548253572498611, guid: 94ab512d1da3b6f4c9d327ebde2c0292, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -4312548253572498611, guid: 94ab512d1da3b6f4c9d327ebde2c0292, type: 3}
+    - m_Name: Hoe_E_4
+      m_Hash: 995116067
+      m_Sprite: {fileID: 5429526158556569497, guid: 94ab512d1da3b6f4c9d327ebde2c0292, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 5429526158556569497, guid: 94ab512d1da3b6f4c9d327ebde2c0292, type: 3}
+    - m_Name: Hoe_E_5
+      m_Hash: 207058101
+      m_Sprite: {fileID: -3948627076628199000, guid: 94ab512d1da3b6f4c9d327ebde2c0292, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -3948627076628199000, guid: 94ab512d1da3b6f4c9d327ebde2c0292, type: 3}
+    m_FromMain: 0
+    m_EntryOverrideCount: 7
+  - m_Name: West
+    m_Hash: 720928476
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: Blank
+      m_Hash: 1038805857
+      m_Sprite: {fileID: 6200118337827907677, guid: a0b1a2ed63d1d634faa13baae6ccc375, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 6200118337827907677, guid: a0b1a2ed63d1d634faa13baae6ccc375, type: 3}
+    - m_Name: Hoe_W_0
+      m_Hash: 597686052
+      m_Sprite: {fileID: -3871846959008551250, guid: 8400695f2f1c0df45af025012226cd12, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -3871846959008551250, guid: 8400695f2f1c0df45af025012226cd12, type: 3}
+    - m_Name: Hoe_W_1
+      m_Hash: 345556914
+      m_Sprite: {fileID: -7608574077484431020, guid: 8400695f2f1c0df45af025012226cd12, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -7608574077484431020, guid: 8400695f2f1c0df45af025012226cd12, type: 3}
+    - m_Name: Hoe_W_2
+      m_Hash: 227644936
+      m_Sprite: {fileID: -2892988554187301798, guid: 8400695f2f1c0df45af025012226cd12, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -2892988554187301798, guid: 8400695f2f1c0df45af025012226cd12, type: 3}
+    - m_Name: Hoe_W_3
+      m_Hash: 982951582
+      m_Sprite: {fileID: -1172039882042647415, guid: 8400695f2f1c0df45af025012226cd12, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -1172039882042647415, guid: 8400695f2f1c0df45af025012226cd12, type: 3}
+    - m_Name: Hoe_W_4
+      m_Hash: 619852605
+      m_Sprite: {fileID: 4480072757352356321, guid: 8400695f2f1c0df45af025012226cd12, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 4480072757352356321, guid: 8400695f2f1c0df45af025012226cd12, type: 3}
+    - m_Name: Hoe_W_5
+      m_Hash: 334824363
+      m_Sprite: {fileID: 2109313995402511241, guid: 8400695f2f1c0df45af025012226cd12, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 2109313995402511241, guid: 8400695f2f1c0df45af025012226cd12, type: 3}
+    m_FromMain: 0
+    m_EntryOverrideCount: 7
+  m_PrimaryLibraryGUID: 
+  m_ModificationHash: 639133372359291352
+  m_Version: 1

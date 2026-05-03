@@ -16,6 +16,7 @@ public class DamageableObjectController : MonoBehaviour
     [SerializeField] private int hitsToDamagedSR = 1;
     [SerializeField] private int hits;
     [SerializeField] private bool isDamaged;
+    [SerializeField] private bool isMiddleSprite;
 
     private void Awake()
     {
@@ -50,8 +51,15 @@ public class DamageableObjectController : MonoBehaviour
 
         if (hits == hitsToDamagedSR)
         {
-            SwapToDamagedSprite();
-            isDamaged = true;
+            if (isMiddleSprite)
+            {
+                damageableObject.SetActive(false);
+
+            } else
+            {
+                SwapToDamagedSprite();
+                isDamaged = true;
+            }
         }
         
     }

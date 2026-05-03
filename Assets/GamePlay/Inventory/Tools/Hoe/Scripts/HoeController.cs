@@ -1,12 +1,12 @@
 using UnityEngine;
 
-public class MacheteController : MonoBehaviour
+public class HoeController : MonoBehaviour
 {
     [Header("Player Refs")]
     [SerializeField] private PlayerController playerController;
     [SerializeField] private FacingDirection facing;
 
-    [Header("Machete Refs")]
+    [Header("Hoe Refs")]
     [SerializeField] private Animator animator;
 
 
@@ -20,24 +20,24 @@ public class MacheteController : MonoBehaviour
         facing = playerController.Facing;
     }
 
-    public void PlayMacheteSideSwing()
+    public void PlayHoe()
     {
         if (playerController == null) return;
         if (facing == FacingDirection.North)
         {
-            animator.Play("Machete_SideSwing_N");
+            animator.Play("Hoe_N");
         }
         else if (facing == FacingDirection.South)
         {
-            animator.Play("Machete_SideSwing_S");
+            animator.Play("Hoe_S");
         }
         else if (facing == FacingDirection.East)
         {
-            animator.Play("Machete_SideSwing_E");
+            animator.Play("Hoe_E");
         }
         else if (facing == FacingDirection.West)
         {
-            animator.Play("Machete_SideSwing_W");
+            animator.Play("Hoe_W");
         }
     }
 }

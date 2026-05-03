@@ -19,7 +19,7 @@ public class PlayerMacheteController : MonoBehaviour
     public bool IsMacheting => isMacheting;
 
     [Header("Equip Status")]
-    [Tooltip("Temporary bool to indicate axe has been equipped, will remove when I build equip system")]
+    [Tooltip("Temporary bool to indicate machete has been equipped, will remove when I build equip system")]
     [SerializeField] private bool isEquipped = false;
 
     [Header("Object Refs")]
@@ -107,6 +107,7 @@ public class PlayerMacheteController : MonoBehaviour
         playerActionState.SetActionState(PlayerState.Macheting);
     }
 
+    // --- animation events --- //
     public void OnImpact()
     {
         if (hitMultipleTargets)
