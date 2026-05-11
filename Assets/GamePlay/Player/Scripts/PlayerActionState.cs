@@ -8,7 +8,8 @@ public enum PlayerState
     Carrying,
     Macheting,
     Hoeing,
-    Dialogue // add more as we build action states
+    Tilling, // walking while hoeing
+    Dialogue 
 }
 
 public class PlayerActionState : MonoBehaviour
@@ -23,6 +24,7 @@ public class PlayerActionState : MonoBehaviour
         state == PlayerState.Dialogue ||
         state == PlayerState.Macheting ||
         state == PlayerState.Hoeing ||
+        state == PlayerState.Tilling ||
         state == PlayerState.Carrying;
 
     public bool LockMovement =>
