@@ -1678,35 +1678,6 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!1 &812498634 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2058789320076502692, guid: 014d0faf53466834fb7069c920d3e46c, type: 3}
-  m_PrefabInstance: {fileID: 970150113}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &812498641
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 812498634}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3fa2af1df22ee9245982f0ae7eeec633, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  toolSpriteRenderer: {fileID: 0}
-  originalSortingOrder: 0
---- !u!4 &841145064 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4893539011783937064, guid: 014d0faf53466834fb7069c920d3e46c, type: 3}
-  m_PrefabInstance: {fileID: 970150113}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &881818731 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4187788321414876485, guid: 014d0faf53466834fb7069c920d3e46c, type: 3}
-  m_PrefabInstance: {fileID: 970150113}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &970150113
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1718,10 +1689,6 @@ PrefabInstance:
     - target: {fileID: 146874527565538804, guid: 014d0faf53466834fb7069c920d3e46c, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 359881023366684739, guid: 014d0faf53466834fb7069c920d3e46c, type: 3}
-      propertyPath: m_labelHash
-      value: 2.7279492e-17
       objectReference: {fileID: 0}
     - target: {fileID: 1021859513952468278, guid: 014d0faf53466834fb7069c920d3e46c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1763,189 +1730,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1464243390794259282, guid: 014d0faf53466834fb7069c920d3e46c, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.228
-      objectReference: {fileID: 0}
-    - target: {fileID: 1464243390794259282, guid: 014d0faf53466834fb7069c920d3e46c, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.106
-      objectReference: {fileID: 0}
-    - target: {fileID: 2333618756408087481, guid: 014d0faf53466834fb7069c920d3e46c, type: 3}
-      propertyPath: impactE
-      value: 
-      objectReference: {fileID: 1695126355}
-    - target: {fileID: 2333618756408087481, guid: 014d0faf53466834fb7069c920d3e46c, type: 3}
-      propertyPath: impactN
-      value: 
-      objectReference: {fileID: 881818731}
-    - target: {fileID: 2333618756408087481, guid: 014d0faf53466834fb7069c920d3e46c, type: 3}
-      propertyPath: impactS
-      value: 
-      objectReference: {fileID: 841145064}
-    - target: {fileID: 2333618756408087481, guid: 014d0faf53466834fb7069c920d3e46c, type: 3}
-      propertyPath: impactW
-      value: 
-      objectReference: {fileID: 2059544538}
-    - target: {fileID: 2333618756408087481, guid: 014d0faf53466834fb7069c920d3e46c, type: 3}
-      propertyPath: isEquipped
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2333618756408087481, guid: 014d0faf53466834fb7069c920d3e46c, type: 3}
       propertyPath: soilTilemap
       value: 
       objectReference: {fileID: 470453649}
     - target: {fileID: 2333618756408087481, guid: 014d0faf53466834fb7069c920d3e46c, type: 3}
-      propertyPath: soilSingleTile
-      value: 
-      objectReference: {fileID: 11400000, guid: 9c915e5cd81063944826cb35d94c8fa6, type: 2}
-    - target: {fileID: 2333618756408087481, guid: 014d0faf53466834fb7069c920d3e46c, type: 3}
-      propertyPath: tilledSoilTile
-      value: 
-      objectReference: {fileID: 11400000, guid: 9c915e5cd81063944826cb35d94c8fa6, type: 2}
-    - target: {fileID: 2333618756408087481, guid: 014d0faf53466834fb7069c920d3e46c, type: 3}
-      propertyPath: soilTopLeftTile
-      value: 
-      objectReference: {fileID: 11400000, guid: 7ab4de73c3811ba4ba106437e7922345, type: 2}
-    - target: {fileID: 2333618756408087481, guid: 014d0faf53466834fb7069c920d3e46c, type: 3}
       propertyPath: tillableTilemap
       value: 
       objectReference: {fileID: 503314627}
-    - target: {fileID: 2333618756408087481, guid: 014d0faf53466834fb7069c920d3e46c, type: 3}
-      propertyPath: soilTopRightTile
-      value: 
-      objectReference: {fileID: 11400000, guid: bd6f2315733981f4d963f22d3ec51766, type: 2}
-    - target: {fileID: 2333618756408087481, guid: 014d0faf53466834fb7069c920d3e46c, type: 3}
-      propertyPath: soilBottomLeftTile
-      value: 
-      objectReference: {fileID: 11400000, guid: 0755caa4af1bded4680fa0e6f2a07818, type: 2}
-    - target: {fileID: 2333618756408087481, guid: 014d0faf53466834fb7069c920d3e46c, type: 3}
-      propertyPath: soilMiddleLeftTile
-      value: 
-      objectReference: {fileID: 11400000, guid: c3fb9e3a5b1b2704e8a771a17a292705, type: 2}
-    - target: {fileID: 2333618756408087481, guid: 014d0faf53466834fb7069c920d3e46c, type: 3}
-      propertyPath: soilBottomRightTile
-      value: 
-      objectReference: {fileID: 11400000, guid: 7b12acf01b4f35b479c6cb819838b2e3, type: 2}
-    - target: {fileID: 2333618756408087481, guid: 014d0faf53466834fb7069c920d3e46c, type: 3}
-      propertyPath: soilMiddleRightTile
-      value: 
-      objectReference: {fileID: 11400000, guid: d4915a5976d4c5d4aab95992743ed218, type: 2}
-    - target: {fileID: 2333618756408087481, guid: 014d0faf53466834fb7069c920d3e46c, type: 3}
-      propertyPath: soilVerticalTopTile
-      value: 
-      objectReference: {fileID: 11400000, guid: 80deeea1b6bbc1d4abc14bb955c27121, type: 2}
-    - target: {fileID: 2333618756408087481, guid: 014d0faf53466834fb7069c920d3e46c, type: 3}
-      propertyPath: soilHorizontalLeftTile
-      value: 
-      objectReference: {fileID: 11400000, guid: 9915f378907212d41910ffae5bf0198d, type: 2}
-    - target: {fileID: 2333618756408087481, guid: 014d0faf53466834fb7069c920d3e46c, type: 3}
-      propertyPath: soilVerticalBottomTile
-      value: 
-      objectReference: {fileID: 11400000, guid: f69f50a5d672365439975bf1f412f3a0, type: 2}
-    - target: {fileID: 2333618756408087481, guid: 014d0faf53466834fb7069c920d3e46c, type: 3}
-      propertyPath: soilVerticalMiddleTile
-      value: 
-      objectReference: {fileID: 11400000, guid: db4be97428abc864e93f0d411f7f6eb3, type: 2}
-    - target: {fileID: 2333618756408087481, guid: 014d0faf53466834fb7069c920d3e46c, type: 3}
-      propertyPath: soilHorizontalRightTile
-      value: 
-      objectReference: {fileID: 11400000, guid: bd8418fd2fa5e444d8e179b9104f67d1, type: 2}
-    - target: {fileID: 2333618756408087481, guid: 014d0faf53466834fb7069c920d3e46c, type: 3}
-      propertyPath: soilHorizontalMiddleTile
-      value: 
-      objectReference: {fileID: 11400000, guid: 3679e3f856b890d4c85814dca9f9f050, type: 2}
-    - target: {fileID: 2333618756408087481, guid: 014d0faf53466834fb7069c920d3e46c, type: 3}
-      propertyPath: soilTopMiddleTiles.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 2333618756408087481, guid: 014d0faf53466834fb7069c920d3e46c, type: 3}
-      propertyPath: soilBottomMiddleTiles.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 2333618756408087481, guid: 014d0faf53466834fb7069c920d3e46c, type: 3}
-      propertyPath: soilMiddleMiddleTiles.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 2333618756408087481, guid: 014d0faf53466834fb7069c920d3e46c, type: 3}
-      propertyPath: 'soilTopMiddleTiles.Array.data[0]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 775d88dd44a9e7e4e959424e30847a80, type: 2}
-    - target: {fileID: 2333618756408087481, guid: 014d0faf53466834fb7069c920d3e46c, type: 3}
-      propertyPath: 'soilTopMiddleTiles.Array.data[1]'
-      value: 
-      objectReference: {fileID: 11400000, guid: b31c451f43c83a84b9906a8d6afae293, type: 2}
-    - target: {fileID: 2333618756408087481, guid: 014d0faf53466834fb7069c920d3e46c, type: 3}
-      propertyPath: 'soilTopMiddleTiles.Array.data[2]'
-      value: 
-      objectReference: {fileID: 11400000, guid: a2eb4c425804ec6459430b703f1117a3, type: 2}
-    - target: {fileID: 2333618756408087481, guid: 014d0faf53466834fb7069c920d3e46c, type: 3}
-      propertyPath: 'soilBottomMiddleTiles.Array.data[0]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 3b29b75e9444b4542a3efe6eff17b064, type: 2}
-    - target: {fileID: 2333618756408087481, guid: 014d0faf53466834fb7069c920d3e46c, type: 3}
-      propertyPath: 'soilBottomMiddleTiles.Array.data[1]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 16d6deaa3b9878c449f3ce43bc4be403, type: 2}
-    - target: {fileID: 2333618756408087481, guid: 014d0faf53466834fb7069c920d3e46c, type: 3}
-      propertyPath: 'soilBottomMiddleTiles.Array.data[2]'
-      value: 
-      objectReference: {fileID: 11400000, guid: cd2a2067b8c0c22409105bda5f384a19, type: 2}
-    - target: {fileID: 2333618756408087481, guid: 014d0faf53466834fb7069c920d3e46c, type: 3}
-      propertyPath: 'soilMiddleMiddleTiles.Array.data[0]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 619d5076dc6da9944924c1121ae3e3f0, type: 2}
-    - target: {fileID: 2333618756408087481, guid: 014d0faf53466834fb7069c920d3e46c, type: 3}
-      propertyPath: 'soilMiddleMiddleTiles.Array.data[1]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 1d68be48cc412924daf3b7e1143908bd, type: 2}
-    - target: {fileID: 2333618756408087481, guid: 014d0faf53466834fb7069c920d3e46c, type: 3}
-      propertyPath: 'soilMiddleMiddleTiles.Array.data[2]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 17560b45a47e48443a67cccacd955975, type: 2}
-    - target: {fileID: 4187788321414876485, guid: 014d0faf53466834fb7069c920d3e46c, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.02
-      objectReference: {fileID: 0}
-    - target: {fileID: 4187788321414876485, guid: 014d0faf53466834fb7069c920d3e46c, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.469
-      objectReference: {fileID: 0}
-    - target: {fileID: 4893539011783937064, guid: 014d0faf53466834fb7069c920d3e46c, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.02
-      objectReference: {fileID: 0}
-    - target: {fileID: 4893539011783937064, guid: 014d0faf53466834fb7069c920d3e46c, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.044
-      objectReference: {fileID: 0}
-    - target: {fileID: 5060243519150972395, guid: 014d0faf53466834fb7069c920d3e46c, type: 3}
-      propertyPath: isEquipped
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5805476457392816059, guid: 014d0faf53466834fb7069c920d3e46c, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.191
-      objectReference: {fileID: 0}
-    - target: {fileID: 5805476457392816059, guid: 014d0faf53466834fb7069c920d3e46c, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.103
-      objectReference: {fileID: 0}
-    - target: {fileID: 7027118418699117750, guid: 014d0faf53466834fb7069c920d3e46c, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.088
-      objectReference: {fileID: 0}
-    - target: {fileID: 7580047833583719697, guid: 014d0faf53466834fb7069c920d3e46c, type: 3}
-      propertyPath: isEquipped
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 2058789320076502692, guid: 014d0faf53466834fb7069c920d3e46c, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 812498641}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 014d0faf53466834fb7069c920d3e46c, type: 3}
 --- !u!1 &1012780559
 GameObject:
@@ -2796,16 +2592,6 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!4 &1695126355 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5805476457392816059, guid: 014d0faf53466834fb7069c920d3e46c, type: 3}
-  m_PrefabInstance: {fileID: 970150113}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &2059544538 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1464243390794259282, guid: 014d0faf53466834fb7069c920d3e46c, type: 3}
-  m_PrefabInstance: {fileID: 970150113}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

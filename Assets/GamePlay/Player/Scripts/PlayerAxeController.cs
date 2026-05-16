@@ -16,10 +16,6 @@ public class PlayerAxeController : MonoBehaviour
     [SerializeField] private bool isChopping;
     public bool IsChopping => isChopping;
 
-    [Header("Equip Status")]
-    [Tooltip("Temporary bool to indicate axe has been equipped, will remove when I build equip system")]
-    [SerializeField] private bool isEquipped = false;
-
     [Header("Tree Refs")]
     [SerializeField] private ChoppableTreeController currentTree;
     [SerializeField] private ChoppableTreeController lockedTree;
@@ -43,43 +39,38 @@ public class PlayerAxeController : MonoBehaviour
         
     }
 
-    public void OnInteract()
+    public void UseAxe()
     {
-        if (!isEquipped) return;
         BeginChop();
     }
 
     public void BeginChop()
     {
         if (playerActionState.IsBusy) return;
-
-        // prevent chopping if midchop
         if (isChopping) return;
 
-        // Phase 2: Commit
         lockedTree = currentTree;
         lockedLog = currentLog;
 
-        // prevent player from using tool if no tree to hit
-        if (lockedTree == null && lockedLog == null) return;
-
-        // Phase 3: Execute
         SetAnimation();
-
     }
 
     // --- animation event --- //
     public void OnAxeImpact()
     {
-        if(lockedLog != null)
+        if (lockedLog != null)
         {
-            lockedLog?.ProcessHit();
-
-        } else
-        {
-            lockedTree?.RegisterHit();
+            lockedLog.ProcessHit();
+            return;
         }
 
+        if (lockedTree != null)
+        {
+            lockedTree.RegisterHit();
+            return;
+        }
+
+        // No target: axe swings through air.
     }
 
     // --- animation event --- //
@@ -125,7 +116,7 @@ public class PlayerAxeController : MonoBehaviour
         if (!treeIsFelled)
         {
             animator.SetBool("IsChopping", true);
-            axe.PlayAxeSideSwing();
+            axe?.PlayAxeSideSwing();
             isChopping = true;
             playerActionState.SetActionState(PlayerState.Chopping);
         } else

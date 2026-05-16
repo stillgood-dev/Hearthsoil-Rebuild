@@ -5,8 +5,12 @@ public class PlayerReceiveController : MonoBehaviour
 {
     [Header("Player References")]
     [SerializeField] private Transform receiveAnchor;
+    [SerializeField] private Transform receiveToolAnchor;
+    [SerializeField] private Transform anchorToUse;
     [SerializeField] private PlayerActionState actionState;
     [SerializeField] private Animator animator;
+    [SerializeField] private string receiveAnimationName;
+    [SerializeField] private PlayerToolState toolState;
 
     [Header("Receiveable Object")]
     [SerializeField] private ReceivableObjectController receivableObject;
@@ -19,6 +23,7 @@ public class PlayerReceiveController : MonoBehaviour
     {
         if(!animator) animator = GetComponent<Animator>();
         if(!actionState) actionState = GetComponent<PlayerActionState>();
+        if (!toolState) toolState = GetComponent<PlayerToolState>();
     }
 
     // set object reference when in the object's trigger zone
@@ -37,43 +42,44 @@ public class PlayerReceiveController : MonoBehaviour
 
     }
 
-    public void OnInteract()
+    // returns a bool that can be used by PlayerInteractionController to tell it if you're receiving
+    public bool Receive()
     {
-        if (actionState.IsBusy && actionState.State != PlayerState.Receiving) return;
-        if (receivableObject == null) return;
+        if (actionState.IsBusy && actionState.State != PlayerState.Receiving) return false;
+        if (receivableObject == null) return false;
 
         // --- accept object --- //
         if (hasReceivedObject)
         {
-            int x = 0; int y = -1;
-
             receivableObject.AcceptObject();
-            // move object to inventory (just a placeholder bool for now)
+
+            if (receivableObject.IsTool)
+            {
+                toolState.EquipTool(receivableObject.ToolType);
+            }
+
             inInventory = true;
-            // allow player to move again
             actionState.ClearActionState();
-            // force player to face south since that's the receiving animation direction
-            animator.SetFloat("LastX", x);
-            animator.SetFloat("LastY", y);
+
+            animator.SetFloat("LastX", 0);
+            animator.SetFloat("LastY", -1);
             animator.Play("Idle");
 
-            // clear hasReceivedObject
             hasReceivedObject = false;
-            return;
+            receivableObject = null; // IMPORTANT
+            return true;
         }
 
         // --- receive object initially --- //
+        anchorToUse = receivableObject.IsTool ? receiveToolAnchor : receiveAnchor;
 
-        // trigger receive animation
-        animator.SetTrigger("Receive");
-        // receive the object above the head
-        receivableObject.ReceiveObject(receiveAnchor);
-        // set player state to "Receiving" so player can't move
+        animator.SetTrigger(receiveAnimationName);
+        receivableObject.ReceiveObject(anchorToUse);
+
         actionState.SetActionState(PlayerState.Receiving);
-        // mark object as received so we can accept it
         hasReceivedObject = true;
 
+        return true;
     }
-
 
 }

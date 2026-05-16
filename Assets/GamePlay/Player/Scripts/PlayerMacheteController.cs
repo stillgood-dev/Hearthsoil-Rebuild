@@ -18,10 +18,6 @@ public class PlayerMacheteController : MonoBehaviour
     [SerializeField] private bool isMacheting;
     public bool IsMacheting => isMacheting;
 
-    [Header("Equip Status")]
-    [Tooltip("Temporary bool to indicate machete has been equipped, will remove when I build equip system")]
-    [SerializeField] private bool isEquipped = false;
-
     [Header("Object Refs")]
     [SerializeField] private DamageableObjectController currentObject;
     [SerializeField] private DamageableObjectController lockedObject;
@@ -43,9 +39,8 @@ public class PlayerMacheteController : MonoBehaviour
 
     }
 
-    public void OnInteract()
+    public void UseMachete()
     {
-        if (!isEquipped) return;
         BeginSwing();
     }
 
@@ -97,7 +92,8 @@ public class PlayerMacheteController : MonoBehaviour
 
         currentObject = GetClosestHitTarget();
 
-        if (currentObject == null) return;
+        // don't allow swing if nothing is there
+        //if (currentObject == null) return;
 
         lockedObject = currentObject;
 

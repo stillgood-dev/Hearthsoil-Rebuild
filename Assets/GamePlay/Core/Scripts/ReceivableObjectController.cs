@@ -1,3 +1,4 @@
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class ReceivableObjectController : MonoBehaviour
@@ -5,9 +6,19 @@ public class ReceivableObjectController : MonoBehaviour
     [Header("Player Refs")]
     [SerializeField] private PlayerReceiveController receiveController;
 
+    [Header("Object Refs")]
     [SerializeField] private GameObject receiveGameObject;
-    [SerializeField] private BoxCollider2D boxCollider;
+    [SerializeField] private Collider2D receiveObjectCollider;
     [SerializeField] private Animator animator;
+    [SerializeField] private string receiveObjectAnimationName;
+
+
+    [Header("Tool Data")]
+    [SerializeField] private bool isTool;
+    [SerializeField] private EquippedTool toolType;
+    
+    public bool IsTool => isTool;
+    public EquippedTool ToolType => toolType;
 
     private void Awake()
     {
@@ -17,9 +28,9 @@ public class ReceivableObjectController : MonoBehaviour
             receiveGameObject = transform.parent != null ? transform.parent.gameObject : gameObject;
         }
 
-        if(boxCollider == null)
+        if(receiveObjectCollider == null)
         {
-            boxCollider = transform.parent != null ? transform.parent.GetComponent<BoxCollider2D>() : boxCollider;
+           receiveObjectCollider = transform.parent != null ? transform.parent.GetComponent<BoxCollider2D>() : receiveObjectCollider;
         }
 
         if(animator == null)
@@ -57,9 +68,9 @@ public class ReceivableObjectController : MonoBehaviour
     {
         if (receiveAnchor == null) return;
         if (receiveController == null) return;
-        boxCollider.enabled = false;
+        //if (receiveObjectCollider != null) receiveObjectCollider.enabled = false;
         receiveGameObject.transform.position = receiveAnchor.position;
-        animator.Play("ReceiveSatchel");
+        animator.Play(receiveObjectAnimationName);
 
         
     }

@@ -13,10 +13,10 @@ public class DamageableObjectController : MonoBehaviour
     [SerializeField] private PolygonCollider2D damageCollider;
 
     [Header("Hit Parameters")]
-    [SerializeField] private int hitsToDamagedSR = 1;
+    // [SerializeField] private int hitsToDamagedSR = 1;
     [SerializeField] private int hits;
-    [SerializeField] private bool isDamaged;
-    [SerializeField] private bool isMiddleSprite;
+    //[SerializeField] private bool isDamaged;
+    //[SerializeField] private bool isMiddleSprite;
 
     private void Awake()
     {
@@ -43,25 +43,27 @@ public class DamageableObjectController : MonoBehaviour
     public void RegisterHit()
     {
         hits++;
+        // just destroy it for now, may add below functionality back later
+        damageableObject.SetActive(false);
 
-        if (isDamaged)
-        {
-            damageableObject.SetActive(false);
-        }
+        //if (isDamaged)
+        //{
+        //    damageableObject.SetActive(false);
+        //}
 
-        if (hits == hitsToDamagedSR)
-        {
-            if (isMiddleSprite)
-            {
-                damageableObject.SetActive(false);
+        //if (hits == hitsToDamagedSR)
+        //{
+        //    if (isMiddleSprite)
+        //    {
+        //        damageableObject.SetActive(false);
 
-            } else
-            {
-                SwapToDamagedSprite();
-                isDamaged = true;
-            }
-        }
-        
+        //    } else
+        //    {
+        //        SwapToDamagedSprite();
+        //        isDamaged = true;
+        //    }
+        //}
+
     }
 
     private void SwapToDamagedSprite()

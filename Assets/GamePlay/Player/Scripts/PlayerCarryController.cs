@@ -80,7 +80,7 @@ public class PlayerCarryController : MonoBehaviour
     }
 
     // interact button
-    public void OnInteract(InputValue value)
+    public void Carry()
     {
         
         if (carryableObject == null) return;

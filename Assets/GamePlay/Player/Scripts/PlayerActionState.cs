@@ -9,6 +9,7 @@ public enum PlayerState
     Macheting,
     Hoeing,
     Tilling, // walking while hoeing
+    Interacting,
     Dialogue 
 }
 
@@ -25,6 +26,7 @@ public class PlayerActionState : MonoBehaviour
         state == PlayerState.Macheting ||
         state == PlayerState.Hoeing ||
         state == PlayerState.Tilling ||
+        state == PlayerState.Interacting || 
         state == PlayerState.Carrying;
 
     public bool LockMovement =>
@@ -32,6 +34,7 @@ public class PlayerActionState : MonoBehaviour
         state == PlayerState.Chopping ||
         state == PlayerState.Macheting ||
         state == PlayerState.Hoeing ||
+        state == PlayerState.Interacting ||
         state == PlayerState.Dialogue;
 
     // other scripts can set states

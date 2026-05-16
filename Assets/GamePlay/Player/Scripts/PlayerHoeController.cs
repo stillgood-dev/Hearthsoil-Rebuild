@@ -54,9 +54,6 @@ public class PlayerHoeController : MonoBehaviour
     [SerializeField] private bool isHoeing;
     public bool IsHoeing => isHoeing;
 
-    [Header("Equip Status")]
-    [Tooltip("Temporary bool to indicate hoe has been equipped, will remove when I build equip system")]
-    [SerializeField] private bool isEquipped = false;
 
     private void Awake()
     {
@@ -70,9 +67,8 @@ public class PlayerHoeController : MonoBehaviour
         faceDir = playerController.Facing;
     }
 
-    public void OnInteract()
+    public void UseHoe()
     {
-        if (!isEquipped) return;
         BeginHoeing();
     }
 
@@ -92,6 +88,8 @@ public class PlayerHoeController : MonoBehaviour
 
     public void OnHoeImpact()
     {
+        // eventually figure out a way to stop the soil tile swap, for now just return if there's no tillable tile map
+        if (tillableTilemap == null) return;
         SwapToTilledTile();
     }
 
