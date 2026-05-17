@@ -17,6 +17,9 @@ public class PlayerReceiveController : MonoBehaviour
     [SerializeField] private bool hasReceivedObject = false;
     [SerializeField] private bool inInventory = false;
 
+    [Header("Notification")]
+    [SerializeField] private NotificationUI notificationUI;
+
     public bool InInventory => inInventory;
 
     private void Awake()
@@ -52,6 +55,7 @@ public class PlayerReceiveController : MonoBehaviour
         if (hasReceivedObject)
         {
             receivableObject.AcceptObject();
+            notificationUI.Hide();
 
             if (receivableObject.IsTool)
             {
@@ -75,6 +79,7 @@ public class PlayerReceiveController : MonoBehaviour
 
         animator.SetTrigger(receiveAnimationName);
         receivableObject.ReceiveObject(anchorToUse);
+        notificationUI.Show($"You have received the {receivableObject.ToolType}!");
 
         actionState.SetActionState(PlayerState.Receiving);
         hasReceivedObject = true;

@@ -60,5 +60,8 @@ TagManager:
   - name: Occluders
     uniqueID: 2054090331
     locked: 0
+  - name: UI
+    uniqueID: 3488945523
+    locked: 0
   m_RenderingLayers:
   - Default
