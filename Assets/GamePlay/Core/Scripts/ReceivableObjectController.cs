@@ -78,6 +78,6 @@ public class ReceivableObjectController : MonoBehaviour
     public void AcceptObject()
     {
         if (receiveGameObject == null) return;
-        receiveGameObject.SetActive(false);
+        GetComponent<PersistentDestroyableObject>()?.MarkDestroyed();
     }
 }

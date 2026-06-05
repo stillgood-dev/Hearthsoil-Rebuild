@@ -2,16 +2,25 @@ using UnityEngine;
 
 public class SceneSpawnManager : MonoBehaviour
 {
-    [SerializeField] private Transform player;
+    [SerializeField] private string defaultSpawnPointName = "PlayerSpawnPoint";
 
     void Start()
     {
-        if (player == null) return;
+        if (PersistentPlayer.Instance == null) return;
 
-        GameObject spawnPoint = GameObject.Find(SceneTransitionData.SpawnPointName);
+        string spawnName = string.IsNullOrEmpty(SceneTransitionData.SpawnPointName)
+            ? defaultSpawnPointName
+            : SceneTransitionData.SpawnPointName;
+
+        GameObject spawnPoint = GameObject.Find(spawnName);
+
+        if (spawnPoint == null)
+            spawnPoint = GameObject.Find(defaultSpawnPointName);
 
         if (spawnPoint == null) return;
 
-        player.position = spawnPoint.transform.position;
+        PersistentPlayer.Instance.transform.position = spawnPoint.transform.position;
+
+        SceneTransitionData.SpawnPointName = null;
     }
 }

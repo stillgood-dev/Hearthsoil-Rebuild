@@ -6,24 +6,13 @@ public class DamageableObjectController : MonoBehaviour
     [SerializeField] private PlayerMacheteController playerMacheteController;
     [SerializeField] private bool playerInHitZone;
 
-    [Header("Object Refs")]
-    [SerializeField] private GameObject damageableObject;
-    [SerializeField] private SpriteRenderer undamagedSR;
-    [SerializeField] private SpriteRenderer damagedSR;
-    [SerializeField] private PolygonCollider2D damageCollider;
-
     [Header("Hit Parameters")]
-    // [SerializeField] private int hitsToDamagedSR = 1;
     [SerializeField] private int hits;
-    //[SerializeField] private bool isDamaged;
-    //[SerializeField] private bool isMiddleSprite;
+    [SerializeField] private int hitsToComplete = 3;
 
-    private void Awake()
-    {
-        if(damagedSR) damagedSR.enabled = false;
-    }
-
-
+    [Header("Completion Behavior")]
+    [SerializeField] private bool markAsDestroyedOnComplete = true;
+    [SerializeField] private bool deactivateOnComplete = true;
 
     public void SetPlayerInHitZone(bool inRange, PlayerMacheteController playerMachete)
     {
@@ -31,52 +20,34 @@ public class DamageableObjectController : MonoBehaviour
         playerMacheteController = playerMachete;
 
         if (playerInHitZone)
-        {
             playerMacheteController.SetHitTarget(this);
-        }
         else
-        {
             playerMacheteController.ClearHitTarget(this);
-        }
     }
 
     public void RegisterHit()
     {
         hits++;
-        // just destroy it for now, may add below functionality back later
-        damageableObject.SetActive(false);
 
-        //if (isDamaged)
-        //{
-        //    damageableObject.SetActive(false);
-        //}
-
-        //if (hits == hitsToDamagedSR)
-        //{
-        //    if (isMiddleSprite)
-        //    {
-        //        damageableObject.SetActive(false);
-
-        //    } else
-        //    {
-        //        SwapToDamagedSprite();
-        //        isDamaged = true;
-        //    }
-        //}
-
+        if (hits >= hitsToComplete)
+        {
+            CompleteDamage();
+        }
     }
 
-    private void SwapToDamagedSprite()
+    private void CompleteDamage()
     {
-        if (!undamagedSR) return;
-        if (!damagedSR) return;
-        if (!damageCollider) return;
+        playerMacheteController?.ClearHitTarget(this);
 
-        undamagedSR.enabled = false;
-        damagedSR.enabled = true;
-        damageCollider.enabled = false;
+        if (markAsDestroyedOnComplete)
+        {
+            GetComponent<PersistentDestroyableObject>()?.MarkDestroyed();
+            return;
+        }
 
+        if (deactivateOnComplete)
+        {
+            gameObject.SetActive(false);
+        }
     }
-
-    
 }

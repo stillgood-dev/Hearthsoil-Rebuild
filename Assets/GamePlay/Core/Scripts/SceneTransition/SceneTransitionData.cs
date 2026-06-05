@@ -2,5 +2,5 @@ using UnityEngine;
 
 public static class SceneTransitionData
 {
-    public static string SpawnPointName = "PlayerSpawnPoint";
+    public static string SpawnPointName;
 }
