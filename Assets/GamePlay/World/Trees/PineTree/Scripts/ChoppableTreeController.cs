@@ -29,6 +29,9 @@ public class ChoppableTreeController : MonoBehaviour
     [SerializeField] private int treeHits;
     [SerializeField] private bool isFelled;
 
+    [Header("Regrowth Refs")]
+    [SerializeField] private TreeRegrowthController treeRegrowth;
+
     public bool IsFelled => isFelled;
 
     // --- hit flash coroutine --- //
@@ -88,6 +91,7 @@ public class ChoppableTreeController : MonoBehaviour
 
     private void Update()
     {
+        if (playerAxeController == null) return;
         playerFaceDirection = playerAxeController.FaceDir;
     }
 
@@ -177,12 +181,12 @@ public class ChoppableTreeController : MonoBehaviour
         if(lastHitDirection == FacingDirection.East || lastHitDirection == FacingDirection.South)
         {
             felledTree = felledLogControllerEast.FelledTree;
-            felledTree.SetActive(true);
+            treeRegrowth.ShowFelledLog(felledTree);
   
         } else
         {
             felledTree = felledLogControllerWest.FelledTree;
-            felledTree.SetActive(true);
+            treeRegrowth.ShowFelledLog(felledTree);
         }
 
         DisableStandingTree();
@@ -206,6 +210,19 @@ public class ChoppableTreeController : MonoBehaviour
     }
 
 
+    public void RefreshStandingTree()
+    {
+        treeHits = 0;
+        isFelled = false;
 
+        if (stumpShadow) stumpShadow.enabled = true;
+        if (fadeZone) fadeZone?.SetActive(true);
+        if (standingCollider) standingCollider.SetActive(true);
+
+        standingTree?.SetActive(true);
+        standingChopZone?.SetActive(true);
+
+        if (hitFlashSprite) hitFlashSprite.enabled = false;
+    }
 
 }

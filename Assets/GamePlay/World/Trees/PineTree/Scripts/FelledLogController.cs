@@ -21,6 +21,10 @@ public class FelledLogController : MonoBehaviour
     [SerializeField] private SpriteRenderer logRenderer;
     [SerializeField] private BoxCollider2D logCollider;
     [SerializeField] private GameObject felledLogGameObject;
+    [SerializeField] private GameObject felledTrunkCollider;
+
+    [Header("Log Regrowth")]
+    [SerializeField] private TreeRegrowthController treeRegrowth;
 
     [Header("Stages")]
     [SerializeField] private GameObject[] branchStages;
@@ -151,6 +155,7 @@ public class FelledLogController : MonoBehaviour
         if (logHits == logHitsToProcess)
         {
             felledLogGameObject.SetActive(false);
+            treeRegrowth.MarkDepleted();
             
         }
 
@@ -168,6 +173,11 @@ public class FelledLogController : MonoBehaviour
         }
         logCollider.enabled = false;
         colliderStages[index].SetActive(true);
+
+        if(logHits == logHitsToProcess)
+        {
+            felledTrunkCollider.SetActive(false);
+        }
     }
 
     private void SpawnLogResourceOnHit()
@@ -187,6 +197,55 @@ public class FelledLogController : MonoBehaviour
             logs++;
         }
 
+    }
+
+
+    public void RefreshLog()
+    {
+        branchHits = 0;
+        logHits = 0;
+        logs = 0;
+        logOnly = false;
+
+        if (impactBurst) impactBurst.SetActive(false);
+
+        if (felledBranchesRenderer)
+            felledBranchesRenderer.enabled = true;
+
+        if (felledBranchesGameObject)
+            felledBranchesGameObject.SetActive(true);
+
+        if (felledBranchesShadowGameObject)
+            felledBranchesShadowGameObject.SetActive(true);
+
+        if (felledBranchesCollider)
+            felledBranchesCollider.SetActive(true);
+
+        if (logRenderer)
+            logRenderer.enabled = true;
+
+        if (logCollider)
+            logCollider.enabled = false;
+
+        if (felledTrunkCollider)
+            felledTrunkCollider.SetActive(true);
+
+        RefreshStageArray(branchStages);
+        RefreshStageArray(logStages);
+        RefreshStageArray(colliderStages);
+
+        felledTree?.SetActive(false);
+    }
+
+    private void RefreshStageArray(GameObject[] stages)
+    {
+        if (stages == null) return;
+
+        foreach (GameObject stage in stages)
+        {
+            if (stage)
+                stage.SetActive(false);
+        }
     }
 
 

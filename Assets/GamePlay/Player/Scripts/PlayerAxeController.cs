@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -19,10 +20,14 @@ public class PlayerAxeController : MonoBehaviour
     [Header("Tree Refs")]
     [SerializeField] private ChoppableTreeController currentTree;
     [SerializeField] private ChoppableTreeController lockedTree;
+    [SerializeField] private bool hitMultipleTreeTargets = false;
+    private readonly List<ChoppableTreeController> treeTargets = new();
 
     [Header("Log Refs")]
     [SerializeField] private FelledLogController currentLog;
     [SerializeField] private FelledLogController lockedLog;
+    [SerializeField] private bool hitMultipleLogTargets = false;
+    private readonly List<FelledLogController> logTargets = new();
 
 
 
@@ -49,6 +54,9 @@ public class PlayerAxeController : MonoBehaviour
         if (playerActionState.IsBusy) return;
         if (isChopping) return;
 
+        currentTree = GetClosestTreeTarget();
+        currentLog = GetClosestLogTarget();
+
         lockedTree = currentTree;
         lockedLog = currentLog;
 
@@ -58,9 +66,43 @@ public class PlayerAxeController : MonoBehaviour
     // --- animation event --- //
     public void OnAxeImpact()
     {
+
+        if (hitMultipleLogTargets)
+        {
+            for (int i = logTargets.Count - 1; i >= 0; i--)
+            {
+                if (logTargets[i] == null)
+                {
+                    logTargets.RemoveAt(i);
+                    continue;
+                }
+
+                logTargets[i].ProcessHit();
+            }
+
+            return;
+        }
+
+
         if (lockedLog != null)
         {
             lockedLog.ProcessHit();
+            return;
+        }
+
+        if (hitMultipleTreeTargets)
+        {
+            for (int i = treeTargets.Count - 1; i >= 0; i--)
+            {
+                if (treeTargets[i] == null)
+                {
+                    treeTargets.RemoveAt(i);
+                    continue;
+                }
+
+                treeTargets[i].RegisterHit();
+            }
+
             return;
         }
 
@@ -85,29 +127,99 @@ public class PlayerAxeController : MonoBehaviour
         lockedLog = null;
     }
 
-    // cache the tree 
+    // ---- TREE ---- //
+
+    // cache the tree
     public void SetChopTarget(ChoppableTreeController tree)
     {
         if (!tree) return;
-        currentTree = tree;
+        
+        if(!treeTargets.Contains(tree))
+            treeTargets.Add(tree);
+
+        currentTree = GetClosestTreeTarget();
     }
 
+    
     // clear the tree
     public void ClearChopTarget(ChoppableTreeController tree)
     {
-        if (currentTree != null && currentTree == tree) currentTree = null;
+        if (!tree) return;
+        treeTargets.Remove(tree);
+
+        if (currentTree == tree)
+            currentTree = GetClosestTreeTarget();
     }
 
+
+    private ChoppableTreeController GetClosestTreeTarget()
+    {
+        ChoppableTreeController closest = null;
+        float closestDistance = Mathf.Infinity;
+
+        foreach (ChoppableTreeController tree in treeTargets)
+        {
+            if (!tree) continue;
+
+            float distance = Vector2.Distance(transform.position, tree.transform.position);
+
+            if (distance < closestDistance)
+            {
+                closestDistance = distance;
+                closest = tree;
+            }
+        }
+
+        return closest;
+    }
+
+
+    // --- LOG --- //
+
+    // cache the log
     public void SetLogTarget(FelledLogController log)
     {
         if (!log) return;
-        currentLog = log;
+        
+        if(!logTargets.Contains(log))
+            logTargets.Add(log);
+
+        currentLog = GetClosestLogTarget();
     }
 
+    // clear the log
     public void ClearLogTarget(FelledLogController log)
     {
-        if (currentLog == log) currentLog = null;
+        if (!log) return;
+        logTargets.Remove(log);
+
+        if(currentLog == log)
+            currentLog = GetClosestLogTarget();
     }
+
+
+    private FelledLogController GetClosestLogTarget()
+    {
+        FelledLogController closest = null;
+        float closestDistance = Mathf.Infinity;
+
+        foreach (FelledLogController log in logTargets)
+        {
+            if(!log) continue;
+
+            float distance = Vector2.Distance(transform.position, log.transform.position);
+
+            if (distance < closestDistance)
+            {
+                closestDistance = distance;
+                closest = log;
+            }
+        }
+        return closest;
+    }
+
+
+    
 
     private void SetAnimation()
     {
