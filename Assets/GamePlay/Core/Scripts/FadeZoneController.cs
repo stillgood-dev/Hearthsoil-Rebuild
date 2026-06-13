@@ -14,12 +14,14 @@ public class FadeZoneController : MonoBehaviour
         if (!other.CompareTag("Player")) return;
         fade?.SortOccluders(fade.occluderSpriteRenderers);
         fade?.FadeOccluders(fade.occluderSpriteRenderers, fade.alpha);
+        fade?.DisableSecondarySpriteRenderers(fade.secondarySpriteRenderers);
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
         if (!other.CompareTag("Player")) return;
-        fade?.RefreshOccluders(fade.occluderSpriteRenderers);
+        fade?.RefreshOccluders(fade.occluderSpriteRenderers, fade.secondarySpriteRenderers);
     }
+
 
 }

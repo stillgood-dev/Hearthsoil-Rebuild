@@ -1,9 +1,12 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class FadeOccludersController : MonoBehaviour
 {
     [SerializeField] public SpriteRenderer[] occluderSpriteRenderers;
+    [Tooltip("Secondary occluders to disable")]
+    [SerializeField] public SpriteRenderer[] secondarySpriteRenderers;
     [SerializeField] public PolygonCollider2D fadeZone;
     [SerializeField] private string occluderSortingLayer = "Occluders";
     [SerializeField] private string objectSortingLayer = "Objects";
@@ -49,8 +52,20 @@ public class FadeOccludersController : MonoBehaviour
         }
     }
 
-    public void RefreshOccluders(SpriteRenderer[] occluderSprites)
+    public void DisableSecondarySpriteRenderers(SpriteRenderer[] secondarySpriteRenderers)
     {
+        if (secondarySpriteRenderers == null) return;
+        foreach(var sr in secondarySpriteRenderers)
+        {
+            if (!sr) continue;
+            // disable object
+            sr.enabled = false;
+        }
+    }
+
+    public void RefreshOccluders(SpriteRenderer[] occluderSprites, SpriteRenderer[] secondaryOccluderSprites)
+    {
+        // Fade occluders
         if( occluderSprites == null) return;
         foreach(var sr in occluderSprites)
         {
@@ -61,6 +76,14 @@ public class FadeOccludersController : MonoBehaviour
             Color c = sr.color;
             c.a = occluderAlphas[sr];
             sr.color = c;
+        }
+
+        // Disable secondary occluders
+        if (secondaryOccluderSprites == null) return;
+        foreach(var sr in secondaryOccluderSprites)
+        {
+            if (!sr) continue;
+            sr.enabled = true;
         }
     }
 

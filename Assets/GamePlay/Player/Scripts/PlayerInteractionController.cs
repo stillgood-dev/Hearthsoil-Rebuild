@@ -10,6 +10,7 @@ public class PlayerInteractionController : MonoBehaviour
     [SerializeField] private PlayerToolState toolState;
 
     [Header("Action Controllers")]
+    [SerializeField] private PlayerDoorController doorController;
     [SerializeField] private PlayerReceiveController receiveController;
     [SerializeField] private PlayerCarryController carryController;
     [SerializeField] private PlayerAxeController axeController;
@@ -40,6 +41,12 @@ public class PlayerInteractionController : MonoBehaviour
         {
             currentSign.Close();
             playerActionState.ClearActionState();
+            return;
+        }
+
+        if(doorController != null)
+        {
+            doorController?.OpenDoor();
             return;
         }
 
