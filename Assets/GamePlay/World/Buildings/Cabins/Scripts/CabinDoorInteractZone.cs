@@ -13,21 +13,24 @@ public class CabinDoorInteractZone : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (!other.CompareTag("Player")) return;
+
         playerDoorController = other.GetComponent<PlayerDoorController>();
-        if(playerDoorController != null)
+
+        if (playerDoorController != null)
         {
-            playerDoorController.SetDoorTarget(cabinDoorController);
+            cabinDoorController.SetPlayerInInteractZone(true, playerDoorController);
         }
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
         if (!other.CompareTag("Player")) return;
+
         playerDoorController = other.GetComponent<PlayerDoorController>();
+
         if (playerDoorController != null)
         {
-            playerDoorController.ClearDoorTarget(cabinDoorController);
+            cabinDoorController.SetPlayerInInteractZone(false, playerDoorController);
         }
-
     }
 }

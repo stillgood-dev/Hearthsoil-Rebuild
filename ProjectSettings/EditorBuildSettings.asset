@@ -14,6 +14,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/PathToHearthsoil.unity
     guid: 340a6cfefe0485949ab4b21536e10123
+  - enabled: 1
+    path: Assets/Scenes/HearthsoilHaven.unity
+    guid: e79855af6c8850d4dacb5972e56e022c
+  - enabled: 1
+    path: Assets/Scenes/Matri_Rita_Cabin.unity
+    guid: 3136a639f2e7ba84e93c4d0ffc9e3170
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

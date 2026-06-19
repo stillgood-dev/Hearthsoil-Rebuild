@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 2333618756408087481}
   - component: {fileID: 2145090100212790785}
   - component: {fileID: 3978414546688770538}
+  - component: {fileID: 5156637050322841905}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -351,8 +352,10 @@ MonoBehaviour:
   isChopping: 0
   currentTree: {fileID: 0}
   lockedTree: {fileID: 0}
+  hitMultipleTreeTargets: 0
   currentLog: {fileID: 0}
   lockedLog: {fileID: 0}
+  hitMultipleLogTargets: 0
 --- !u!114 &5060243519150972395
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -438,6 +441,7 @@ MonoBehaviour:
   currentSign: {fileID: 0}
   playerActionState: {fileID: 2685208603339887518}
   toolState: {fileID: 3978414546688770538}
+  doorController: {fileID: 5156637050322841905}
   receiveController: {fileID: 0}
   carryController: {fileID: 0}
   axeController: {fileID: 0}
@@ -457,6 +461,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   equippedTool: 0
+--- !u!114 &5156637050322841905
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 146874527565538804}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5619e994631a2524293e3c2c5d6671de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentDoor: {fileID: 0}
+  lockedDoor: {fileID: 0}
 --- !u!1 &481173273618210123
 GameObject:
   m_ObjectHideFlags: 0

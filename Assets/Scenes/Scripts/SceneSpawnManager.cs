@@ -3,6 +3,8 @@ using UnityEngine;
 public class SceneSpawnManager : MonoBehaviour
 {
     [SerializeField] private string defaultSpawnPointName = "PlayerSpawnPoint";
+    // set player environment somehow
+    [SerializeField] PlayerEnvironmentState playerEnvironment;
 
     void Start()
     {

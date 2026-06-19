@@ -8,6 +8,7 @@ public class PlayerInteractionController : MonoBehaviour
     [Header("Player Refs")]
     [SerializeField] private PlayerActionState playerActionState;
     [SerializeField] private PlayerToolState toolState;
+    [SerializeField] private PlayerEnvironmentState playerEnvironment;
 
     [Header("Action Controllers")]
     [SerializeField] private PlayerDoorController doorController;
@@ -24,6 +25,8 @@ public class PlayerInteractionController : MonoBehaviour
     private void Awake()
     {
         if (!playerActionState) playerActionState = GetComponent<PlayerActionState>();
+        if (!playerEnvironment) playerEnvironment = GetComponent<PlayerEnvironmentState>();  
+        if (!doorController) doorController = GetComponent<PlayerDoorController>();
         if (!receiveController) receiveController = GetComponent<PlayerReceiveController>();
         if (!carryController) carryController = GetComponent<PlayerCarryController>();
         if (!axeController) axeController = GetComponent<PlayerAxeController>();
@@ -44,9 +47,8 @@ public class PlayerInteractionController : MonoBehaviour
             return;
         }
 
-        if(doorController != null)
+        if (doorController != null && doorController.OpenDoor())
         {
-            doorController?.OpenDoor();
             return;
         }
 
@@ -87,19 +89,23 @@ public class PlayerInteractionController : MonoBehaviour
             return;
         }
 
-        switch (toolState.EquippedTool)
+        // Only allow tools if player is outside
+        if(playerEnvironment != null && playerEnvironment.PlayerEnvironment == PlayerEnvironment.Outside)
         {
-            case EquippedTool.Axe:
-                axeController?.UseAxe();
-                break;
+            switch (toolState.EquippedTool)
+            {
+                case EquippedTool.Axe:
+                    axeController?.UseAxe();
+                    break;
 
-            case EquippedTool.Machete:
-                macheteController?.UseMachete();
-                break;
+                case EquippedTool.Machete:
+                    macheteController?.UseMachete();
+                    break;
 
-            case EquippedTool.Hoe:
-                hoeController?.UseHoe();
-                break;
+                case EquippedTool.Hoe:
+                    hoeController?.UseHoe();
+                    break;
+            }
         }
     }
 
