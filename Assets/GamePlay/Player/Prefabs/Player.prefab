@@ -255,7 +255,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actionState: {fileID: 0}
-  moveSpeed: 0.75
+  moveSpeed: 1
   facing: 0
   facingX: X
   facingY: Y
@@ -441,6 +441,7 @@ MonoBehaviour:
   currentSign: {fileID: 0}
   playerActionState: {fileID: 2685208603339887518}
   toolState: {fileID: 3978414546688770538}
+  playerEnvironment: {fileID: 0}
   doorController: {fileID: 5156637050322841905}
   receiveController: {fileID: 0}
   carryController: {fileID: 0}

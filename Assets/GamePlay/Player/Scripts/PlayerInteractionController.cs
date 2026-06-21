@@ -11,6 +11,7 @@ public class PlayerInteractionController : MonoBehaviour
     [SerializeField] private PlayerEnvironmentState playerEnvironment;
 
     [Header("Action Controllers")]
+    [SerializeField] private PlayerLightSourceController lightController;
     [SerializeField] private PlayerDoorController doorController;
     [SerializeField] private PlayerReceiveController receiveController;
     [SerializeField] private PlayerCarryController carryController;
@@ -33,6 +34,7 @@ public class PlayerInteractionController : MonoBehaviour
         if (!macheteController) macheteController = GetComponent<PlayerMacheteController>();
         if (!hoeController) hoeController = GetComponent<PlayerHoeController>();
         if (!toolState) toolState = GetComponent<PlayerToolState>();
+        if (!lightController) lightController = GetComponent<PlayerLightSourceController>();
     }
 
     public void OnInteract()
@@ -47,10 +49,19 @@ public class PlayerInteractionController : MonoBehaviour
             return;
         }
 
+        // Open a door if there's a door to open
         if (doorController != null && doorController.OpenDoor())
         {
             return;
         }
+
+
+        // Light a candle or lantern
+        if(lightController != null && lightController.ToggleLight())
+        {
+            return;
+        }
+
 
         // 2. Allow Receiving to continue so the second E press can accept.
         if (playerActionState.IsBusy && playerActionState.State != PlayerState.Receiving)

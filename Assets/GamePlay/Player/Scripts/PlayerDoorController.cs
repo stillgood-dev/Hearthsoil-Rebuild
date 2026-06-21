@@ -5,15 +5,9 @@ public class PlayerDoorController : MonoBehaviour
 
     [SerializeField] private CabinDoorController currentDoor;
     [SerializeField] private CabinDoorController lockedDoor;
-    [SerializeField] private PlayerEnvironmentState environmentState;
 
     // To null out when player leaves the scene, or do I even need to if I don't have it persist? I don't think I need to, but I'll investigate later
     public CabinDoorController LockedDoor => lockedDoor;
-
-    private void Awake()
-    {
-        if (!environmentState) environmentState = GetComponent<PlayerEnvironmentState>();
-    }
 
 
     // player targets the door for interaction when entering trigger zone
@@ -41,7 +35,7 @@ public class PlayerDoorController : MonoBehaviour
         if (currentDoor == null) return false;
 
         lockedDoor = currentDoor;
-        lockedDoor.DoorOpen();
+        lockedDoor.TryEnterCabin();
 
             // return a bool so InteractionController can read it
             return true;
