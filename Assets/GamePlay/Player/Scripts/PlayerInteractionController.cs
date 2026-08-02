@@ -57,7 +57,7 @@ public class PlayerInteractionController : MonoBehaviour
 
 
         // Light a candle or lantern
-        if(lightController != null && lightController.ToggleLight())
+        if (lightController != null && lightController.ToggleLight())
         {
             return;
         }

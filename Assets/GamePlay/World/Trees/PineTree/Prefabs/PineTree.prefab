@@ -1128,6 +1128,7 @@ MonoBehaviour:
   logCollider: {fileID: 828327538404945715}
   felledLogGameObject: {fileID: 7116772566751151860}
   felledTrunkCollider: {fileID: 3782508081573051433}
+  treeRegrowth: {fileID: 8378929620853764050}
   branchStages:
   - {fileID: 1197447575800695275}
   - {fileID: 1703496285104587668}
@@ -1656,6 +1657,7 @@ MonoBehaviour:
   logCollider: {fileID: 6481749464710010704}
   felledLogGameObject: {fileID: 4644803291938670188}
   felledTrunkCollider: {fileID: 5718361774834916302}
+  treeRegrowth: {fileID: 8378929620853764050}
   branchStages:
   - {fileID: 1613392693324168327}
   - {fileID: 7154138428639673366}
@@ -3421,6 +3423,7 @@ MonoBehaviour:
   occluderSpriteRenderers:
   - {fileID: 3094641363813463539}
   - {fileID: 6043819943273612800}
+  secondarySpriteRenderers: []
   fadeZone: {fileID: 0}
   occluderSortingLayer: Occluders
   objectSortingLayer: Objects
@@ -3555,6 +3558,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 236056227166596028}
+  - {fileID: 3246076176371489530}
   m_Father: {fileID: 6084173740438465821}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7116772566751151860
@@ -3801,6 +3805,59 @@ Transform:
   - {fileID: 5795305450600964225}
   m_Father: {fileID: 1508985505976398395}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7470807122364313228
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3246076176371489530}
+  - component: {fileID: 8378929620853764050}
+  m_Layer: 0
+  m_Name: TreeRegrowthController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3246076176371489530
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7470807122364313228}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 771448955070423677}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8378929620853764050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7470807122364313228}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed8d0ab45e0efef45a74a9997cae1924, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectID: Tree01
+  daysToRegrow: 5
+  standingTree: {fileID: 4603054242886997615}
+  felledLogEast: {fileID: 3054335607972431610}
+  felledLogWest: {fileID: 7191426084377129361}
+  treeController: {fileID: 65422474491662962}
+  logControllerEast: {fileID: 4698003035521519860}
+  logControllerWest: {fileID: 8464071207512252343}
+  currentDayForTesting: 0
 --- !u!1 &7497801115345927060
 GameObject:
   m_ObjectHideFlags: 0
@@ -3852,9 +3909,9 @@ MonoBehaviour:
   animator: {fileID: 0}
   fadeZone: {fileID: 0}
   stumpShadow: {fileID: 0}
-  standingTree: {fileID: 0}
-  standingCollider: {fileID: 0}
-  standingChopZone: {fileID: 0}
+  standingTree: {fileID: 4603054242886997615}
+  standingCollider: {fileID: 1762784461729774924}
+  standingChopZone: {fileID: 3243485595497356707}
   felledTree: {fileID: 0}
   felledLogControllerEast: {fileID: 4698003035521519860}
   felledLogControllerWest: {fileID: 8464071207512252343}
@@ -3863,7 +3920,7 @@ MonoBehaviour:
   hitsToFall: 3
   treeHits: 0
   isFelled: 0
-  treeRegrowth: {fileID: 0}
+  treeRegrowth: {fileID: 8378929620853764050}
 --- !u!1 &7505850338844587748
 GameObject:
   m_ObjectHideFlags: 0

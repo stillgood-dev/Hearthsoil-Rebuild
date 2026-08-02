@@ -57,6 +57,9 @@ TagManager:
   - name: Objects
     uniqueID: 2008511357
     locked: 0
+  - name: Elevation
+    uniqueID: 2142828209
+    locked: 0
   - name: Characters
     uniqueID: 3221676853
     locked: 0
