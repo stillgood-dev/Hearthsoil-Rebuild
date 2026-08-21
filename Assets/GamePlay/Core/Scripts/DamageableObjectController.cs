@@ -10,9 +10,19 @@ public class DamageableObjectController : MonoBehaviour
     [SerializeField] private int hits;
     [SerializeField] private int hitsToComplete = 3;
 
-    [Header("Completion Behavior")]
-    [SerializeField] private bool markAsDestroyedOnComplete = true;
-    [SerializeField] private bool deactivateOnComplete = true;
+    [Header("Sprites")]
+    [SerializeField] private GameObject undamaged;
+    [SerializeField] private GameObject damaged;
+
+    [Header("Colliders")]
+    [SerializeField] private GameObject physicalCollider;
+    [SerializeField] private GameObject hitZone;
+
+    public void Awake()
+    {
+        if(undamaged != null) undamaged.SetActive(true);
+        if(damaged != null) damaged.SetActive(false);
+    }
 
     public void SetPlayerInHitZone(bool inRange, PlayerMacheteController playerMachete)
     {
@@ -35,19 +45,40 @@ public class DamageableObjectController : MonoBehaviour
         }
     }
 
+
     private void CompleteDamage()
     {
         playerMacheteController?.ClearHitTarget(this);
 
-        if (markAsDestroyedOnComplete)
+        PersistentStateObject persistentState = 
+            GetComponent<PersistentStateObject>();
+
+        if(persistentState != null)
         {
-            GetComponent<PersistentDestroyableObject>()?.MarkDestroyed();
+            persistentState.MarkChanged();
             return;
         }
 
-        if (deactivateOnComplete)
-        {
-            gameObject.SetActive(false);
-        }
+        // Fallback for non-persistent damageable objects
+        DisableColliders();
+        SwapToDamagedSprite();
+    }
+
+    public void DisableColliders()
+    {
+        if (physicalCollider != null)
+            physicalCollider.SetActive(false);
+
+        if (hitZone != null)
+            hitZone.SetActive(false);
+    }
+
+    public void SwapToDamagedSprite()
+    {
+        if (undamaged != null)
+            undamaged.SetActive(false);
+
+        if (damaged != null)
+            damaged.SetActive(true);
     }
 }

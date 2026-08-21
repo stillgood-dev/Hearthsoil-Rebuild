@@ -6,20 +6,32 @@ public class SceneSpawnManager : MonoBehaviour
 
     void Start()
     {
+        Debug.Log("SCENE SPAWN MANAGER STARTED");
+
         if (PersistentPlayer.Instance == null) return;
 
-        string spawnName = string.IsNullOrEmpty(SceneTransitionData.SpawnPointName)
-            ? defaultSpawnPointName
-            : SceneTransitionData.SpawnPointName;
+        if (string.IsNullOrEmpty(SceneTransitionData.SpawnPointName))
+        {
+            // No spawn point requested:
+            // leave persistent player exactly where they already are.
+            return;
+        }
 
-        GameObject spawnPoint = GameObject.Find(spawnName);
+        GameObject spawnPoint =
+            GameObject.Find(SceneTransitionData.SpawnPointName);
+
+        Debug.Log("Looking for spawn point: " + SceneTransitionData.SpawnPointName);
+        Debug.Log("Found spawn point: " + spawnPoint);
 
         if (spawnPoint == null)
             spawnPoint = GameObject.Find(defaultSpawnPointName);
 
         if (spawnPoint == null) return;
 
-        PersistentPlayer.Instance.transform.position = spawnPoint.transform.position;
+        Vector3 spawnPosition = spawnPoint.transform.position;
+        spawnPosition.x = SceneTransitionData.PreservedX;
+
+        PersistentPlayer.Instance.transform.position = spawnPosition;
 
         SceneTransitionData.SpawnPointName = null;
     }

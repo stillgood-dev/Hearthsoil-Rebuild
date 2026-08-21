@@ -12,29 +12,28 @@ public class SceneTransitionZone : MonoBehaviour
 
     private bool hasTriggered;
 
+    [SerializeField] private bool preservePlayerPosition;
+
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (showDebug)
-            Debug.Log("Something entered transition trigger: " + other.name);
-
         if (hasTriggered) return;
 
-        PlayerController player = other.GetComponentInParent<PlayerController>();
+        PlayerController player =
+            other.GetComponentInParent<PlayerController>();
 
-        if (player == null)
-        {
-            if (showDebug)
-                Debug.Log("Object did not have PlayerController in parent.");
-
-            return;
-        }
+        if (player == null) return;
 
         hasTriggered = true;
 
-        if (showDebug)
-            Debug.Log("Transitioning to scene: " + sceneToLoad);
-
-        SceneTransitionData.SpawnPointName = spawnPointName;
+        if (preservePlayerPosition)
+        {
+            SceneTransitionData.PreservedX = player.transform.position.x;
+            SceneTransitionData.SpawnPointName = spawnPointName;
+        }
+        else
+        {
+            SceneTransitionData.SpawnPointName = spawnPointName;
+        }
 
         SceneManager.LoadScene(sceneToLoad);
     }
