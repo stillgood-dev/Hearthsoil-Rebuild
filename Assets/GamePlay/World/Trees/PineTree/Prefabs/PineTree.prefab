@@ -2131,8 +2131,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 2953000480664306602}
-  - {fileID: 5347211481413438134}
+  - {fileID: 2912312558617682216}
   - {fileID: 771448955070423677}
   - {fileID: 1508985505976398395}
   m_Father: {fileID: 0}
@@ -2412,7 +2411,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4603054242886997615}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2421,7 +2420,7 @@ Transform:
   - {fileID: 6640204353402066171}
   - {fileID: 6247161813503826227}
   - {fileID: 4703208004237651150}
-  m_Father: {fileID: 6084173740438465821}
+  m_Father: {fileID: 2912312558617682216}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2059673425872254419
 MonoBehaviour:
@@ -3528,6 +3527,39 @@ PolygonCollider2D:
       - {x: 0.38204038, y: -0.18670201}
       - {x: 0.519246, y: -0.14819384}
   m_UseDelaunayMesh: 0
+--- !u!1 &6809501270923040623
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2912312558617682216}
+  m_Layer: 0
+  m_Name: Sprites
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2912312558617682216
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6809501270923040623}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2953000480664306602}
+  - {fileID: 5347211481413438134}
+  m_Father: {fileID: 6084173740438465821}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6854141570281145643
 GameObject:
   m_ObjectHideFlags: 0
@@ -3868,6 +3900,7 @@ GameObject:
   m_Component:
   - component: {fileID: 236056227166596028}
   - component: {fileID: 65422474491662962}
+  - component: {fileID: 637313997564537651}
   m_Layer: 0
   m_Name: ChoppableTreeController
   m_TagString: Untagged
@@ -3906,21 +3939,38 @@ MonoBehaviour:
   playerInChopZone: 0
   playerFaceDirection: 0
   lastHitDirection: 0
-  animator: {fileID: 0}
-  fadeZone: {fileID: 0}
-  stumpShadow: {fileID: 0}
+  animator: {fileID: 272234232671704529}
+  fadeZone: {fileID: 6200127738327224947}
+  stumpShadow: {fileID: 8991692047185351232}
   standingTree: {fileID: 4603054242886997615}
   standingCollider: {fileID: 1762784461729774924}
   standingChopZone: {fileID: 3243485595497356707}
   felledTree: {fileID: 0}
   felledLogControllerEast: {fileID: 4698003035521519860}
   felledLogControllerWest: {fileID: 8464071207512252343}
-  hitFlashSprite: {fileID: 0}
-  hitFlashFrameCount: 30
   hitsToFall: 3
   treeHits: 0
   isFelled: 0
   treeRegrowth: {fileID: 8378929620853764050}
+  hitFlashSprite: {fileID: 1347651052181410761}
+  hitFlashFrameCount: 30
+  shakeObject: {fileID: 637313997564537651}
+--- !u!114 &637313997564537651
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7497801115345927060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ba290a00ea26b1419ea34d8486f923c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprites: {fileID: 2912312558617682216}
+  shakeDistance: 0.01
+  shakeDuration: 0.12
+  shakeCount: 3
 --- !u!1 &7505850338844587748
 GameObject:
   m_ObjectHideFlags: 0
@@ -4545,14 +4595,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8296316362176219928}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5162543025184815039}
   - {fileID: 4322130160465047796}
-  m_Father: {fileID: 6084173740438465821}
+  m_Father: {fileID: 2912312558617682216}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &6043819943273612800
 SpriteRenderer:

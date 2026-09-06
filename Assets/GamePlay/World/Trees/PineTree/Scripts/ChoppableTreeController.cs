@@ -23,14 +23,19 @@ public class ChoppableTreeController : MonoBehaviour
     [SerializeField] private FelledLogController felledLogControllerWest;
 
     [Header("Chop Refs")]
-    [SerializeField] private SpriteRenderer hitFlashSprite;
-    [SerializeField] private int hitFlashFrameCount = 15;
     [SerializeField] private int hitsToFall = 3; // will eventually depend on player stats
     [SerializeField] private int treeHits;
     [SerializeField] private bool isFelled;
 
     [Header("Regrowth Refs")]
     [SerializeField] private TreeRegrowthController treeRegrowth;
+
+    [Header("Hit Flash")]
+    [SerializeField] private SpriteRenderer hitFlashSprite;
+    [SerializeField] private int hitFlashFrameCount = 15;
+
+    [Header("Impact Shake")]
+    [SerializeField] ShakeObject shakeObject;
 
     public bool IsFelled => isFelled;
 
@@ -115,6 +120,7 @@ public class ChoppableTreeController : MonoBehaviour
     {
         treeHits++;
         ShowHitFlash();
+        if (shakeObject != null) shakeObject.Shake();
         BeginTreeFall();
     }
 

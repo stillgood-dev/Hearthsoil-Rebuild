@@ -443,8 +443,18 @@ MonoBehaviour:
       m_Sprite: {fileID: 7435019399366683685, guid: af55b38a1306ac34baffb74464d1f7a7, type: 3}
       m_FromMain: 0
       m_SpriteOverride: {fileID: 7435019399366683685, guid: af55b38a1306ac34baffb74464d1f7a7, type: 3}
+    - m_Name: Eat_Object_S_1
+      m_Hash: 487894928
+      m_Sprite: {fileID: 4762621364134386693, guid: f7e4c0d07ee58844c8bceba6cc36c747, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 4762621364134386693, guid: f7e4c0d07ee58844c8bceba6cc36c747, type: 3}
+    - m_Name: Eat_Object_S_2
+      m_Hash: 69074474
+      m_Sprite: {fileID: -524690648, guid: f7e4c0d07ee58844c8bceba6cc36c747, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -524690648, guid: f7e4c0d07ee58844c8bceba6cc36c747, type: 3}
     m_FromMain: 0
-    m_EntryOverrideCount: 45
+    m_EntryOverrideCount: 47
   - m_Name: East
     m_Hash: 400640276
     m_CategoryList: []
@@ -808,5 +818,5 @@ MonoBehaviour:
     m_FromMain: 0
     m_EntryOverrideCount: 35
   m_PrimaryLibraryGUID: 
-  m_ModificationHash: 639145486501597214
+  m_ModificationHash: 639242107592964338
   m_Version: 1

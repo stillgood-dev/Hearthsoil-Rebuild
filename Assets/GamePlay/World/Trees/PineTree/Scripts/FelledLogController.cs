@@ -180,6 +180,7 @@ public class FelledLogController : MonoBehaviour
         }
     }
 
+    // consolidate with SpawnResource.cs later, feels to complicated tonight
     private void SpawnLogResourceOnHit()
     {
         if (logResource == null) return;
@@ -192,7 +193,7 @@ public class FelledLogController : MonoBehaviour
 
             if (popOut != null)
             {
-                popOut.Pop(playerAxeController.FaceDir, logHits);
+                popOut.Pop(playerAxeController.FaceDir, logHits, stack: true);
             }
             logs++;
         }

@@ -7,9 +7,11 @@ public class PlayerMacheteController : MonoBehaviour
     [Header("Player Refs")]
     [SerializeField] private PlayerController playerController;
     [SerializeField] private PlayerActionState playerActionState;
+
+    [Header("Debugging")]
     [SerializeField] private Animator animator;
     [SerializeField] private FacingDirection faceDir;
-
+    // also for debugging
     public FacingDirection FaceDir => faceDir;
 
     [Header("Machete Refs")]
@@ -34,6 +36,7 @@ public class PlayerMacheteController : MonoBehaviour
 
     private void Update()
     {
+        // for debugging (seeing the player facing direction)
         faceDir = playerController.Facing;
 
     }

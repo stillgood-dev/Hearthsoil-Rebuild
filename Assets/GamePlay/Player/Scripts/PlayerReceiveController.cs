@@ -9,8 +9,9 @@ public class PlayerReceiveController : MonoBehaviour
     [SerializeField] private Transform anchorToUse;
     [SerializeField] private PlayerActionState actionState;
     [SerializeField] private Animator animator;
-    [SerializeField] private string receiveAnimationName;
     [SerializeField] private PlayerToolState toolState;
+    [SerializeField] private InventoryManager inventoryManager;
+    [SerializeField] private PlayerInventoryState inventoryState;
 
     [Header("Receiveable Object")]
     [SerializeField] private ReceivableObjectController receivableObject;
@@ -27,6 +28,8 @@ public class PlayerReceiveController : MonoBehaviour
         if(!animator) animator = GetComponent<Animator>();
         if(!actionState) actionState = GetComponent<PlayerActionState>();
         if (!toolState) toolState = GetComponent<PlayerToolState>();
+        if (!inventoryManager) inventoryManager = GetComponent<InventoryManager>();
+        if (!inventoryState) inventoryState = GetComponent<PlayerInventoryState>();
     }
 
     // set object reference when in the object's trigger zone
@@ -77,9 +80,29 @@ public class PlayerReceiveController : MonoBehaviour
         // --- receive object initially --- //
         anchorToUse = receivableObject.IsTool ? receiveToolAnchor : receiveAnchor;
 
-        animator.SetTrigger(receiveAnimationName);
-        receivableObject.ReceiveObject(anchorToUse);
-        notificationUI.Show($"You have received the {receivableObject.ToolType}!");
+        if (receivableObject.IsTool)
+        {
+            animator.SetTrigger("ReceiveTool");
+            receivableObject.ReceiveObject(anchorToUse);
+            notificationUI.Show($"You have received the {receivableObject.ToolType}!");
+
+        }
+        else
+        {
+            bool hasDiscovered = inventoryManager.HasDiscovered(receivableObject.ResourceType);
+
+            if (hasDiscovered)
+            {
+                Debug.Log($"{receivableObject.ReceiveObjectName} has already been discovered.");
+                return false;
+            }
+
+            animator.SetTrigger("Receive");
+            receivableObject.ReceiveObject(anchorToUse);
+            notificationUI.Show($"You have received the {receivableObject.ReceiveObjectName}!");
+
+            inventoryManager.DiscoverResource(receivableObject.ResourceType);
+        }
 
         actionState.SetActionState(PlayerState.Receiving);
         hasReceivedObject = true;

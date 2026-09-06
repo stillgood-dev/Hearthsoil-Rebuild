@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class DamageableObjectController : MonoBehaviour
 {
@@ -11,18 +12,34 @@ public class DamageableObjectController : MonoBehaviour
     [SerializeField] private int hitsToComplete = 3;
 
     [Header("Sprites")]
-    [SerializeField] private GameObject undamaged;
+    [SerializeField] private GameObject[] undamaged;
     [SerializeField] private GameObject damaged;
+
+    [Header("Stages")]
+    [SerializeField] private GameObject[] objectStages;
+
+    [Header("Impact Burst")]
+    [SerializeField] private Animator animator;
+    [SerializeField] private GameObject impactBurst;
+    [SerializeField] private string impactBurstName = "ShowImpactBurst";
+
+    [Header("Impact Shake")]
+    [SerializeField] private ShakeObject shakeObject;
 
     [Header("Colliders")]
     [SerializeField] private GameObject physicalCollider;
     [SerializeField] private GameObject hitZone;
 
-    public void Awake()
+    [Header("Resources")]
+    [SerializeField] private SpawnResource spawnResource;
+
+    private void Awake()
     {
-        if(undamaged != null) undamaged.SetActive(true);
-        if(damaged != null) damaged.SetActive(false);
+        // set inactive so the impact burst can't play automatically
+        if (impactBurst != null) impactBurst.SetActive(false);
+        if (shakeObject == null) GetComponent<ShakeObject>();
     }
+
 
     public void SetPlayerInHitZone(bool inRange, PlayerMacheteController playerMachete)
     {
@@ -41,8 +58,53 @@ public class DamageableObjectController : MonoBehaviour
 
         if (hits >= hitsToComplete)
         {
+            if (animator != null) 
+                animator.SetTrigger(impactBurstName);
+
+            if(shakeObject != null) shakeObject.Shake();
+
+            if (spawnResource != null)
+                spawnResource.SpawnResourceOnHit(playerMacheteController.FaceDir, hits);
+
             CompleteDamage();
+            return;
         }
+
+        UpdateStageOnHit();
+        if (shakeObject != null) shakeObject.Shake();
+    }
+
+    private void UpdateStageOnHit()
+    {
+        if (objectStages == null || objectStages.Length == 0) return;
+
+        int index = hits - 1;
+
+        if (index >= objectStages.Length) return;
+
+        if (index == 0)
+        {
+            foreach (var obj in undamaged)
+            {
+                if(obj != null)
+                    obj.SetActive(false);
+            }
+            
+            if (spawnResource != null)
+                spawnResource.SpawnResourceOnHit(playerMacheteController.FaceDir, hits);
+        }
+        else
+        {
+            objectStages[index - 1].SetActive(false);
+            
+            if (spawnResource != null)
+                spawnResource.SpawnResourceOnHit(playerMacheteController.FaceDir, hits);
+        }
+
+        objectStages[index].SetActive(true);
+        if(impactBurst != null) impactBurst.SetActive(true);
+        if(animator != null) animator.SetTrigger("ShowImpactBurst");
+
     }
 
 
@@ -62,7 +124,9 @@ public class DamageableObjectController : MonoBehaviour
         // Fallback for non-persistent damageable objects
         DisableColliders();
         SwapToDamagedSprite();
+        if (impactBurst != null) impactBurst.SetActive(false);
     }
+
 
     public void DisableColliders()
     {
@@ -75,8 +139,11 @@ public class DamageableObjectController : MonoBehaviour
 
     public void SwapToDamagedSprite()
     {
-        if (undamaged != null)
-            undamaged.SetActive(false);
+        foreach (var obj in undamaged)
+        {
+            if (obj != null)
+                obj.SetActive(false);
+        }
 
         if (damaged != null)
             damaged.SetActive(true);

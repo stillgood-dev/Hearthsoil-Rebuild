@@ -11,6 +11,7 @@ public class ReceivableObjectController : MonoBehaviour
     [SerializeField] private Collider2D receiveObjectCollider;
     [SerializeField] private Animator animator;
     [SerializeField] private string receiveObjectAnimationName;
+    [SerializeField] private string receiveObjectName;
 
 
     [Header("Tool Data")]
@@ -19,6 +20,14 @@ public class ReceivableObjectController : MonoBehaviour
     
     public bool IsTool => isTool;
     public EquippedTool ToolType => toolType;
+
+
+    [Header("Resource Data")]
+    [SerializeField] private ResourceType resourceType = ResourceType.None;
+
+    public ResourceType ResourceType => resourceType;
+
+    public string ReceiveObjectName => receiveObjectName; 
 
     private void Awake()
     {
@@ -68,9 +77,9 @@ public class ReceivableObjectController : MonoBehaviour
     {
         if (receiveAnchor == null) return;
         if (receiveController == null) return;
-        //if (receiveObjectCollider != null) receiveObjectCollider.enabled = false;
+        if (receiveObjectCollider != null) receiveObjectCollider.enabled = false;
         receiveGameObject.transform.position = receiveAnchor.position;
-        animator.Play(receiveObjectAnimationName);
+        if(animator != null) animator.Play(receiveObjectAnimationName);
 
         
     }
@@ -78,6 +87,7 @@ public class ReceivableObjectController : MonoBehaviour
     public void AcceptObject()
     {
         if (receiveGameObject == null) return;
+        // destroy just for now until we get an inventory
         GetComponent<PersistentDestroyableObject>()?.MarkDestroyed();
     }
 }
