@@ -1,7 +1,6 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 
-public class PlayerReceiveController : MonoBehaviour
+public class PlayerReceiveController_TEST : MonoBehaviour
 {
     // Player Objects
     [Header("Player References")]
@@ -120,7 +119,7 @@ public class PlayerReceiveController : MonoBehaviour
                 awaitingCarryHandoff = false;
                 receivingObject = false;
                 receivableObject = null;
-
+               
                 return true; // stop here, carryable object controller's got it now
             }
 
@@ -166,11 +165,31 @@ public class PlayerReceiveController : MonoBehaviour
             // determine if the player has already discovered the resource
             bool hasDiscovered = inventoryManager.HasDiscovered(receivableObject.ResourceType);
 
-            // if the resource has already been discovered once in the game,
-            // return false so PlayerInteractionController can move directly to PlayerCarryController
+            // if the resource has already been discovered once in the game
             if (hasDiscovered)
             {
-                return false;
+                animator.SetTrigger("Receive"); // show player receiving object animation
+                receivableObject.ReceiveObject(anchorToUse); // put the object in the receive anchor
+
+                actionState.SetActionState(PlayerState.Receiving); // player is busy receiving the object, can't do anything else
+                receivingObject = true; // player is receiving the object, store for next time the player hits interact
+
+                // set receivable object parameters, can you eat, drop, or store the object?
+                bool canEat = receivableObject.IsEdible;
+                bool canDrop = true;
+                bool canStore = 
+                    receivableObject.IsStorable &&
+                    inventoryState.HasSatchel;
+
+                // show choices based on what you can do with the object, this now sets ResourceChoiceUI.IsOpen to true
+                resourceChoiceUI.Show(
+                   "What would you like to do?",
+                   canEat,
+                   canDrop,
+                   canStore
+               );
+
+                return true;
             }
 
             // ----- new resource pipeline ----- //
@@ -229,5 +248,6 @@ public class PlayerReceiveController : MonoBehaviour
 
         carryController.StartCarrying(receivableObject.CarryableController);
     }
+
 
 }

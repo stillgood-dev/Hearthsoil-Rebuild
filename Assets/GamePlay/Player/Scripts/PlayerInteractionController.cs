@@ -49,34 +49,39 @@ public class PlayerInteractionController : MonoBehaviour
             return;
         }
 
-        // Open a door if there's a door to open
+        // 2. Open a door if there's a door to open.
         if (doorController != null && doorController.OpenDoor())
         {
             return;
         }
 
-
-        // Light a candle or lantern
+        // 3. Light a candle or lantern.
         if (lightController != null && lightController.ToggleLight())
         {
             return;
         }
 
-
-        // 2. Allow Receiving to continue so the second E press can accept.
-        if (playerActionState.IsBusy && playerActionState.State != PlayerState.Receiving)
+        // 4. Block other busy states, but allow multi-step
+        // Receiving and Carrying interactions to continue.
+        if (playerActionState.IsBusy &&
+            playerActionState.State != PlayerState.Receiving &&
+            playerActionState.State != PlayerState.Carrying)
         {
-            if (showDebug) Debug.Log("Player is busy: " + playerActionState.State);
+            if (showDebug)
+                Debug.Log("Player is busy: " + playerActionState.State);
+
             return;
         }
 
-        // 3. If already receiving, let Receive handle accept and STOP.
+        // 5. Let Receive handle the interaction first.
+        // Undiscovered resources will be received, discovered,
+        // and handed off to Carry.
         if (receiveController != null && receiveController.Receive())
         {
             return;
         }
 
-        // 4. If near a sign, open it.
+        // 6. If near a sign, open it.
         if (currentSign != null)
         {
             currentSign.Open();
@@ -84,24 +89,30 @@ public class PlayerInteractionController : MonoBehaviour
             return;
         }
 
-        // 5. Carry interactions.
-        carryController?.Carry();
+        // 7. Carry interaction.
+        if (carryController != null && carryController.Carry())
+        {
+            return;
+        }
 
-        // 6. Try receiving new object and STOP if it happened.
+        // 8. Try receiving a new object if Carry didn't handle it.
         if (receiveController != null && receiveController.Receive())
         {
             return;
         }
 
-        // 7. Tool use last.
+        // 9. Tool use last.
         if (toolState == null)
         {
-            if (showDebug) Debug.LogWarning("No PlayerToolState found on Player.");
+            if (showDebug)
+                Debug.LogWarning("No PlayerToolState found on Player.");
+
             return;
         }
 
-        // Only allow tools if player is outside
-        if(playerEnvironment != null && playerEnvironment.PlayerEnvironment == PlayerEnvironment.Outside)
+        // Only allow tools if player is outside.
+        if (playerEnvironment != null &&
+            playerEnvironment.PlayerEnvironment == PlayerEnvironment.Outside)
         {
             switch (toolState.EquippedTool)
             {

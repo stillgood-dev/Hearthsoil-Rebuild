@@ -23,6 +23,9 @@ public class PlayerController : MonoBehaviour
 
     private const float FaceDeadZone = 0.1f;
 
+    [Header("UI References")]
+    [SerializeField] private ResourceChoiceUI resourceChoiceUI;
+
     [Header("Debug")]
     [SerializeField] private bool showDebugMessages;
     [SerializeField] private bool debugIsMoving;
@@ -49,6 +52,9 @@ public class PlayerController : MonoBehaviour
         animator.SetFloat(facingY, -1f);
 
         facing = FacingDirection.South;
+
+        if (!resourceChoiceUI)
+            resourceChoiceUI = GetComponentInChildren<ResourceChoiceUI>(true);
     }
 
     private void Update()
@@ -153,9 +159,26 @@ public class PlayerController : MonoBehaviour
     }
 
     public void OnMove(InputValue value)
-    {  
-        // cache movement input (keeps reading input if held down)
-        movementInput = value.Get<Vector2>();
+    {
+        Vector2 input = value.Get<Vector2>();
+
+        // Navigate resource choice instead of moving player
+        if (resourceChoiceUI != null && resourceChoiceUI.IsOpen)
+        {
+            if (input.x > 0.5f)
+            {
+                resourceChoiceUI.MoveSelection(1);
+            }
+            else if (input.x < -0.5f)
+            {
+                resourceChoiceUI.MoveSelection(-1);
+            }
+
+            movementInput = Vector2.zero;
+            return;
+        }
+
+        movementInput = input;
 
         if (showDebugMessages)
             Debug.Log($"Move Input: {movementInput}");
@@ -167,9 +190,26 @@ public class PlayerController : MonoBehaviour
         animator.SetFloat(facingY, y);
         animator.SetFloat(lastFacingX, x);
         animator.SetFloat(lastFacingY, y);
+
+        if (y > 0)
+        {
+            facing = FacingDirection.North;
+        }
+        else if (y < 0)
+        {
+            facing = FacingDirection.South;
+        }
+        else if (x > 0)
+        {
+            facing = FacingDirection.East;
+        }
+        else if (x < 0)
+        {
+            facing = FacingDirection.West;
+        }
     }
 
-    
 
-    
+
+
 }

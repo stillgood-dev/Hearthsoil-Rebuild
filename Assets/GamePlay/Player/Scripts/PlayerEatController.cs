@@ -7,6 +7,7 @@ public class PlayerEatController : MonoBehaviour
     [SerializeField] private PlayerActionState actionState;
     [SerializeField] private Animator animator;
 
-    [Header("Object to Eat")]
-    [SerializeField] private PlayerEatController eatController;
+   
+
+
 }

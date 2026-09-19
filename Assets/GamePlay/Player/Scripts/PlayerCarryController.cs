@@ -10,6 +10,10 @@ public class PlayerCarryController : MonoBehaviour
     [SerializeField] private PlayerController playerController;
     [SerializeField] private Animator animator;
 
+    [Header("UI References")]
+    [SerializeField] private ResourceChoiceUI resourceChoiceUI;
+    [SerializeField] private PlayerInventoryState inventoryState;
+
     // facing parameters so we can update the object's position in the world when the player is carrying
     [Header("Facing Refs")]
     [SerializeField] private FacingDirection facing;
@@ -50,6 +54,7 @@ public class PlayerCarryController : MonoBehaviour
         if (!animator) animator = GetComponent<Animator>();
         if (!actionState) actionState = GetComponent<PlayerActionState>();
         if (!playerController) playerController = GetComponent<PlayerController>();
+        if (!inventoryState) inventoryState = GetComponent<PlayerInventoryState>();
     }
 
     // Always update the hold anchor and object sorting when carrying
@@ -80,20 +85,63 @@ public class PlayerCarryController : MonoBehaviour
     }
 
     // interact button
-    public void Carry()
+    public bool Carry()
     {
         
-        if (carryableObject == null) return;
-        if (holdAnchor == null) return;
+        if (carryableObject == null) return false;
+        if (holdAnchor == null) return false;
+
+        // choice menu already open?
+        if (resourceChoiceUI.IsOpen)
+        {
+            HandleResourceChoice();
+            return true;
+        }
 
         if (isCarrying)
         {
-            DropObject();
-            return; // stop here
+            ShowResourceChoices();
+            return true; // stop here
         }
 
         PickUpObject();
+        return true;
 
+    }
+
+    private void ShowResourceChoices()
+    {
+        if (carryableObject == null) return;
+        if (resourceChoiceUI == null) return;
+
+        ReceivableObjectController resource = carryableObject.ReceivableController;
+
+        if (resource == null) return;
+
+        bool canEat = resource.IsEdible;
+        bool canDrop = true;
+        bool canStore = resource.IsStorable && inventoryState.HasSatchel;
+
+        resourceChoiceUI.Show("What would you like to do?", canEat, canDrop, canStore);
+    }
+
+    private void HandleResourceChoice()
+    {
+        switch (resourceChoiceUI.CurrentChoice)
+        {
+            case ResourceChoiceUI.ResourceChoice.Drop:
+                resourceChoiceUI.Hide();
+                DropObject();
+                break;
+
+            case ResourceChoiceUI.ResourceChoice.Eat:
+                Debug.Log("Eat Selected");
+                break;
+
+            case ResourceChoiceUI.ResourceChoice.Store:
+                Debug.Log("Store selected");
+                break;
+        }
     }
 
     // first interaction loop -- pick up the object
@@ -102,18 +150,41 @@ public class PlayerCarryController : MonoBehaviour
         if (actionState.IsBusy && actionState.State != PlayerState.Carrying) return;
         if (carryableObject == null) return;
 
+        BeginCarry();
+    }
+
+    // for passing to other PlayerController scripts
+    public void StartCarrying(CarryableObjectController obj)
+    {
+        if (obj == null) return;
+        if (holdAnchor == null) return;
+        if (isCarrying) return;
+
+        carryableObject = obj;
+
+        playerController.FaceSouth();
+
+        BeginCarry();
+    }
+
+    private void BeginCarry()
+    {
         animator.SetBool("IsCarrying", true);
         actionState.SetActionState(PlayerState.Carrying);
 
-        carryableObject.CarryObject(holdAnchor);
+        // Set this BEFORE disabling the object's trigger collider.
+        // Otherwise OnTriggerExit2D can clear our object reference.
+        isCarrying = true;
 
         carryingsr = carryableObject.SpriteRenderer;
+
         if (carryingsr != null)
         {
             ogSortingLayer = carryingsr.sortingLayerName;
             ogSortingOrder = carryingsr.sortingOrder;
         }
-        isCarrying = true;
+
+        carryableObject.CarryObject(holdAnchor);
     }
 
     // second interaction loop -- drop the object and restore original object parameters

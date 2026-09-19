@@ -1,4 +1,3 @@
-using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class ReceivableObjectController : MonoBehaviour
@@ -7,11 +6,18 @@ public class ReceivableObjectController : MonoBehaviour
     [SerializeField] private PlayerReceiveController receiveController;
 
     [Header("Object Refs")]
-    [SerializeField] private GameObject receiveGameObject;
+    [SerializeField] private GameObject receiveWorldGameObject;
+    [SerializeField] private SpriteRenderer worldSpriteRenderer;
+    [SerializeField] private SpriteRenderer heldSpriteRenderer;
+
+
     [SerializeField] private Collider2D receiveObjectCollider;
     [SerializeField] private Animator animator;
     [SerializeField] private string receiveObjectAnimationName;
     [SerializeField] private string receiveObjectName;
+    [SerializeField] private CarryableObjectController carryableController;
+
+    public CarryableObjectController CarryableController => carryableController;
 
 
     [Header("Tool Data")]
@@ -24,7 +30,11 @@ public class ReceivableObjectController : MonoBehaviour
 
     [Header("Resource Data")]
     [SerializeField] private ResourceType resourceType = ResourceType.None;
+    [SerializeField] private bool isEdible;
+    [SerializeField] private bool isStorable;
 
+    public bool IsEdible => isEdible;
+    public bool IsStorable => isStorable;
     public ResourceType ResourceType => resourceType;
 
     public string ReceiveObjectName => receiveObjectName; 
@@ -32,10 +42,13 @@ public class ReceivableObjectController : MonoBehaviour
     private void Awake()
     {
 
-        if(receiveGameObject == null)
+        if(receiveWorldGameObject == null)
         {
-            receiveGameObject = transform.parent != null ? transform.parent.gameObject : gameObject;
+            receiveWorldGameObject = transform.parent != null ? transform.parent.gameObject : gameObject;
         }
+
+        if (worldSpriteRenderer != null) worldSpriteRenderer.enabled = false;
+        if (heldSpriteRenderer != null) heldSpriteRenderer.enabled = false;
 
         if(receiveObjectCollider == null)
         {
@@ -45,6 +58,12 @@ public class ReceivableObjectController : MonoBehaviour
         if(animator == null)
         {
             animator = transform.parent != null ? transform.parent.GetComponent<Animator>() : animator;
+        }
+
+        if(carryableController == null)
+        {
+            carryableController = GetComponent<CarryableObjectController>();
+
         }
     }
 
@@ -77,16 +96,29 @@ public class ReceivableObjectController : MonoBehaviour
     {
         if (receiveAnchor == null) return;
         if (receiveController == null) return;
+
         if (receiveObjectCollider != null) receiveObjectCollider.enabled = false;
-        receiveGameObject.transform.position = receiveAnchor.position;
+        receiveWorldGameObject.transform.position = receiveAnchor.position;
         if(animator != null) animator.Play(receiveObjectAnimationName);
 
         
     }
 
+    // De-snap from player and reenable collider
+    public void DropObject(Vector3 worldPosition)
+    {
+        receiveWorldGameObject.transform.SetParent(null);
+        receiveWorldGameObject.transform.position = worldPosition;
+
+        if (receiveObjectCollider != null && !receiveObjectCollider.enabled)
+        {
+            receiveObjectCollider.enabled = true;
+        }
+    }
+
     public void AcceptObject()
     {
-        if (receiveGameObject == null) return;
+        if (receiveWorldGameObject == null) return;
         // destroy just for now until we get an inventory
         GetComponent<PersistentDestroyableObject>()?.MarkDestroyed();
     }

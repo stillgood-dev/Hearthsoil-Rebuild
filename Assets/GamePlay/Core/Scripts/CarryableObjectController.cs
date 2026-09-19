@@ -12,6 +12,10 @@ public class CarryableObjectController : MonoBehaviour
     [SerializeField] private SpriteRenderer spriteRenderer;
     public SpriteRenderer SpriteRenderer => spriteRenderer;
 
+    [SerializeField] private ReceivableObjectController receivableController;
+
+    public ReceivableObjectController ReceivableController => receivableController;
+
     private void Awake()
     {
 
@@ -24,9 +28,12 @@ public class CarryableObjectController : MonoBehaviour
 
         if (boxCollider == null)
         {
-            boxCollider = transform.parent != null 
-                ? transform.parent.GetComponent<BoxCollider2D>() 
-                : boxCollider;
+            boxCollider = GetComponent<BoxCollider2D>();
+
+            if (boxCollider == null && transform.parent != null)
+            {
+                boxCollider = transform.parent.GetComponent<BoxCollider2D>();
+            }
         }
 
         if (spriteRenderer == null)
@@ -34,6 +41,11 @@ public class CarryableObjectController : MonoBehaviour
             spriteRenderer = transform.parent != null
                 ? transform.parent.GetComponent<SpriteRenderer>()
                 : GetComponent<SpriteRenderer>();
+        }
+
+        if (receivableController == null)
+        {
+            receivableController = GetComponent<ReceivableObjectController>();
         }
     }
 
