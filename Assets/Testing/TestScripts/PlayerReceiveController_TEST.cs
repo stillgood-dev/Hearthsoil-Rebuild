@@ -19,7 +19,7 @@ public class PlayerReceiveController_TEST : MonoBehaviour
     [SerializeField] private PlayerCarryController carryController; // player carry controller to pass responsibility to
 
     [Header("Receiveable Object")]
-    [SerializeField] private ReceivableObjectController receivableObject; // receivable object to use in this script
+    [SerializeField] private ReceivableObjectController_TEST receivableObject; // receivable object to use in this script
     [SerializeField] private bool receivingObject = false; // bool of whether the object is in the receive state or has been received
     [SerializeField] private bool awaitingCarryHandoff = false; // is the player holding an object to be carried?
     [SerializeField] private bool inInventory = false; // is the current receiveable object in our inventory yet?
@@ -42,14 +42,14 @@ public class PlayerReceiveController_TEST : MonoBehaviour
     }
 
     // set object reference when in the object's trigger zone
-    public void SetCurrentReceivableObject(ReceivableObjectController obj)
+    public void SetCurrentReceivableObject(ReceivableObjectController_TEST obj)
     {
         receivableObject = obj;
 
     }
 
     // clear object reference when leaving object's trigger zone
-    public void ClearCurrentReceivableObject(ReceivableObjectController obj)
+    public void ClearCurrentReceivableObject(ReceivableObjectController_TEST obj)
     {
         if (receivingObject) return; // if player is holding a received object, don't clear it
         if (receivableObject != null && receivableObject == obj)
@@ -195,7 +195,7 @@ public class PlayerReceiveController_TEST : MonoBehaviour
             // ----- new resource pipeline ----- //
             animator.SetTrigger("Receive"); // show player receiving object animation
             receivableObject.ReceiveObject(anchorToUse); // put the object in the receive anchor
-            notificationUI.Show($"You have received the {receivableObject.ReceiveObjectName}!"); // show notification
+            notificationUI.Show($"You have received the {receivableObject.ReceivableObjectName}!"); // show notification
 
             inventoryManager.DiscoverResource(receivableObject.ResourceType);
             awaitingCarryHandoff = true; // store for next interaction

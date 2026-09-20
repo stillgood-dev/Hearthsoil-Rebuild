@@ -73,19 +73,18 @@ public class PlayerInteractionController : MonoBehaviour
             return;
         }
 
-        // 5. Let Receive handle the interaction first.
-        // Undiscovered resources will be received, discovered,
-        // and handed off to Carry.
-        if (receiveController != null && receiveController.Receive())
+        // 5. If already carrying, Carry gets first priority.
+        if (playerActionState.State == PlayerState.Carrying)
         {
-            return;
+            if (carryController != null && carryController.Carry())
+            {
+                return;
+            }
         }
 
-        // 6. If near a sign, open it.
-        if (currentSign != null)
+        // 6. Otherwise let Receive handle the interaction.
+        if (receiveController != null && receiveController.Receive())
         {
-            currentSign.Open();
-            playerActionState.SetActionState(PlayerState.Interacting);
             return;
         }
 
@@ -94,6 +93,7 @@ public class PlayerInteractionController : MonoBehaviour
         {
             return;
         }
+
 
         // 8. Try receiving a new object if Carry didn't handle it.
         if (receiveController != null && receiveController.Receive())

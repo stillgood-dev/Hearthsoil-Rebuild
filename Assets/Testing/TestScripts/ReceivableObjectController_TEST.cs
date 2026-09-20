@@ -1,15 +1,15 @@
 using UnityEngine;
+using UnityEngine.UIElements;
 
-public class ReceivableObjectController : MonoBehaviour
+public class ReceivableObjectController_TEST : MonoBehaviour
 {
     [Header("Player References")]
-    [SerializeField] private PlayerReceiveController receiveController;
+    [SerializeField] private PlayerReceiveController_TEST receiveController;
 
     [Header("Object References")]
     [SerializeField] private GameObject receivableGameObject;
     [SerializeField] private SpriteRenderer worldSR;
     [SerializeField] private SpriteRenderer heldSR;
-
 
     [SerializeField] private Collider2D receivableObjectCollider;
     [SerializeField] private Animator animator;
@@ -31,21 +31,19 @@ public class ReceivableObjectController : MonoBehaviour
     [SerializeField] private ResourceType resourceType = ResourceType.None;
     [SerializeField] private bool isEdible;
     [SerializeField] private bool isStorable;
-    public bool IsEdible => isEdible;
     public bool IsStorable => isStorable;
+    public bool IsEdible => isEdible;
     public ResourceType ResourceType => resourceType;
-    public string ReceivableObjectName => receivableObjectName; 
-
+    public string ReceivableObjectName => receivableObjectName;
 
     private void Awake()
     {
-
         // get receivable game object
         if (receivableGameObject == null)
         {
-            receivableGameObject =
-                transform.parent != null ?
-                transform.parent.gameObject :
+            receivableGameObject = 
+                transform.parent != null ? 
+                transform.parent.gameObject : 
                 gameObject;
         }
 
@@ -53,14 +51,14 @@ public class ReceivableObjectController : MonoBehaviour
         if (worldSR != null) worldSR.enabled = true;
 
         // disable held sprite on awake
-        if (heldSR != null) heldSR.enabled = false;
+        if (heldSR != null) heldSR.enabled = false;  
 
         // get object collider
-        if (receivableObjectCollider == null)
+        if(receivableObjectCollider == null)
         {
-            receivableObjectCollider =
-                transform.parent != null ?
-                transform.parent.GetComponent<BoxCollider2D>() :
+            receivableObjectCollider = 
+                transform.parent != null ? 
+                transform.parent.GetComponent<BoxCollider2D>() : 
                 receivableObjectCollider;
         }
 
@@ -68,8 +66,8 @@ public class ReceivableObjectController : MonoBehaviour
         if (animator == null)
         {
             animator =
-                transform.parent != null ?
-                transform.parent.GetComponent<Animator>() :
+                transform.parent != null ? 
+                transform.parent.GetComponent<Animator>() : 
                 animator;
         }
 
@@ -81,24 +79,25 @@ public class ReceivableObjectController : MonoBehaviour
         }
     }
 
+
     // Tell the player this object is the receivable object
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (!other.CompareTag("Player")) return;
-        receiveController = other.GetComponent<PlayerReceiveController>();
-        if(receiveController != null)
+        receiveController = other.GetComponent<PlayerReceiveController_TEST>();
+        if (receiveController != null)
         {
             receiveController.SetCurrentReceivableObject(this);
-            
+
         }
-       
+
     }
 
     // Clear the receivable object once the player leaves the zone
     private void OnTriggerExit2D(Collider2D other)
     {
         if (!other.CompareTag("Player")) return;
-        receiveController = other.GetComponent<PlayerReceiveController>();
+        receiveController = other.GetComponent<PlayerReceiveController_TEST>();
         if (receiveController != null)
         {
             receiveController.ClearCurrentReceivableObject(this);
@@ -116,7 +115,7 @@ public class ReceivableObjectController : MonoBehaviour
             receivableObjectCollider.enabled = false;
 
         // swap from world sprite to held sprite
-        if (worldSR != null) worldSR.enabled = false;
+        if(worldSR != null) worldSR.enabled = false;
         if (heldSR != null) heldSR.enabled = true;
 
         // snap the received object above the player's head
@@ -128,10 +127,8 @@ public class ReceivableObjectController : MonoBehaviour
             animator.Play(receivableObjectAnimationName);
         }
 
-
     }
 
-    // De-snap from player and reenable collider
     public void DropObject(Vector3 worldPosition)
     {
         // de-snap from anchor above player's head
@@ -155,6 +152,7 @@ public class ReceivableObjectController : MonoBehaviour
         {
             animator.Play(receivableObjectIdleAnimationName);
         }
+        
     }
 
     public void AcceptObject()
@@ -164,4 +162,5 @@ public class ReceivableObjectController : MonoBehaviour
         // destroy for now until we get an inventory
         GetComponent<PersistentDestroyableObject>()?.MarkDestroyed();
     }
+
 }

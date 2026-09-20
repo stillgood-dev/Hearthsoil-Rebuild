@@ -176,7 +176,7 @@ public class PlayerReceiveController : MonoBehaviour
             // ----- new resource pipeline ----- //
             animator.SetTrigger("Receive"); // show player receiving object animation
             receivableObject.ReceiveObject(anchorToUse); // put the object in the receive anchor
-            notificationUI.Show($"You have received the {receivableObject.ReceiveObjectName}!"); // show notification
+            notificationUI.Show($"You have received the {receivableObject.ReceivableObjectName}!"); // show notification
 
             inventoryManager.DiscoverResource(receivableObject.ResourceType);
             awaitingCarryHandoff = true; // store for next interaction
@@ -189,6 +189,7 @@ public class PlayerReceiveController : MonoBehaviour
 
 
     }
+    
 
     public void DropResource()
     {

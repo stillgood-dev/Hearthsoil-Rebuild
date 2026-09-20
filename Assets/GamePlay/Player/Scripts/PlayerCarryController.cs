@@ -4,18 +4,27 @@ using UnityEngine.InputSystem;
 public class PlayerCarryController : MonoBehaviour
 {
     // Player
-    [Header("Player Refs")]
+    [Header("Player References")]
     [SerializeField] private Transform holdAnchor;
     [SerializeField] private PlayerActionState actionState;
     [SerializeField] private PlayerController playerController;
     [SerializeField] private Animator animator;
 
+    // Carryable Object
+    [Header("Object References")]
+    [SerializeField] private CarryableObjectController carryableObject;
+    [SerializeField] private bool isCarrying = false;
+    [SerializeField] private SpriteRenderer carryingsr;
+    [SerializeField] private string ogSortingLayer;
+    [SerializeField] private int ogSortingOrder;
+
     [Header("UI References")]
     [SerializeField] private ResourceChoiceUI resourceChoiceUI;
     [SerializeField] private PlayerInventoryState inventoryState;
+    [SerializeField] private NotificationUI notificationUI;
 
     // facing parameters so we can update the object's position in the world when the player is carrying
-    [Header("Facing Refs")]
+    [Header("Facing References")]
     [SerializeField] private FacingDirection facing;
 
     [Tooltip("Where the hold anchor rests by default relative to the player's feet pivot.")]
@@ -41,13 +50,11 @@ public class PlayerCarryController : MonoBehaviour
     [SerializeField] private Vector3 dropEast = new Vector3(0.20f, 0f, 0f);
     [SerializeField] private Vector3 dropWest = new Vector3(-0.20f, 0f, 0f);
 
-    // Carryable Object
-    [Header("Object Refs")]
-    [SerializeField] private CarryableObjectController carryableObject;
-    [SerializeField] private bool isCarrying = false;
-    [SerializeField] private SpriteRenderer carryingsr;
-    [SerializeField] private string ogSortingLayer;
-    [SerializeField] private int ogSortingOrder;
+    // Blocking Layers
+    [Header("Blocking Layers")]
+    [SerializeField] private LayerMask dropBlockingLayer;
+
+   
 
     private void Awake()
     {
@@ -55,6 +62,7 @@ public class PlayerCarryController : MonoBehaviour
         if (!actionState) actionState = GetComponent<PlayerActionState>();
         if (!playerController) playerController = GetComponent<PlayerController>();
         if (!inventoryState) inventoryState = GetComponent<PlayerInventoryState>();
+        if (!notificationUI) notificationUI = GetComponent<NotificationUI>();
     }
 
     // Always update the hold anchor and object sorting when carrying
@@ -71,6 +79,7 @@ public class PlayerCarryController : MonoBehaviour
     // set object reference
     public void GetCarryableObject(CarryableObjectController obj)
     {
+        if (isCarrying) return;
         carryableObject = obj;
     }
 
@@ -176,7 +185,7 @@ public class PlayerCarryController : MonoBehaviour
         // Otherwise OnTriggerExit2D can clear our object reference.
         isCarrying = true;
 
-        carryingsr = carryableObject.SpriteRenderer;
+        carryingsr = carryableObject.HeldSR;
 
         if (carryingsr != null)
         {
@@ -192,37 +201,63 @@ public class PlayerCarryController : MonoBehaviour
     {
         if (carryableObject == null) return;
 
-        Vector3 dropOffset = Vector3.zero;
+        Vector3 dropPosition = transform.position + GetDropOffset();
 
-        switch (facing)
+       
+        if (IsDropPositionBlocked(dropPosition))
         {
-            case FacingDirection.North:
-                dropOffset = dropNorth;
-                break;
-
-            case FacingDirection.South:
-                dropOffset = dropSouth;
-                break;
-
-            case FacingDirection.East:
-                dropOffset = dropEast;
-                break;
-
-            case FacingDirection.West:
-                dropOffset = dropWest;
-                break;
-        }
+            Debug.Log("Can't drop here!");
+            return;
+        } 
 
         RestoreObjectSorting();
 
-        carryableObject.DropObject(transform.position + dropOffset);
+        carryableObject.DropObject(dropPosition);
 
-        animator.SetBool("IsCarrying", false);
         actionState.ClearActionState();
+        animator.SetBool("IsCarrying", false);
         isCarrying = false;
         carryableObject = null;
         carryingsr = null;
 
+    }
+
+    private Vector3 GetDropOffset()
+    {
+        switch (facing)
+        {
+            case FacingDirection.North:
+                return dropNorth;
+
+            case FacingDirection.South:
+                return dropSouth;
+
+            case FacingDirection.East:
+                return dropEast;
+
+            case FacingDirection.West:
+                return dropWest;
+
+            default:
+                return Vector3.zero;
+        }
+    }
+
+    private bool IsDropPositionBlocked(Vector3 dropPosition)
+    {
+        Collider2D[] hits = Physics2D.OverlapCircleAll(
+            dropPosition,
+            0.25f,
+            dropBlockingLayer
+        );
+
+        foreach (Collider2D hit in hits)
+        {
+            Debug.Log($"Drop check hit: {hit.name}, trigger: {hit.isTrigger}");
+            return true;
+        }
+
+        return false;
     }
 
     // adjust the hold anchor as the player moves

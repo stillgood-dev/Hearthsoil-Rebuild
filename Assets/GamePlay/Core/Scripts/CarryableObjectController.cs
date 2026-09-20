@@ -9,8 +9,10 @@ public class CarryableObjectController : MonoBehaviour
     [Header("Object Refs")]
     [SerializeField] private GameObject carryableObject;
     [SerializeField] private BoxCollider2D boxCollider;
-    [SerializeField] private SpriteRenderer spriteRenderer;
-    public SpriteRenderer SpriteRenderer => spriteRenderer;
+    [SerializeField] private Collider2D dropBlocker;
+    [SerializeField] private SpriteRenderer worldSR;
+    [SerializeField] private SpriteRenderer heldSR;
+    public SpriteRenderer HeldSR => heldSR; // PlayerCarryController only cares about the held sprite renderer
 
     [SerializeField] private ReceivableObjectController receivableController;
 
@@ -26,6 +28,9 @@ public class CarryableObjectController : MonoBehaviour
                 : gameObject;
         }
 
+        if (worldSR != null) worldSR.enabled = true;
+        if (heldSR != null) heldSR.enabled = false;
+
         if (boxCollider == null)
         {
             boxCollider = GetComponent<BoxCollider2D>();
@@ -34,13 +39,6 @@ public class CarryableObjectController : MonoBehaviour
             {
                 boxCollider = transform.parent.GetComponent<BoxCollider2D>();
             }
-        }
-
-        if (spriteRenderer == null)
-        {
-            spriteRenderer = transform.parent != null
-                ? transform.parent.GetComponent<SpriteRenderer>()
-                : GetComponent<SpriteRenderer>();
         }
 
         if (receivableController == null)
@@ -76,7 +74,15 @@ public class CarryableObjectController : MonoBehaviour
     {
         if (holdAnchor == null) return;
         if (carryController == null) return;
-        boxCollider.enabled = false;
+        if (boxCollider != null) boxCollider.enabled = false;
+
+        if (dropBlocker != null)
+            dropBlocker.enabled = false;
+
+
+        // swap sprite to held sprite
+        if (worldSR != null) worldSR.enabled = false;
+        if(heldSR != null) heldSR.enabled = true;
         carryableObject.transform.SetParent(holdAnchor);
         carryableObject.transform.localPosition = Vector3.zero;
     }
@@ -86,10 +92,16 @@ public class CarryableObjectController : MonoBehaviour
     {
         carryableObject.transform.SetParent(null);
         carryableObject.transform.position = worldPosition;
-
         if(boxCollider != null && !boxCollider.enabled)
         {
             boxCollider.enabled = true;
         }
+
+        if (dropBlocker != null)
+            dropBlocker.enabled = true;
+
+        // swap sprite to world sprite
+        if (worldSR != null) worldSR.enabled = true;
+        if(heldSR != null) heldSR.enabled = false;
     }
 }
