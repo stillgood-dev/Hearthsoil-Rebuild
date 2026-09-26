@@ -79,7 +79,7 @@ public class PlayerCarryController : MonoBehaviour
     // set object reference
     public void GetCarryableObject(CarryableObjectController obj)
     {
-        if (isCarrying) return;
+        if (isCarrying) return; // do not override carryableObject with another object if you walk into its interact zone
         carryableObject = obj;
     }
 

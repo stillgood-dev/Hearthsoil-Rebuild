@@ -24,8 +24,9 @@ public class ShakeObject : MonoBehaviour
     {
         if (sprites == null) return;
 
+        // if shaking, keep shaking
         if (shakeCoroutine != null)
-            StopCoroutine(shakeCoroutine);
+            return;
 
         shakeCoroutine = StartCoroutine(ShakeRoutine());
     }

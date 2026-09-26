@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Movement")]
     [SerializeField] private float moveSpeed = 2f;
+    [SerializeField] private float slowSpeed = 0.5f;
     private Vector2 movementInput;
     private Rigidbody2D rb; // must be Dynamic to work with Unity 2D Physics
     [SerializeField] private FacingDirection facing;
@@ -150,12 +151,15 @@ public class PlayerController : MonoBehaviour
             rb.linearVelocity = Vector2.zero;
             return;
         }
+        // use slow speed when wading
+        float currentSpeed = actionState.SlowSpeed ? slowSpeed : moveSpeed;
+
         Vector2 move = movementInput;
 
         if (move.sqrMagnitude > 1f)
             move = move.normalized;
         // move player
-        rb.linearVelocity = move * moveSpeed;
+        rb.linearVelocity = move * currentSpeed;
     }
 
     public void OnMove(InputValue value)

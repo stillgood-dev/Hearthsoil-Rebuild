@@ -1,10 +1,19 @@
 fileFormatVersion: 2
-guid: ada9f2e92168d2345bc65dc62b709d11
+guid: 50656f406a5161a40a0e9934ef01e4bc
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1969239002630452270
-    second: Tall_Grass_0
+      213: -6849085242283517633
+    second: Cliff_Root_2_0
+  - first:
+      213: 167227566174081499
+    second: Cliff_Root_2_1
+  - first:
+      213: -6558028908267106714
+    second: Cliff_Root_2_2
+  - first:
+      213: 6715166155220763291
+    second: Cliff_Root_2_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -126,67 +135,45 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Tall_Grass_0
+      name: Cliff_Root_2_Undamaged
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 64
-        height: 64
+        width: 80
+        height: 80
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e24f1ad7074245b10800000000000000
-      internalID: 1969239002630452270
+      spriteID: f391259924923f0a0800000000000000
+      internalID: -6849085242283517633
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tall_Grass_1
+      name: Cliff_Root_2_Damaged
       rect:
         serializedVersion: 2
-        x: 64
+        x: 80
         y: 0
-        width: 64
-        height: 64
+        width: 80
+        height: 80
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: b4c44485ace68b74880101f786e76660
-      internalID: 1548924381
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Tall_Grass_2
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2a4460e36523b814d88e846c8042f62b
-      internalID: 199227829
+      spriteID: bd1957ed59c125200800000000000000
+      internalID: 167227566174081499
       vertices: []
       indices: 
       edges: []
@@ -195,7 +182,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 1f5e346af3fde2e4f8295aa9a1cecc6a
+    spriteID: 15ad206f5982a044fabcc4cdca47a177
     internalID: 0
     vertices: []
     indices: 
@@ -205,11 +192,10 @@ TextureImporter:
     spriteCustomMetadata:
       entries:
       - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":80.0,"y":80.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      Tall_Grass_0: 1969239002630452270
-      Tall_Grass_1: 1548924381
-      Tall_Grass_2: 199227829
+      Cliff_Root_2_Damaged: 167227566174081499
+      Cliff_Root_2_Undamaged: -6849085242283517633
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

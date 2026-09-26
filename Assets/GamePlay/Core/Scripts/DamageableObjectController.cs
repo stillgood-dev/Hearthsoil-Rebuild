@@ -14,9 +14,11 @@ public class DamageableObjectController : MonoBehaviour
     [Header("Sprites")]
     [SerializeField] private GameObject[] undamaged;
     [SerializeField] private GameObject damaged;
+    [Tooltip("Don't keep the damaged sprites active")]
+    [SerializeField] private bool hideDamagedSpritesOnAwake = false;
 
     [Header("Stages")]
-    [SerializeField] private GameObject[] objectStages;
+    [SerializeField] private GameObject[] damagedStages;
 
     [Header("Impact Burst")]
     [SerializeField] private Animator animator;
@@ -38,9 +40,17 @@ public class DamageableObjectController : MonoBehaviour
         // set inactive so the impact burst can't play automatically
         if (impactBurst != null) impactBurst.SetActive(false);
         if (shakeObject == null) GetComponent<ShakeObject>();
+        if (hideDamagedSpritesOnAwake)
+        {
+            damaged.SetActive(false);
+            foreach(var obj in damagedStages)
+            {
+                if (obj != null) obj.SetActive(false);
+            }
+        }
     }
 
-
+    // tell PlayerMacheteController we're in the hit zone
     public void SetPlayerInHitZone(bool inRange, PlayerMacheteController playerMachete)
     {
         playerInHitZone = inRange;
@@ -76,32 +86,43 @@ public class DamageableObjectController : MonoBehaviour
 
     private void UpdateStageOnHit()
     {
-        if (objectStages == null || objectStages.Length == 0) return;
+        if (damagedStages == null || damagedStages.Length == 0) return;
 
         int index = hits - 1;
 
-        if (index >= objectStages.Length) return;
+        Debug.Log($"Hits: {hits} | Current index: {index}");
 
+        if (index >= damagedStages.Length) return;
+
+        // on first hit
         if (index == 0)
         {
+            // disable undamaged sprites
             foreach (var obj in undamaged)
             {
                 if(obj != null)
                     obj.SetActive(false);
             }
             
+            // spawn resource if available
             if (spawnResource != null)
                 spawnResource.SpawnResourceOnHit(playerMacheteController.FaceDir, hits);
         }
+        // on any subsequent hit
         else
         {
-            objectStages[index - 1].SetActive(false);
+            // set the previous damage stage inactive
+            damagedStages[index - 1].SetActive(false);
             
+            // spawn resource if available
             if (spawnResource != null)
                 spawnResource.SpawnResourceOnHit(playerMacheteController.FaceDir, hits);
         }
 
-        objectStages[index].SetActive(true);
+        // set current damage stage
+        damagedStages[index].SetActive(true);
+
+        // show animation if available
         if(impactBurst != null) impactBurst.SetActive(true);
         if(animator != null) animator.SetTrigger("ShowImpactBurst");
 
@@ -144,6 +165,12 @@ public class DamageableObjectController : MonoBehaviour
             if (obj != null)
                 obj.SetActive(false);
         }
+
+        foreach(var obj in damagedStages)
+        {
+            if(obj != null) obj.SetActive(false);    
+        }
+
 
         if (damaged != null)
             damaged.SetActive(true);

@@ -3,6 +3,7 @@ using UnityEngine;
 public enum PlayerState
 {
     Free,
+    Wading, // walking through tall grass, water, etc.
     Receiving,
     Chopping,
     Carrying,
@@ -36,6 +37,10 @@ public class PlayerActionState : MonoBehaviour
         state == PlayerState.Hoeing ||
         state == PlayerState.Interacting ||
         state == PlayerState.Dialogue;
+
+    public bool SlowSpeed =>
+        state == PlayerState.Wading;
+
 
     // other scripts can set states
     public void SetActionState(PlayerState newState)

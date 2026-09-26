@@ -260,6 +260,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionState: {fileID: 0}
   moveSpeed: 0.75
+  slowSpeed: 0.25
   facing: 0
   facingX: X
   facingY: Y
