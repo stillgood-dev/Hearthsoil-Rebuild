@@ -1,10 +1,28 @@
 fileFormatVersion: 2
-guid: 70c18562315d8a24f957f1cde5c7967b
+guid: 4a5f98b271b2a3e4dafa8c59d4ddd2b5
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 621967292093723478
-    second: Matri_Rita_0
+      213: -7940185953363682001
+    second: Matri_Rita_Idle_S_0
+  - first:
+      213: -9128616773861865711
+    second: Matri_Rita_Idle_S_1
+  - first:
+      213: 6091271814193366029
+    second: Matri_Rita_Idle_S_2
+  - first:
+      213: 397036775539734698
+    second: Matri_Rita_Idle_S_3
+  - first:
+      213: -1431355029938341847
+    second: Matri_Rita_Idle_S_4
+  - first:
+      213: -2756046974292319122
+    second: Matri_Rita_Idle_S_5
+  - first:
+      213: 2531174115898651731
+    second: Matri_Rita_Idle_S_6
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -126,7 +144,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Matri_Rita_0
+      name: Matri_Rita_Idle_S_Nadir
       rect:
         serializedVersion: 2
         x: 0
@@ -141,8 +159,118 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 6537823f4fba1a800800000000000000
-      internalID: 621967292093723478
+      spriteID: f2d163fb1facec190800000000000000
+      internalID: -7940185953363682001
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Matri_Rita_Idle_S_Blink
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 64
+        height: 96
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1178a4fd863a05180800000000000000
+      internalID: -9128616773861865711
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Matri_Rita_Idle_S_Up1_Down3
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 64
+        height: 96
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d04485b217b888450800000000000000
+      internalID: 6091271814193366029
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Matri_Rita_Idle_S_Up2_Down2
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 64
+        height: 96
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aa8ffc008de828500800000000000000
+      internalID: 397036775539734698
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Matri_Rita_Idle_S_Up3_Down1
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 64
+        height: 96
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9287e051f2ec22ce0800000000000000
+      internalID: -1431355029938341847
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Matri_Rita_Idle_S_Apex
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 0
+        width: 64
+        height: 96
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e64240901ed80c9d0800000000000000
+      internalID: -2756046974292319122
       vertices: []
       indices: 
       edges: []
@@ -151,7 +279,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 137aa50c88d0107498ff5196724569d4
+    spriteID: 6049cfd88ca22bb479019a320d6b358c
     internalID: 0
     vertices: []
     indices: 
@@ -163,7 +291,12 @@ TextureImporter:
       - key: SpriteEditor.SliceSettings
         value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":96.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":7,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      Matri_Rita_0: 621967292093723478
+      Matri_Rita_Idle_S_Apex: -2756046974292319122
+      Matri_Rita_Idle_S_Blink: -9128616773861865711
+      Matri_Rita_Idle_S_Nadir: -7940185953363682001
+      Matri_Rita_Idle_S_Up1_Down3: 6091271814193366029
+      Matri_Rita_Idle_S_Up2_Down2: 397036775539734698
+      Matri_Rita_Idle_S_Up3_Down1: -1431355029938341847
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

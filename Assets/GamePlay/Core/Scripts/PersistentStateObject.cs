@@ -1,5 +1,6 @@
 using UnityEngine;
 
+// What version of this object should exist??
 public class PersistentStateObject : MonoBehaviour
 {
     [SerializeField] private string objectID;
@@ -10,6 +11,9 @@ public class PersistentStateObject : MonoBehaviour
 
     [Header("Objects Disabled After State Change")]
     [SerializeField] private GameObject[] objectsToDisable;
+
+    public bool HasChanged =>
+        WorldState.ChangedObjects.Contains(objectID);
 
     private void Awake()
     {

@@ -87,6 +87,118 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &297054012803976540
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 768709690636984358}
+  - component: {fileID: 8320549433822627710}
+  - component: {fileID: 7629591835760348179}
+  - component: {fileID: 6360652514354530051}
+  m_Layer: 0
+  m_Name: SecondaryWadingZone
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &768709690636984358
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 297054012803976540}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2398484324936396626}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &8320549433822627710
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 297054012803976540}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: -0.011979997, y: -0.17794001}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 0.6063707, y: 0.09489632}
+  m_EdgeRadius: 0
+--- !u!114 &7629591835760348179
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 297054012803976540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b911217f49a6164c9721bba1eccff72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerActionState: {fileID: 0}
+  playerController: {fileID: 0}
+  slowSpeedInWadeZone: 0
+  shake: {fileID: 6360652514354530051}
+--- !u!114 &6360652514354530051
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 297054012803976540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ba290a00ea26b1419ea34d8486f923c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprites: {fileID: 8945871750353603892}
+  shakeDistance: 0.003
+  shakeDuration: 0.3
+  shakeCount: 2
 --- !u!1 &2338017388829734092
 GameObject:
   m_ObjectHideFlags: 0
@@ -212,6 +324,7 @@ Transform:
   m_Children:
   - {fileID: 7730080288903210644}
   - {fileID: 2618868777688614406}
+  - {fileID: 768709690636984358}
   - {fileID: 743102805595551011}
   m_Father: {fileID: 659659153631372477}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -340,7 +453,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5325c969c953894ebd8409a1dcb9f0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectID: CrashSiteGrass1
+  objectID: 
   originalState: {fileID: 199319651649042635}
   changedState: {fileID: 7673806157567831225}
   objectsToDisable:
@@ -517,7 +630,7 @@ GameObject:
   - component: {fileID: 2898384331166552006}
   - component: {fileID: 6483193439632380500}
   m_Layer: 0
-  m_Name: WadingZone
+  m_Name: PrimaryWadingZone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -552,6 +665,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerActionState: {fileID: 0}
   playerController: {fileID: 0}
+  slowSpeedInWadeZone: 1
   shake: {fileID: 6483193439632380500}
 --- !u!60 &2898384331166552006
 PolygonCollider2D:

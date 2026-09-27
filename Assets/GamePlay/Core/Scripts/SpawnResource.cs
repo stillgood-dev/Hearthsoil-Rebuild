@@ -21,6 +21,9 @@ public class SpawnResource : MonoBehaviour
     [SerializeField] private float clusterSpreadX = 0.15f;
     [SerializeField] private float clusterSpreadY = 0.15f;
 
+    [Header("Persistence")]
+    [SerializeField] private string spawnerID;
+
     public void SpawnResourceOnHit(FacingDirection facing, int hits)
     {
         if (resource == null) return;
@@ -31,6 +34,15 @@ public class SpawnResource : MonoBehaviour
             resourceDropPoint.position, 
             Quaternion.identity
          );
+
+        PersistentDestroyableObject persistentObject =
+            spawnedResource.GetComponent<PersistentDestroyableObject>();
+
+        if(persistentObject != null)
+        {
+            persistentObject.SetObjectID($"{spawnerID}_{resourceDropCount}");
+        }
+
         ResourcePopOut popOut = spawnedResource.GetComponent<ResourcePopOut>();
 
         if (popOut != null)
@@ -46,7 +58,42 @@ public class SpawnResource : MonoBehaviour
                 popDuration,
                 popHeight
                 );
-            resourceDropCount++;
+        }
+        resourceDropCount++;
+    }
+
+    public void RestoreResources(int resourceCount)
+    {
+        if (resource == null) return;
+
+        for(int i = 0; i < resourceCount; i++)
+        {
+            string resourceID = $"{spawnerID}_{i}";
+
+            // Don't restore resources the player already collected
+            if (WorldState.RemovedObjects.Contains(resourceID))
+                continue;
+
+            // Only restore resources that actually spawned before
+            if (!WorldState.ObjectPositions.ContainsKey(resourceID))
+                continue;
+
+            // restore the resource
+            GameObject spawnedResource = Instantiate(
+            resource,
+            WorldState.ObjectPositions[resourceID],
+            Quaternion.identity
+            );
+
+            PersistentDestroyableObject persistentObject =
+                spawnedResource.GetComponent<PersistentDestroyableObject>();
+
+            // set a distinct objectID for each resource
+            if (persistentObject != null)
+            {
+                persistentObject.SetObjectID(resourceID);
+            }
+
         }
     }
 }

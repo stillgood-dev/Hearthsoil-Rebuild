@@ -98,6 +98,7 @@ GameObject:
   - component: {fileID: 1390412289998326641}
   - component: {fileID: 2330686661014618090}
   - component: {fileID: 9190905929273237621}
+  - component: {fileID: 8084679401720116492}
   m_Layer: 0
   m_Name: Bramblerry_World
   m_TagString: Untagged
@@ -158,6 +159,20 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &8084679401720116492
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4799401769760028493}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21cfa46979b5d0f4385678243c75cb15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectID: BramblerryWorld
+  objectToDisable: {fileID: 4799401769760028493}
 --- !u!1 &5989454734122578128
 GameObject:
   m_ObjectHideFlags: 0
@@ -334,7 +349,6 @@ GameObject:
   - component: {fileID: 9220628120480223552}
   - component: {fileID: 8332889958057072419}
   - component: {fileID: 1910902229988750556}
-  - component: {fileID: 173585822239738903}
   - component: {fileID: 2251278511723918941}
   m_Layer: 0
   m_Name: InteractZone
@@ -431,20 +445,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.2609235, y: 0.08545971}
   m_EdgeRadius: 0
---- !u!114 &173585822239738903
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8400883675647651288}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 21cfa46979b5d0f4385678243c75cb15, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  objectID: BramblerryID
-  objectToDisable: {fileID: 4799401769760028493}
 --- !u!114 &2251278511723918941
 MonoBehaviour:
   m_ObjectHideFlags: 0

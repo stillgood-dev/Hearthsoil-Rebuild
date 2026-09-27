@@ -35,8 +35,11 @@ public class DamageableObjectController : MonoBehaviour
     [Header("Resources")]
     [SerializeField] private SpawnResource spawnResource;
 
+    private PersistentStateObject persistentState;
+
     private void Awake()
     {
+        persistentState = GetComponent<PersistentStateObject>();
         // set inactive so the impact burst can't play automatically
         if (impactBurst != null) impactBurst.SetActive(false);
         if (shakeObject == null) GetComponent<ShakeObject>();
@@ -49,6 +52,16 @@ public class DamageableObjectController : MonoBehaviour
             }
         }
     }
+
+    // respawn resources in scene if player left them there and moved to a different scene
+    private void Start()
+    {
+        if (persistentState != null && persistentState.HasChanged)
+        {
+            spawnResource?.RestoreResources(hitsToComplete);
+        }
+    }
+
 
     // tell PlayerMacheteController we're in the hit zone
     public void SetPlayerInHitZone(bool inRange, PlayerMacheteController playerMachete)

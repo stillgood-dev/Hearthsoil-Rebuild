@@ -5,7 +5,9 @@ public class WadeZone : MonoBehaviour
     [Header("Player Refs")]
     [Tooltip("Do not wire, viewing only")]
     [SerializeField] private PlayerActionState playerActionState;
+    [Tooltip("Do not wire, viewing only")]
     [SerializeField] private PlayerController playerController;
+    [SerializeField] private bool slowSpeedInWadeZone = true;
 
     [Header("Shake Object")]
     [SerializeField] private ShakeObject shake;
@@ -19,7 +21,10 @@ public class WadeZone : MonoBehaviour
 
         if(playerActionState != null )
         {
-            playerActionState.SetActionState(PlayerState.Wading);
+            if (slowSpeedInWadeZone)
+            {
+                playerActionState.SetActionState(PlayerState.Wading);
+            }
         }
     }
 

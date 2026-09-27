@@ -2718,7 +2718,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6601946335702961348, guid: 974215491a4e7a141874979ec0c5fd92, type: 3}
       propertyPath: objectID
-      value: PathToHearthsoilGrass
+      value: PTH_Grass
       objectReference: {fileID: 0}
     - target: {fileID: 7398970178853492882, guid: 974215491a4e7a141874979ec0c5fd92, type: 3}
       propertyPath: m_Name

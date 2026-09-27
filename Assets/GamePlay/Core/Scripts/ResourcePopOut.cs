@@ -144,6 +144,17 @@ public class ResourcePopOut : MonoBehaviour
         }
 
         transform.position = end;
+
+        // Save world position where the resource landed for persistence
+        PersistentDestroyableObject persistentObject =
+            GetComponent<PersistentDestroyableObject>();
+
+        if (persistentObject != null &&
+            !string.IsNullOrEmpty(persistentObject.ObjectID))
+        {
+            WorldState.ObjectPositions[persistentObject.ObjectID] =
+                transform.position;
+        }
     }
 
 }

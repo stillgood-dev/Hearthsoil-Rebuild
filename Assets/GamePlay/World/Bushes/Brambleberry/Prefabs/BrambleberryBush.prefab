@@ -531,6 +531,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerMacheteController: {fileID: 0}
   damageableObject: {fileID: 9077558037395299873}
+  showDebug: 0
 --- !u!1 &3995337133035772489
 GameObject:
   m_ObjectHideFlags: 0
@@ -890,10 +891,8 @@ MonoBehaviour:
   - {fileID: 8100933943261212959}
   - {fileID: 9166947832799157959}
   damaged: {fileID: 599096197270557848}
-  objectStages:
-  - {fileID: 303228160279936773}
-  - {fileID: 1755794700735492649}
-  - {fileID: 3995337133035772489}
+  hideDamagedSpritesOnAwake: 0
+  damagedStages: []
   animator: {fileID: 0}
   impactBurst: {fileID: 0}
   impactBurstName: ShowImpactBurst
@@ -913,7 +912,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5325c969c953894ebd8409a1dcb9f0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectID: Bramblerberrybush_01
+  objectID: BrambleberryBush_01
   originalState: {fileID: 8100933943261212959}
   changedState: {fileID: 599096197270557848}
   objectsToDisable:
@@ -943,6 +942,7 @@ MonoBehaviour:
   popDuration: 0.15
   clusterSpreadX: 0.15
   clusterSpreadY: 0.15
+  spawnerID: BrambleberryBush_01
 --- !u!114 &3945045021199694431
 MonoBehaviour:
   m_ObjectHideFlags: 0
