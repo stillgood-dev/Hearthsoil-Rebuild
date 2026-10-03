@@ -16,6 +16,7 @@ public class SceneTransitionZone : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+
         if (hasTriggered) return;
 
         PlayerController player =
@@ -25,6 +26,7 @@ public class SceneTransitionZone : MonoBehaviour
 
         hasTriggered = true;
 
+        // set values to SceneTransitionData that can be used my SceneSpawnManager
         if (preservePlayerPosition)
         {
             SceneTransitionData.PreservedX = player.transform.position.x;
@@ -35,6 +37,7 @@ public class SceneTransitionZone : MonoBehaviour
             SceneTransitionData.SpawnPointName = spawnPointName;
         }
 
+        // load scene
         SceneManager.LoadScene(sceneToLoad);
     }
 }

@@ -463,4 +463,5 @@ MonoBehaviour:
   dropBlocker: {fileID: 6460034438173539621}
   worldSR: {fileID: 2916236223705581224}
   heldSR: {fileID: 2065269552468883139}
+  persistentObject: {fileID: 8084679401720116492}
   receivableController: {fileID: 0}

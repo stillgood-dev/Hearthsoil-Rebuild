@@ -43,12 +43,16 @@ public class DamageableObjectController : MonoBehaviour
         // set inactive so the impact burst can't play automatically
         if (impactBurst != null) impactBurst.SetActive(false);
         if (shakeObject == null) GetComponent<ShakeObject>();
-        if (hideDamagedSpritesOnAwake)
+        if (hideDamagedSpritesOnAwake &&
+             (persistentState == null || !persistentState.HasChanged))
         {
-            damaged.SetActive(false);
-            foreach(var obj in damagedStages)
+            if (damaged != null)
+                damaged.SetActive(false);
+
+            foreach (var obj in damagedStages)
             {
-                if (obj != null) obj.SetActive(false);
+                if (obj != null)
+                    obj.SetActive(false);
             }
         }
     }

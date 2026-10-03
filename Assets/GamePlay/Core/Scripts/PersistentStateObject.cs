@@ -1,5 +1,12 @@
 using UnityEngine;
 
+public enum PersistenceType
+{
+    None,
+    Persist,
+    Regrow
+}
+
 // What version of this object should exist??
 public class PersistentStateObject : MonoBehaviour
 {

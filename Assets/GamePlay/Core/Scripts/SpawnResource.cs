@@ -68,11 +68,16 @@ public class SpawnResource : MonoBehaviour
 
         for(int i = 0; i < resourceCount; i++)
         {
+            // create spawnerID for each resource popout
             string resourceID = $"{spawnerID}_{i}";
 
             // Don't restore resources the player already collected
-            if (WorldState.RemovedObjects.Contains(resourceID))
+            if (WorldState.RemovedObjects.Contains(resourceID) ||
+                // or has carried somewhere else
+                WorldState.RelocatedObjects.Contains(resourceID))
+            {
                 continue;
+            }
 
             // Only restore resources that actually spawned before
             if (!WorldState.ObjectPositions.ContainsKey(resourceID))

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CarryableObjectController : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class CarryableObjectController : MonoBehaviour
     [SerializeField] private Collider2D dropBlocker;
     [SerializeField] private SpriteRenderer worldSR;
     [SerializeField] private SpriteRenderer heldSR;
+    [SerializeField] private PersistentDestroyableObject persistentObject;
+
     public SpriteRenderer HeldSR => heldSR; // PlayerCarryController only cares about the held sprite renderer
 
     [SerializeField] private ReceivableObjectController receivableController;
@@ -45,6 +48,11 @@ public class CarryableObjectController : MonoBehaviour
         {
             receivableController = GetComponent<ReceivableObjectController>();
         }
+
+        if (persistentObject == null)
+        {
+            persistentObject = transform.root.GetComponent<PersistentDestroyableObject>();
+        }
     }
 
 
@@ -74,6 +82,11 @@ public class CarryableObjectController : MonoBehaviour
     {
         if (holdAnchor == null) return;
         if (carryController == null) return;
+
+        // Remove original world instance from persistence
+        if(persistentObject == null) return;
+        persistentObject.MarkRelocated();
+
         if (boxCollider != null) boxCollider.enabled = false;
 
         if (dropBlocker != null)
@@ -91,7 +104,17 @@ public class CarryableObjectController : MonoBehaviour
     public void DropObject(Vector3 worldPosition)
     {
         carryableObject.transform.SetParent(null);
+
+        // move carried object out of DontDestroyOnLoad
+        // and into current gameplay scene
+        SceneManager.MoveGameObjectToScene(
+            carryableObject,
+            SceneManager.GetActiveScene()
+        );
+
         carryableObject.transform.position = worldPosition;
+        persistentObject?.MarkDropped(worldPosition);
+
         if(boxCollider != null && !boxCollider.enabled)
         {
             boxCollider.enabled = true;
