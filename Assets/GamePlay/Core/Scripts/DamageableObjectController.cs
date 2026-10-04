@@ -3,9 +3,12 @@ using System.Collections;
 
 public class DamageableObjectController : MonoBehaviour
 {
-    [Header("Player Refs")]
+    [Header("Player")]
     [SerializeField] private PlayerMacheteController playerMacheteController;
-    [SerializeField] private bool playerInHitZone;
+    [SerializeField] private bool playerInHitZone; // for debugging
+
+    [Header("Persistence")]
+    [SerializeField] private PersistentStateObject persistentState;
 
     [Header("Hit Parameters")]
     [SerializeField] private int hits;
@@ -14,37 +17,40 @@ public class DamageableObjectController : MonoBehaviour
     [Header("Sprites")]
     [SerializeField] private GameObject[] undamaged;
     [SerializeField] private GameObject damaged;
-    [Tooltip("Don't keep the damaged sprites active")]
     [SerializeField] private bool hideDamagedSpritesOnAwake = false;
-
-    [Header("Stages")]
-    [SerializeField] private GameObject[] damagedStages;
-
-    [Header("Impact Burst")]
-    [SerializeField] private Animator animator;
-    [SerializeField] private GameObject impactBurst;
-    [SerializeField] private string impactBurstName = "ShowImpactBurst";
-
-    [Header("Impact Shake")]
-    [SerializeField] private ShakeObject shakeObject;
 
     [Header("Colliders")]
     [SerializeField] private GameObject physicalCollider;
     [SerializeField] private GameObject hitZone;
 
-    [Header("Resources")]
+    [Header("Intermediate Damage Stages")]
+    [SerializeField] private GameObject[] damagedStages;
+
+    [Header("Impact FX")]
+    [SerializeField] private Animator animator;
+    [SerializeField] private GameObject impactBurst;
+    [SerializeField] private string impactBurstName = "ShowImpactBurst";
+    [SerializeField] private ShakeObject shakeObject;
+    // sound fx here eventually
+
+    [Header("Spawned Resources")]
     [SerializeField] private SpawnResource spawnResource;
 
-    private PersistentStateObject persistentState;
+    [Header("Debug")]
+    [SerializeField] private bool showDebug = false;
 
     private void Awake()
     {
-        persistentState = GetComponent<PersistentStateObject>();
-        // set inactive so the impact burst can't play automatically
+        if (persistentState == null) persistentState = GetComponent<PersistentStateObject>();
+
+        // set impact animation inactive so it can't play automatically
         if (impactBurst != null) impactBurst.SetActive(false);
-        if (shakeObject == null) GetComponent<ShakeObject>();
+
+        if (shakeObject == null) shakeObject = GetComponent<ShakeObject>();
+
+        // don't show damaged sprites if undamaged for those you don't want to show (ie., cliff roots)
         if (hideDamagedSpritesOnAwake &&
-             (persistentState == null || !persistentState.HasChanged))
+             (persistentState == null || !persistentState.HasChanged()))
         {
             if (damaged != null)
                 damaged.SetActive(false);
@@ -60,7 +66,7 @@ public class DamageableObjectController : MonoBehaviour
     // respawn resources in scene if player left them there and moved to a different scene
     private void Start()
     {
-        if (persistentState != null && persistentState.HasChanged)
+        if (persistentState != null && persistentState.HasChanged())
         {
             spawnResource?.RestoreResources(hitsToComplete);
         }
@@ -85,10 +91,10 @@ public class DamageableObjectController : MonoBehaviour
 
         if (hits >= hitsToComplete)
         {
-            if (animator != null) 
+            if (animator != null)
                 animator.SetTrigger(impactBurstName);
 
-            if(shakeObject != null) shakeObject.Shake();
+            if (shakeObject != null) shakeObject.Shake();
 
             if (spawnResource != null)
                 spawnResource.SpawnResourceOnHit(playerMacheteController.FaceDir, hits);
@@ -101,13 +107,14 @@ public class DamageableObjectController : MonoBehaviour
         if (shakeObject != null) shakeObject.Shake();
     }
 
+
     private void UpdateStageOnHit()
     {
         if (damagedStages == null || damagedStages.Length == 0) return;
 
         int index = hits - 1;
 
-        Debug.Log($"Hits: {hits} | Current index: {index}");
+        if (showDebug) Debug.Log($"Hits: {hits} | Current index: {index}");
 
         if (index >= damagedStages.Length) return;
 
@@ -117,10 +124,10 @@ public class DamageableObjectController : MonoBehaviour
             // disable undamaged sprites
             foreach (var obj in undamaged)
             {
-                if(obj != null)
+                if (obj != null)
                     obj.SetActive(false);
             }
-            
+
             // spawn resource if available
             if (spawnResource != null)
                 spawnResource.SpawnResourceOnHit(playerMacheteController.FaceDir, hits);
@@ -130,7 +137,7 @@ public class DamageableObjectController : MonoBehaviour
         {
             // set the previous damage stage inactive
             damagedStages[index - 1].SetActive(false);
-            
+
             // spawn resource if available
             if (spawnResource != null)
                 spawnResource.SpawnResourceOnHit(playerMacheteController.FaceDir, hits);
@@ -140,31 +147,43 @@ public class DamageableObjectController : MonoBehaviour
         damagedStages[index].SetActive(true);
 
         // show animation if available
-        if(impactBurst != null) impactBurst.SetActive(true);
-        if(animator != null) animator.SetTrigger("ShowImpactBurst");
+        if (impactBurst != null) impactBurst.SetActive(true);
+        if (animator != null) animator.SetTrigger("ShowImpactBurst");
 
     }
-
 
     private void CompleteDamage()
     {
         playerMacheteController?.ClearHitTarget(this);
 
-        PersistentStateObject persistentState = 
-            GetComponent<PersistentStateObject>();
-
-        if(persistentState != null)
+        if (persistentState != null)
         {
-            persistentState.MarkChanged();
-            return;
+            switch (persistentState.Persistence)
+            {
+                case PersistenceType.None:
+                    DisableColliders();
+                    SwapToDamagedSprite();
+                    break;
+
+                case PersistenceType.Persist:
+                    persistentState.MarkChanged();
+                    break;
+
+                case PersistenceType.Regrow:
+                    persistentState.MarkForRegrowth();
+                    break;
+            }
+        }
+        else
+        {
+            // Truly no PersistentStateObject attached
+            DisableColliders();
+            SwapToDamagedSprite();
         }
 
-        // Fallback for non-persistent damageable objects
-        DisableColliders();
-        SwapToDamagedSprite();
-        if (impactBurst != null) impactBurst.SetActive(false);
+        if (impactBurst != null)
+            impactBurst.SetActive(false);
     }
-
 
     public void DisableColliders()
     {
@@ -183,9 +202,9 @@ public class DamageableObjectController : MonoBehaviour
                 obj.SetActive(false);
         }
 
-        foreach(var obj in damagedStages)
+        foreach (var obj in damagedStages)
         {
-            if(obj != null) obj.SetActive(false);    
+            if (obj != null) obj.SetActive(false);
         }
 
 

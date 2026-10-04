@@ -75,7 +75,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1384698473
   m_SortingLayer: 3
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_Sprite: {fileID: 1969239002630452270, guid: ada9f2e92168d2345bc65dc62b709d11, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -281,7 +281,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.011813521, y: -0.029533803}
+  m_Offset: {x: -0.011813521, y: -0.0071151257}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -291,7 +291,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.6495321, y: 0.49989402}
+  m_Size: {x: 0.6495321, y: 0.62189317}
   m_EdgeRadius: 0
 --- !u!1 &3483358848113280545
 GameObject:
@@ -410,21 +410,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerMacheteController: {fileID: 0}
   playerInHitZone: 0
+  persistentState: {fileID: 6601946335702961348}
   hits: 0
   hitsToComplete: 1
   undamaged:
   - {fileID: 199319651649042635}
   damaged: {fileID: 7673806157567831225}
   hideDamagedSpritesOnAwake: 0
+  physicalCollider: {fileID: 0}
+  hitZone: {fileID: 2338017388829734092}
   damagedStages:
   - {fileID: 8007590013912784752}
   animator: {fileID: 0}
   impactBurst: {fileID: 0}
   impactBurstName: ShowImpactBurst
   shakeObject: {fileID: 5111125492125887287}
-  physicalCollider: {fileID: 0}
-  hitZone: {fileID: 2338017388829734092}
   spawnResource: {fileID: 0}
+  showDebug: 0
 --- !u!114 &5111125492125887287
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -454,6 +456,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectID: 
+  persistence: 2
   originalState: {fileID: 199319651649042635}
   changedState: {fileID: 7673806157567831225}
   objectsToDisable:
@@ -461,6 +464,18 @@ MonoBehaviour:
   - {fileID: 2338017388829734092}
   - {fileID: 7035554175570608790}
   - {fileID: 6387092970583203048}
+  daysToRegrow: 1
+  currentDay: 0
+  objectsToRefresh:
+  - {fileID: 199319651649042635}
+  - {fileID: 7673806157567831225}
+  - {fileID: 5052168502667277158}
+  - {fileID: 2338017388829734092}
+  - {fileID: 7035554175570608790}
+  - {fileID: 297054012803976540}
+  - {fileID: 6387092970583203048}
+  testRegrowth: 1
+  testRegrowDelay: 2
 --- !u!1 &5052168502667277158
 GameObject:
   m_ObjectHideFlags: 0
@@ -611,12 +626,12 @@ MonoBehaviour:
   occluderSpriteRenderers:
   - {fileID: 2383977482501816298}
   - {fileID: 3626823184822673007}
+  secondarySpriteRenderers:
   - {fileID: 5091633829077372231}
-  secondarySpriteRenderers: []
   fadeZone: {fileID: 4855131963748636308}
   occluderSortingLayer: Occluders
-  objectSortingLayer: Objects
-  alpha: 0.8
+  objectSortingLayer: Obstacles
+  alpha: 1
 --- !u!1 &7035554175570608790
 GameObject:
   m_ObjectHideFlags: 0
@@ -850,7 +865,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1384698473
   m_SortingLayer: 3
-  m_SortingOrder: 0
+  m_SortingOrder: 9
   m_Sprite: {fileID: 199227829, guid: ada9f2e92168d2345bc65dc62b709d11, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -937,7 +952,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1384698473
   m_SortingLayer: 3
-  m_SortingOrder: 0
+  m_SortingOrder: 9
   m_Sprite: {fileID: 1548924381, guid: ada9f2e92168d2345bc65dc62b709d11, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
