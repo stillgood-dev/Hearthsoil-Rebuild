@@ -15,6 +15,9 @@ EditorBuildSettings:
     path: Assets/Scenes/NewScenes/2.Path_To_Hearthsoil.unity
     guid: 3583374634baafc4b80838cf0aa7233d
   - enabled: 1
+    path: Assets/Scenes/NewScenes/3.HearthsoilHaven.unity
+    guid: 5ea362a90d089db4499df875aa518772
+  - enabled: 1
     path: Assets/Scenes/NewScenes/Matri_Rita_Cabin.unity
     guid: 3136a639f2e7ba84e93c4d0ffc9e3170
   m_configObjects:
