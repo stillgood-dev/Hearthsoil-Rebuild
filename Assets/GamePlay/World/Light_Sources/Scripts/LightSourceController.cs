@@ -11,15 +11,28 @@ public class LightSourceController : MonoBehaviour
     [SerializeField] private Animator animator;
     [Tooltip("Light 2D object attached to light source")]
     [SerializeField] private GameObject light2D;
-    [SerializeField] private bool lightLit = false;
     [Tooltip("Can you carry this light around?")]
     [SerializeField] private bool isStationary = true;
+    [SerializeField] private bool startLit = false;
 
+    // Write light consumption method
+    [Header("Light Type")]
+    [SerializeField] private ResourceType lightType = ResourceType.None;
+    
+
+    private bool lightLit = false;
     public bool LightLit => lightLit;
 
     private void Awake()
     {
         if (light2D != null) light2D.SetActive(false);
+        if (startLit) LightOn();
+
+        // still need to write this method
+        if (lightLit)
+        {
+           ConsumeLight();
+        }
     }
 
     public void SetPlayerInInteractZone(bool inRange, PlayerLightSourceController playerLightSourceController)
@@ -57,4 +70,34 @@ public class LightSourceController : MonoBehaviour
             if (light2D != null) light2D.SetActive(false);
         }
     }
+
+    // consume light after a certain number of days/hours
+    private void ConsumeLight()
+    {
+        switch (lightType)
+        {
+            case ResourceType.None:
+                ConsumeCandle();
+                break;
+
+            case ResourceType.Candle:
+                break;
+
+            case ResourceType.Lantern:
+                break;
+
+            default:
+                break;
+        }
+    }
+
+    // still need to write this method
+    private void ConsumeCandle()
+    {
+
+    }
+
+
+
+
 }

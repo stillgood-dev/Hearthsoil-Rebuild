@@ -26,11 +26,15 @@ public class SceneTransitionZone : MonoBehaviour
 
         hasTriggered = true;
 
+        SceneTransitionData.SpawnPointName = spawnPointName;
+
+        // tell SceneTransitionData to preserve the player X location if checked
+        SceneTransitionData.PreservePlayerX = preservePlayerPosition;
+
         // set values to SceneTransitionData that can be used my SceneSpawnManager
         if (preservePlayerPosition)
         {
             SceneTransitionData.PreservedX = player.transform.position.x;
-            SceneTransitionData.SpawnPointName = spawnPointName;
         }
         else
         {

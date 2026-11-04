@@ -1,15 +1,16 @@
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class FadeOccludersController : MonoBehaviour
 {
     [SerializeField] public SpriteRenderer[] occluderSpriteRenderers;
+
     [Tooltip("Secondary occluders to disable")]
     [SerializeField] public SpriteRenderer[] secondarySpriteRenderers;
     [SerializeField] public PolygonCollider2D fadeZone;
     [SerializeField] private string occluderSortingLayer = "Occluders";
     [SerializeField] private string objectSortingLayer = "Objects";
+    [SerializeField] private int occluderSortingOrder = 0;
     [SerializeField] public float alpha = 0.45f;
     private float originalAlpha;
     private Dictionary<SpriteRenderer, float> occluderAlphas;
@@ -36,6 +37,7 @@ public class FadeOccludersController : MonoBehaviour
             if (!sr) continue;
             // update sorting layer to be in front of player
             sr.sortingLayerName = occluderSortingLayer;
+            sr.sortingOrder = occluderSortingOrder;
         }
     }
 

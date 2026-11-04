@@ -99,6 +99,8 @@ public class PlayerMacheteController : MonoBehaviour
 
         lockedObject = currentObject;
 
+        if (lockedObject == null) return;
+
         animator.SetBool("IsMacheting", true);
         machete.PlayMacheteSideSwing();
         isMacheting = true;

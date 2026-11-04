@@ -41,11 +41,22 @@ public class PlayerInteractionController : MonoBehaviour
     {
         if (showDebug) Debug.Log("INTERACT PRESSED");
 
-        // 1. If a sign is already open, close it first.
-        if (currentSign != null && currentSign.IsOpen)
+        // 1. Handle sign interaction.
+        if (currentSign != null)
         {
-            currentSign.Close();
-            playerActionState.ClearActionState();
+            if (currentSign.IsOpen)
+            {
+                currentSign.Close();
+                playerActionState.ClearActionState();
+            }
+            else
+            {
+                if (playerActionState.IsBusy)
+                    return;
+
+                currentSign.Open();
+            }
+
             return;
         }
 
@@ -153,6 +164,12 @@ public class PlayerInteractionController : MonoBehaviour
 
         if (sign != null && currentSign == sign)
         {
+            if (currentSign.IsOpen)
+            {
+                currentSign.Close();
+                playerActionState.ClearActionState();
+            }
+
             currentSign = null;
 
             if (showDebug) Debug.Log("Current sign cleared");

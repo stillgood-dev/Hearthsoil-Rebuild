@@ -3,6 +3,12 @@ using UnityEngine;
 public enum ResourceType
 {
    None,
-   Brambleberry
-   // etc.
+
+   // food
+   Brambleberry,
+
+   // light sources
+   Candle,
+   Lantern
+   
 }

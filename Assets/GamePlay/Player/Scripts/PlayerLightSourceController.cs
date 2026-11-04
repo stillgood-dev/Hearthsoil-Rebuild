@@ -26,6 +26,8 @@ public class PlayerLightSourceController : MonoBehaviour
 
         lockedLightSource = currentLightSource;
 
+        if(lockedLightSource == null) return false;
+
         if (lockedLightSource.LightLit)
             lockedLightSource.LightOff();
         else

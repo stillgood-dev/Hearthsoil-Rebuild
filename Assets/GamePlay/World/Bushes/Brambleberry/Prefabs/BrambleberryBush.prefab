@@ -885,6 +885,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerMacheteController: {fileID: 0}
   playerInHitZone: 0
+  persistentState: {fileID: 0}
   hits: 0
   hitsToComplete: 4
   undamaged:
@@ -892,14 +893,18 @@ MonoBehaviour:
   - {fileID: 9166947832799157959}
   damaged: {fileID: 599096197270557848}
   hideDamagedSpritesOnAwake: 0
-  damagedStages: []
+  physicalCollider: {fileID: 8636481615529846624}
+  hitZone: {fileID: 2217240111150927395}
+  damagedStages:
+  - {fileID: 303228160279936773}
+  - {fileID: 1755794700735492649}
+  - {fileID: 3995337133035772489}
   animator: {fileID: 0}
   impactBurst: {fileID: 0}
   impactBurstName: ShowImpactBurst
   shakeObject: {fileID: 3945045021199694431}
-  physicalCollider: {fileID: 8636481615529846624}
-  hitZone: {fileID: 2217240111150927395}
   spawnResource: {fileID: 740943076133353676}
+  showDebug: 0
 --- !u!114 &6512764110064986862
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -913,6 +918,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectID: BrambleberryBush_01
+  persistence: 1
   originalState: {fileID: 8100933943261212959}
   changedState: {fileID: 599096197270557848}
   objectsToDisable:
@@ -920,6 +926,11 @@ MonoBehaviour:
   - {fileID: 968597384394097923}
   - {fileID: 8100933943261212959}
   - {fileID: 9166947832799157959}
+  daysToRegrow: 0
+  currentDay: 0
+  objectsToRefresh: []
+  testRegrowth: 0
+  testRegrowDelay: 2
 --- !u!114 &740943076133353676
 MonoBehaviour:
   m_ObjectHideFlags: 0

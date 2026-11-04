@@ -9,6 +9,8 @@ public static class WorldState
     public static HashSet<string> RelocatedObjects = new HashSet<string>();
 
     public static Dictionary<string, int> RegrowDays = new Dictionary<string, int>();
+    // for objects that are consumed as time goes by, i.e., fire
+    public static Dictionary<string, int> ConsumeDays = new Dictionary<string, int>();
     public static Dictionary<string, Vector3> ObjectPositions = new Dictionary<string, Vector3>();
     public static Dictionary<string, string> ObjectScenes = new Dictionary<string, string>();
 
@@ -20,6 +22,7 @@ public static class WorldState
         RelocatedObjects.Clear();   
 
         RegrowDays.Clear();
+        ConsumeDays.Clear();
         ObjectPositions.Clear();
         ObjectScenes.Clear();
 

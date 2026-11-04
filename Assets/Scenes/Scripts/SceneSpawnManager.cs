@@ -34,16 +34,27 @@ public class SceneSpawnManager : MonoBehaviour
 
         if (spawnPoint == null) return;
 
-        // create spawn position
         Vector3 spawnPosition = spawnPoint.transform.position;
 
-        // spawn at X preserved in SceneTransitionZone.cs
-        spawnPosition.x = SceneTransitionData.PreservedX;
+        if (SceneTransitionData.PreservePlayerX)
+        {
+            spawnPosition.x = SceneTransitionData.PreservedX;
+        }
 
         // put the persistent player at the spawn point
         PersistentPlayer.Instance.transform.position = spawnPosition;
 
-        // reset spawn point name for the next scene
+        Physics2D.SyncTransforms();
+
+        if (showDebug)
+        {
+            Rigidbody2D rb = PersistentPlayer.Instance.GetComponent<Rigidbody2D>();
+            Debug.Log($"SPAWN TARGET: {spawnPoint.transform.position}");
+            Debug.Log($"PLAYER TRANSFORM: {PersistentPlayer.Instance.transform.position}");
+            Debug.Log($"PLAYER RIGIDBODY: {rb.position}");
+        }
+
         SceneTransitionData.SpawnPointName = null;
+        SceneTransitionData.PreservePlayerX = false;
     }
 }
