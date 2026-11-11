@@ -4,6 +4,7 @@ public class PlayerInteractionController : MonoBehaviour
 {
     [Header("Current Interaction")]
     [SerializeField] private HearthsoilSign currentSign;
+    [SerializeField] private NPCDialogueController currentNPC;
 
     [Header("Player Refs")]
     [SerializeField] private PlayerActionState playerActionState;
@@ -57,22 +58,43 @@ public class PlayerInteractionController : MonoBehaviour
                 currentSign.Open();
             }
 
+            return; // don't fall through to next action
+        }
+
+        // 2. Handle NPC dialogue
+        if (currentNPC != null)
+        {
+            // end dialogue if already talking
+            if (currentNPC.IsTalking)
+            {
+                currentNPC.EndDialogue();
+                playerActionState.ClearActionState();
+            } 
+            // otherwise lock player movement and begin conversation
+            else
+            {
+                if (playerActionState.IsBusy) return;
+
+                currentNPC.StartDialogue();
+                playerActionState.SetActionState(PlayerState.Dialogue);
+            }
+
             return;
         }
 
-        // 2. Open a door if there's a door to open.
+        // 3. Open a door if there's a door to open.
         if (doorController != null && doorController.OpenDoor())
         {
             return;
         }
 
-        // 3. Light a candle or lantern.
+        // 4. Light a candle or lantern.
         if (lightController != null && lightController.ToggleLight())
         {
             return;
         }
 
-        // 4. Block other busy states, but allow multi-step
+        // 5. Block other busy states, but allow multi-step
         // Receiving and Carrying interactions to continue.
         if (playerActionState.IsBusy &&
             playerActionState.State != PlayerState.Receiving &&
@@ -84,7 +106,7 @@ public class PlayerInteractionController : MonoBehaviour
             return;
         }
 
-        // 5. If already carrying, Carry gets first priority.
+        // 6. If already carrying, Carry gets first priority.
         if (playerActionState.State == PlayerState.Carrying)
         {
             if (carryController != null && carryController.Carry())
@@ -93,26 +115,26 @@ public class PlayerInteractionController : MonoBehaviour
             }
         }
 
-        // 6. Otherwise let Receive handle the interaction.
+        // 7. Otherwise let Receive handle the interaction.
         if (receiveController != null && receiveController.Receive())
         {
             return;
         }
 
-        // 7. Carry interaction.
+        // 8. Carry interaction.
         if (carryController != null && carryController.Carry())
         {
             return;
         }
 
 
-        // 8. Try receiving a new object if Carry didn't handle it.
+        // 9. Try receiving a new object if Carry didn't handle it.
         if (receiveController != null && receiveController.Receive())
         {
             return;
         }
 
-        // 9. Tool use last.
+        // 10. Tool use last.
         if (toolState == null)
         {
             if (showDebug)
@@ -154,6 +176,16 @@ public class PlayerInteractionController : MonoBehaviour
 
             if (showDebug) Debug.Log("Current sign set to: " + sign.name);
         }
+
+        NPCDialogueController npc = other.GetComponentInParent <NPCDialogueController>();
+
+        if (npc != null)
+        {
+            currentNPC = npc;
+
+            if (showDebug)
+                Debug.Log("NPC detected: " + npc.name);
+        }
     }
 
     private void OnTriggerExit2D(Collider2D other)
@@ -173,6 +205,13 @@ public class PlayerInteractionController : MonoBehaviour
             currentSign = null;
 
             if (showDebug) Debug.Log("Current sign cleared");
+        }
+
+        NPCDialogueController npc = other.GetComponentInParent<NPCDialogueController>();
+
+        if (npc != null && currentNPC == npc)
+        {
+            currentNPC = null;
         }
     }
 }
