@@ -64,11 +64,30 @@ public class PlayerInteractionController : MonoBehaviour
         // 2. Handle NPC dialogue
         if (currentNPC != null)
         {
-            // end dialogue if already talking
+            // is the conversation open?
             if (currentNPC.IsTalking)
             {
-                currentNPC.EndDialogue();
-                playerActionState.ClearActionState();
+                // are the characters still being revealed?
+                if (currentNPC.IsTyping)
+                {
+                    // reveal the remaining characters all at once
+                    currentNPC.CompleteDialogue();
+                } 
+                else
+                {
+                    // if the current NPC is no longer talking, and it's the current NPC's turn
+                    if (!currentNPC.IsPlayerTurn)
+                    {
+                        // advance the conversation to the player
+                        currentNPC.AdvanceDialogue();
+                    }
+                    else
+                    {
+                        // otherwise close the conversation
+                        currentNPC.EndDialogue();
+                        playerActionState.ClearActionState();
+                    }
+                }
             } 
             // otherwise lock player movement and begin conversation
             else
