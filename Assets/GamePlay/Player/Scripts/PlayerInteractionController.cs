@@ -75,16 +75,12 @@ public class PlayerInteractionController : MonoBehaviour
                 } 
                 else
                 {
-                    // if the current NPC is no longer talking, and it's the current NPC's turn
-                    if (!currentNPC.IsPlayerTurn)
+                    // advance conversation
+                    currentNPC.AdvanceDialogue();
+
+                    // allow player to move when conversation ends
+                    if (!currentNPC.IsTalking)
                     {
-                        // advance the conversation to the player
-                        currentNPC.AdvanceDialogue();
-                    }
-                    else
-                    {
-                        // otherwise close the conversation
-                        currentNPC.EndDialogue();
                         playerActionState.ClearActionState();
                     }
                 }

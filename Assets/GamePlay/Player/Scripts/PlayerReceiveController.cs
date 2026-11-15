@@ -98,6 +98,9 @@ public class PlayerReceiveController : MonoBehaviour
         {
             notificationUI.Hide(); // as soon as the player accepts the object, hide the "You have received ... !" notifcation
 
+            // --- satchel of echoes --- //
+
+
             // ---- tool ---- //
             if (receivableObject.IsTool)
             {

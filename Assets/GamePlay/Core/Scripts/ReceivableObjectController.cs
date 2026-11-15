@@ -9,6 +9,7 @@ public class ReceivableObjectController : MonoBehaviour
     [SerializeField] private GameObject receivableGameObject;
     [SerializeField] private SpriteRenderer worldSR;
     [SerializeField] private SpriteRenderer heldSR;
+    [SerializeField] private bool isSatchel = false;
 
 
     [SerializeField] private Collider2D receivableObjectCollider;
@@ -18,6 +19,7 @@ public class ReceivableObjectController : MonoBehaviour
     [SerializeField] private string receivableObjectName;
     [SerializeField] private CarryableObjectController carryableController;
     public CarryableObjectController CarryableController => carryableController;
+    public bool IsSatchel => isSatchel;
 
 
     [Header("Tool References")]

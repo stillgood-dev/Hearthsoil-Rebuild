@@ -11,14 +11,15 @@ public class NPCDialogueController : MonoBehaviour
 
     [Header("Dialogue UI")]
     [SerializeField] private TextMeshProUGUI npcHeader;
-    [SerializeField] private string npcGreeting; // what to start conversation with
     [SerializeField] private GameObject dialogueCanvas;
     [SerializeField] private TextMeshProUGUI dialogueText;
     // reveal one character every 0.04 seconds
     [SerializeField] private float typingSpeed = 0.04f;
 
-    [Header("Dialogue")]
-    [SerializeField] private string playerResponse = "Um... do I know you?";
+    [Header("Dialogue")] 
+    [SerializeField] private DialogueLine[] dialogueLines;
+    [SerializeField] private int currentDialogueIndex = 0; // arrays start at index 0, not 1!
+
 
     [Header("Debug")]
     [SerializeField] private bool debug;
@@ -26,12 +27,9 @@ public class NPCDialogueController : MonoBehaviour
     // for playerInteractionController reference
     public bool IsTalking { get; private set; }
     public bool IsTyping => typingCoroutine != null; // let playerInteractionController know the typing coroutine is running
-    public bool IsPlayerTurn => isPlayerTurn;
 
     // track what our coroutine is doing, if it's not null it's running, if it's null it's not running
     private Coroutine typingCoroutine;
-    // beginning of conversation is never player turn
-    private bool isPlayerTurn = false;
 
     // don't show dialogue canvas until player interacts with NPC
     private void Awake()
@@ -45,8 +43,6 @@ public class NPCDialogueController : MonoBehaviour
     {
         npcHeader.text = speakerName;
 
-        if (debug)
-            Debug.Log("Current speaker: " + speakerName);
     }
 
     // public method for when dialogue begins
@@ -54,13 +50,19 @@ public class NPCDialogueController : MonoBehaviour
     {
         IsTalking = true; // conversation is open
         dialogueCanvas.SetActive (true); // canvas is open
-        isPlayerTurn = false; // every new conversation begins with NPC
-        DisplayDialogue(npcName, npcGreeting); // start convo with NPC greeting
+        currentDialogueIndex = 0; // must be 0 when starting a conversation
+
+        if (debug)
+            Debug.Log("Current dialogue index: " + currentDialogueIndex);
+
+        DialogueLine currentLine = dialogueLines[currentDialogueIndex];
+        string speakerName = currentLine.isPlayer ? playerName : npcName;
+
+        DisplayDialogue(speakerName, currentLine.text); // start convo with NPC greeting (first line in convo)
 
         if (debug)
         {
             Debug.Log("Started dialogue with" + name);
-            Debug.Log("Dialogue text found: " + npcGreeting);
         }
     }
 
@@ -81,25 +83,33 @@ public class NPCDialogueController : MonoBehaviour
         typingCoroutine = StartCoroutine(TypeDialogue());
 
         if (debug)
-            Debug.Log("Displaying dialogue: " + speakerName + ": " + dialogue);
+            Debug.Log("Displaying dialogue [" + currentDialogueIndex + "]: " + speakerName + ": " + dialogue);
 
     }
 
     // this is called in PlayerInteractionController if the NPC is not currently typing
     public void AdvanceDialogue()
     {
-        // if it is currently the NPC's turn
-        if (!isPlayerTurn)
+       // Move to the next line in the conversation
+       currentDialogueIndex++; // i.e., increment by 1 each time
+
+        // check whether we've reached the end of the conversation
+        if (currentDialogueIndex >= dialogueLines.Length)
         {
-            // switch the conversation to the player
-            isPlayerTurn = true;
-
-            // show player reponse
-            DisplayDialogue(playerName, playerResponse);
-
-            if (debug)
-                Debug.Log("Player response started!");
+            // end conversation if so
+            EndDialogue();
+            return;
         }
+
+        // Otherwise
+        // Get current dialogue line
+        DialogueLine currentLine = dialogueLines[currentDialogueIndex];
+
+        // Determine who is speaking
+        string speakerName = currentLine.isPlayer? playerName : npcName;
+
+        // Display dialogue
+        DisplayDialogue(speakerName, currentLine.text);
     }
 
     public void EndDialogue()
@@ -133,7 +143,6 @@ public class NPCDialogueController : MonoBehaviour
         // show all the characters at once
         dialogueText.maxVisibleCharacters = int.MaxValue; // tell TextMeshPro to show every character
 
-        if (debug) Debug.Log("Dialogue completed!");
     }
 
     // coroutine to reveal letters as NPC talks
@@ -164,6 +173,5 @@ public class NPCDialogueController : MonoBehaviour
         // set to null when the coroutine finishes
         typingCoroutine = null;
 
-        if (debug) Debug.Log("Finished typing dialogue!");
     }
 }
