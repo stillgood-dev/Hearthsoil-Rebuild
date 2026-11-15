@@ -163,7 +163,10 @@ public class ReceivableObjectController : MonoBehaviour
     {
         if (receivableGameObject == null) return;
 
-        // destroy for now until we get an inventory
+        // destroy for objects you want to destroy
         GetComponent<PersistentDestroyableObject>()?.MarkDestroyed();
+
+        // put in inventory
+        // for later
     }
 }

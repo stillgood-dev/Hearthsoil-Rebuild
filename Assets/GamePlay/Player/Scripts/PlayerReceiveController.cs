@@ -98,49 +98,45 @@ public class PlayerReceiveController : MonoBehaviour
         {
             notificationUI.Hide(); // as soon as the player accepts the object, hide the "You have received ... !" notifcation
 
-            // --- satchel of echoes --- //
-
-
-            // ---- tool ---- //
-            if (receivableObject.IsTool)
+            if(!receivableObject.IsTool && !receivableObject.IsSatchel)
             {
-                receivableObject.AcceptObject(); // only accept the object
-                toolState.EquipTool(receivableObject.ToolType); // get the tool type on the receivable object tool
-                PlayIdle(); // return to idle once tool is accepted
+                // --- newly discovered resource --- //
+                if (awaitingCarryHandoff)
+                {
+                    HandOffToCarry(); // start using the object's carryable object controller
 
-                receivingObject = false; // the tool has been accepted, player is no longer holding the object above their head
-                receivableObject = null; // set null status since the object has been accepted
+                    awaitingCarryHandoff = false;
+                    receivingObject = false;
+                    receivableObject = null;
 
+                    return true; // stop here, carryable object controller's got it now
+                }
+
+                // ---- existing resource ---- //
+                // change this later because we want the object to be handed straight to carry controller
+                bool canEat = receivableObject.IsEdible;
+                bool canDrop = true;
+                bool canStore =
+                    receivableObject.IsStorable &&
+                    inventoryState.HasSatchel;
+
+                resourceChoiceUI.Show(
+                    "What would you like to do?",
+                    canEat,
+                    canDrop,
+                    canStore
+                );
                 return true;
-
             }
 
-            // --- newly discovered resource --- //
-            if (awaitingCarryHandoff)
-            {
-                HandOffToCarry(); // start using the object's carryable object controller
+            if (receivableObject.IsTool)
+                toolState.EquipTool(receivableObject.ToolType); // get the tool type on the receivable object tool
 
-                awaitingCarryHandoff = false;
-                receivingObject = false;
-                receivableObject = null;
+            receivableObject.AcceptObject(); // only accept the object
+            PlayIdle(); // return to idle once tool is accepted
 
-                return true; // stop here, carryable object controller's got it now
-            }
-
-            // ---- existing resource ---- //
-            // change this later because we want the object to be handed straight to carry controller
-            bool canEat = receivableObject.IsEdible;
-            bool canDrop = true;
-            bool canStore =
-                receivableObject.IsStorable &&
-                inventoryState.HasSatchel;
-
-            resourceChoiceUI.Show(
-                "What would you like to do?",
-                canEat,
-                canDrop,
-                canStore
-            );
+            receivingObject = false; // the tool has been accepted, player is no longer holding the object above their head
+            receivableObject = null; // set null status since the object has been accepted
 
             return true;
 
@@ -149,46 +145,40 @@ public class PlayerReceiveController : MonoBehaviour
         // ----- INTERACTION 1: RECEIVE OBJECT WHEN HANDS ARE EMPTY ---- //
 
         anchorToUse = receivableObject.IsTool ? receiveToolAnchor : receiveAnchor; // use the tool anchor if a tool, otherwise the receive anchor
+        string animationToShow = receivableObject.IsTool ? "ReceiveTool" : "Receive";
 
-        // ---- tool --- //
-        if (receivableObject.IsTool)
+        // Only check discovery for ordinary resources.
+        if (!receivableObject.IsTool && !receivableObject.IsSatchel)
         {
-            animator.SetTrigger("ReceiveTool"); // show player receiving tool animation
-            receivableObject.ReceiveObject(anchorToUse); // put the tool in the tool anchor
-            notificationUI.Show($"You have received the {receivableObject.ToolType}!"); // show notification
-            actionState.SetActionState(PlayerState.Receiving); // set player as busy receiving
-            receivingObject = true; // store bool for next interaction
-            return true; // stop here
-        }
-
-        // ---- non-tool resource --- //
-        else
-        {
-            // ---- existing resource pipeline ----- //
-
-            // determine if the player has already discovered the resource
             bool hasDiscovered = inventoryManager.HasDiscovered(receivableObject.ResourceType);
 
-            // if the resource has already been discovered once in the game,
-            // return false so PlayerInteractionController can move directly to PlayerCarryController
             if (hasDiscovered)
             {
                 return false;
             }
 
-            // ----- new resource pipeline ----- //
-            animator.SetTrigger("Receive"); // show player receiving object animation
-            receivableObject.ReceiveObject(anchorToUse); // put the object in the receive anchor
-            notificationUI.Show($"You have received the {receivableObject.ReceivableObjectName}!"); // show notification
-
+            // First-time resource discovery.
             inventoryManager.DiscoverResource(receivableObject.ResourceType);
-            awaitingCarryHandoff = true; // store for next interaction
-
-            actionState.SetActionState(PlayerState.Receiving); // player is busy receiving
-            receivingObject = true; // store for next interaction
-
-            return true;
+            awaitingCarryHandoff = true;
         }
+
+        animator.SetTrigger(animationToShow); // play appropriate receive animation
+        receivableObject.ReceiveObject(anchorToUse); // place object at appropriate receive anchor
+        actionState.SetActionState(PlayerState.Receiving); // set player as busy receiving
+        receivingObject = true; // store bool for next interaction
+
+        if (receivableObject.IsTool)
+        {
+            notificationUI.Show($"You have received the {receivableObject.ToolType}!"); // show notification
+        }
+        else
+        {
+            notificationUI.Show($"You have received the {receivableObject.ReceivableObjectName}!"); // show notification
+        }
+
+
+
+        return true;
 
 
     }
