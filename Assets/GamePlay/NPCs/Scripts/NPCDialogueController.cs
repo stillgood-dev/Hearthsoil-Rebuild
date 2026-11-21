@@ -19,6 +19,7 @@ public class NPCDialogueController : MonoBehaviour
     [Header("Dialogue")] 
     [SerializeField] private DialogueLine[] dialogueLines;
     [SerializeField] private int currentDialogueIndex = 0; // arrays start at index 0, not 1!
+    [SerializeField] private bool conversationOver = false;
 
 
     [Header("Debug")]
@@ -123,15 +124,18 @@ public class NPCDialogueController : MonoBehaviour
 
         IsTalking = false; // close the conversation
         dialogueCanvas.SetActive (false); // close the dialogue canvas
+        conversationOver = true;
+        WorldState.SatchelUnlocked = true;
 
         if (debug)
         {
+            Debug.Log("Conversation Over:" + conversationOver);
             Debug.Log("Ended dialogue with" + name);
         }
     }
 
     // method for showing all characters if the NPC/player is talking to speed up conversation
-    public void CompleteDialogue()
+    public void CompleteDialogueLines()
     {
         // stop typing
         if(typingCoroutine != null)

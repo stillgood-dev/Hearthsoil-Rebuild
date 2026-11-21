@@ -31,6 +31,7 @@ public class PlayerReceiveController : MonoBehaviour
 
     public bool InInventory => inInventory; // other scripts can read if this object is in the player inventory
 
+
     private void Awake()
     {
         // get all player components on awake
@@ -69,81 +70,27 @@ public class PlayerReceiveController : MonoBehaviour
         // ---- INTERACTION 3. DECIDE WHAT TO DO WHEN RESOURCE CHOICE UI IS OPEN ---- //
         if (resourceChoiceUI.IsOpen)
         {
-            // pipeline when Resource Choices is open
-            switch (resourceChoiceUI.CurrentChoice)
-            {
-                // drop resource
-                case ResourceChoiceUI.ResourceChoice.Drop:
-                    DropResource();
-                    break;
-
-
-                // eat resource
-                case ResourceChoiceUI.ResourceChoice.Eat:
-                    Debug.Log("Eat selected");
-                    break;
-
-                // store resource
-                case ResourceChoiceUI.ResourceChoice.Store:
-                    Debug.Log("Store selected");
-                    break;
-            }
-
-            return true; // receiving = true
+            return SelectChoice();
         }
 
         // --------------- INTERACTION 2. ACCEPT OBJECT OR HAND OFF TO CARRY --------------- //
         // If the object has been received (is currently being held above the head by the player)
         if (receivingObject)
         {
-            notificationUI.Hide(); // as soon as the player accepts the object, hide the "You have received ... !" notifcation
-
-            if(!receivableObject.IsTool && !receivableObject.IsSatchel)
-            {
-                // --- newly discovered resource --- //
-                if (awaitingCarryHandoff)
-                {
-                    HandOffToCarry(); // start using the object's carryable object controller
-
-                    awaitingCarryHandoff = false;
-                    receivingObject = false;
-                    receivableObject = null;
-
-                    return true; // stop here, carryable object controller's got it now
-                }
-
-                // ---- existing resource ---- //
-                // change this later because we want the object to be handed straight to carry controller
-                bool canEat = receivableObject.IsEdible;
-                bool canDrop = true;
-                bool canStore =
-                    receivableObject.IsStorable &&
-                    inventoryState.HasSatchel;
-
-                resourceChoiceUI.Show(
-                    "What would you like to do?",
-                    canEat,
-                    canDrop,
-                    canStore
-                );
-                return true;
-            }
-
-            if (receivableObject.IsTool)
-                toolState.EquipTool(receivableObject.ToolType); // get the tool type on the receivable object tool
-
-            receivableObject.AcceptObject(); // only accept the object
-            PlayIdle(); // return to idle once tool is accepted
-
-            receivingObject = false; // the tool has been accepted, player is no longer holding the object above their head
-            receivableObject = null; // set null status since the object has been accepted
-
-            return true;
+            return AcceptOrHandOff();
 
         }
 
         // ----- INTERACTION 1: RECEIVE OBJECT WHEN HANDS ARE EMPTY ---- //
 
+        return ReceiveWhenEmpty();
+
+
+    }
+
+    // first interaction
+    private bool ReceiveWhenEmpty()
+    {
         anchorToUse = receivableObject.IsTool ? receiveToolAnchor : receiveAnchor; // use the tool anchor if a tool, otherwise the receive anchor
         string animationToShow = receivableObject.IsTool ? "ReceiveTool" : "Receive";
 
@@ -154,12 +101,20 @@ public class PlayerReceiveController : MonoBehaviour
 
             if (hasDiscovered)
             {
-                return false;
+                return false; // do not receive it, go straight to carry
             }
 
             // First-time resource discovery.
             inventoryManager.DiscoverResource(receivableObject.ResourceType);
             awaitingCarryHandoff = true;
+        }
+
+        // Only receive the satchel if it's unlocked
+        if (receivableObject.IsSatchel)
+        {
+            bool satchelUnlocked = WorldState.SatchelUnlocked;
+            if (!satchelUnlocked) return false; // don't receive it
+
         }
 
         animator.SetTrigger(animationToShow); // play appropriate receive animation
@@ -176,11 +131,85 @@ public class PlayerReceiveController : MonoBehaviour
             notificationUI.Show($"You have received the {receivableObject.ReceivableObjectName}!"); // show notification
         }
 
+        return true;
+    }
 
+    // second interaction
+    private bool AcceptOrHandOff()
+    {
+        notificationUI.Hide(); // as soon as the player accepts the object, hide the "You have received ... !" notifcation
+
+        if (!receivableObject.IsTool && !receivableObject.IsSatchel)
+        {
+            // --- newly discovered resource --- //
+            if (awaitingCarryHandoff)
+            {
+                HandOffToCarry(); // start using the object's carryable object controller
+
+                awaitingCarryHandoff = false;
+                receivingObject = false;
+                receivableObject = null;
+
+                return true; // stop here, carryable object controller's got it now
+            }
+
+            // ---- existing resource ---- //
+            // change this later because we want the object to be handed straight to carry controller
+            bool canEat = receivableObject.IsEdible;
+            bool canDrop = true;
+            bool canStore =
+                receivableObject.IsStorable &&
+                inventoryState.HasSatchel;
+
+            resourceChoiceUI.Show(
+                "What would you like to do?",
+                canEat,
+                canDrop,
+                canStore
+            );
+            return true;
+        }
+
+        if (receivableObject.IsTool)
+            toolState.EquipTool(receivableObject.ToolType); // get the tool type on the receivable object tool
+
+        if (receivableObject.IsSatchel)
+        {
+            inventoryState.ReceiveSatchel();
+        }
+
+        receivableObject.AcceptObject(); // only accept the object
+        PlayIdle(); // return to idle once tool is accepted
+
+        receivingObject = false; // the tool has been accepted, player is no longer holding the object above their head
+        receivableObject = null; // set null status since the object has been accepted
 
         return true;
+    }
+
+    // third interaction
+    private bool SelectChoice()
+    {
+        // pipeline when Resource Choices is open
+        switch (resourceChoiceUI.CurrentChoice)
+        {
+            // drop resource
+            case ResourceChoiceUI.ResourceChoice.Drop:
+                DropResource();
+                break;
 
 
+            // eat resource
+            case ResourceChoiceUI.ResourceChoice.Eat:
+                Debug.Log("Eat selected");
+                break;
+
+            // store resource
+            case ResourceChoiceUI.ResourceChoice.Store:
+                Debug.Log("Store selected");
+                break;
+        }
+        return true;
     }
     
 

@@ -9,11 +9,16 @@ public class CarryableObjectController : MonoBehaviour
 
     [Header("Object Refs")]
     [SerializeField] private GameObject carryableObject;
-    [SerializeField] private BoxCollider2D boxCollider;
     [SerializeField] private Collider2D dropBlocker;
+    [Tooltip("Need two different sprite renderers, even if they are the same")]
     [SerializeField] private SpriteRenderer worldSR;
     [SerializeField] private SpriteRenderer heldSR;
+    [Tooltip("Required for keeping track of where object went")]
     [SerializeField] private PersistentDestroyableObject persistentObject;
+
+    [Header("Optional")]
+    [SerializeField] private BoxCollider2D boxCollider;
+
 
     public SpriteRenderer HeldSR => heldSR; // PlayerCarryController only cares about the held sprite renderer
 
@@ -31,7 +36,9 @@ public class CarryableObjectController : MonoBehaviour
                 : gameObject;
         }
 
+        // disable sprite renderer in world
         if (worldSR != null) worldSR.enabled = true;
+        // enable sprite renderer in player's hands
         if (heldSR != null) heldSR.enabled = false;
 
         if (boxCollider == null)
@@ -58,7 +65,10 @@ public class CarryableObjectController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        // if anything other than the player walks in to this trigger, don't do anything
         if (!other.CompareTag("Player")) return;
+
+        // otherwise, grab the player's carry controller
         carryController = other.GetComponent<PlayerCarryController>();
         if(carryController != null)
         {
@@ -69,7 +79,10 @@ public class CarryableObjectController : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
+        // if anything other than the player walks into this trigger, don't do anything
         if (!other.CompareTag("Player")) return;
+
+        // clear the object from being able to be carried (unless being carried as defined in ClearCarryableObject())
         carryController = other.GetComponent<PlayerCarryController>();
         if (carryController != null)
         {
@@ -77,7 +90,7 @@ public class CarryableObjectController : MonoBehaviour
         }
     }
 
-    // Snap to player
+    // Snap to player (used by PlayerCarryController)
     public void CarryObject(Transform holdAnchor)
     {
         if (holdAnchor == null) return;
@@ -85,8 +98,10 @@ public class CarryableObjectController : MonoBehaviour
 
         // Remove original world instance from persistence
         if(persistentObject == null) return;
+        // add object parameters to WorldState
         persistentObject.MarkRelocated();
 
+        // optional: remove if present
         if (boxCollider != null) boxCollider.enabled = false;
 
         if (dropBlocker != null)

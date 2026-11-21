@@ -10,6 +10,7 @@ public class PlayerInteractionController : MonoBehaviour
     [SerializeField] private PlayerActionState playerActionState;
     [SerializeField] private PlayerToolState toolState;
     [SerializeField] private PlayerEnvironmentState playerEnvironment;
+    [SerializeField] private PlayerInventoryState inventoryState;
 
     [Header("Action Controllers")]
     [SerializeField] private PlayerLightSourceController lightController;
@@ -36,6 +37,7 @@ public class PlayerInteractionController : MonoBehaviour
         if (!hoeController) hoeController = GetComponent<PlayerHoeController>();
         if (!toolState) toolState = GetComponent<PlayerToolState>();
         if (!lightController) lightController = GetComponent<PlayerLightSourceController>();
+        if (!inventoryState) inventoryState = GetComponent<PlayerInventoryState>();
     }
 
     public void OnInteract()
@@ -45,55 +47,14 @@ public class PlayerInteractionController : MonoBehaviour
         // 1. Handle sign interaction.
         if (currentSign != null)
         {
-            if (currentSign.IsOpen)
-            {
-                currentSign.Close();
-                playerActionState.ClearActionState();
-            }
-            else
-            {
-                if (playerActionState.IsBusy)
-                    return;
-
-                currentSign.Open();
-            }
-
+            HandleSign();
             return; // don't fall through to next action
         }
 
         // 2. Handle NPC dialogue
         if (currentNPC != null)
         {
-            // is the conversation open?
-            if (currentNPC.IsTalking)
-            {
-                // are the characters still being revealed?
-                if (currentNPC.IsTyping)
-                {
-                    // reveal the remaining characters all at once
-                    currentNPC.CompleteDialogue();
-                } 
-                else
-                {
-                    // advance conversation
-                    currentNPC.AdvanceDialogue();
-
-                    // allow player to move when conversation ends
-                    if (!currentNPC.IsTalking)
-                    {
-                        playerActionState.ClearActionState();
-                    }
-                }
-            } 
-            // otherwise lock player movement and begin conversation
-            else
-            {
-                if (playerActionState.IsBusy) return;
-
-                currentNPC.StartDialogue();
-                playerActionState.SetActionState(PlayerState.Dialogue);
-            }
-
+            HandleDialogue();
             return;
         }
 
@@ -162,20 +123,81 @@ public class PlayerInteractionController : MonoBehaviour
         if (playerEnvironment != null &&
             playerEnvironment.PlayerEnvironment == PlayerEnvironment.Outside)
         {
-            switch (toolState.EquippedTool)
+            HandleTool();
+        }
+    }
+
+    public void OnInventory()
+    {
+        if(inventoryState == null) return;
+        if (!inventoryState.HasSatchel) return;
+        Debug.Log("Inventory button pressed!");
+    }
+
+    private void HandleSign()
+    {
+        if (currentSign.IsOpen)
+        {
+            currentSign.Close();
+            playerActionState.ClearActionState();
+        }
+        else
+        {
+            if (playerActionState.IsBusy)
+                return;
+
+            currentSign.Open();
+        }
+    }
+
+    private void HandleDialogue()
+    {
+        // is the conversation open?
+        if (currentNPC.IsTalking)
+        {
+            // are the characters still being revealed?
+            if (currentNPC.IsTyping)
             {
-                case EquippedTool.Axe:
-                    axeController?.UseAxe();
-                    break;
-
-                case EquippedTool.Machete:
-                    macheteController?.UseMachete();
-                    break;
-
-                case EquippedTool.Hoe:
-                    hoeController?.UseHoe();
-                    break;
+                // reveal the remaining characters all at once
+                currentNPC.CompleteDialogueLines();
             }
+            else
+            {
+                // advance conversation
+                currentNPC.AdvanceDialogue();
+
+                // allow player to move when conversation ends
+                if (!currentNPC.IsTalking)
+                {
+                    playerActionState.ClearActionState();
+                }
+            }
+        }
+        // otherwise lock player movement and begin conversation
+        else
+        {
+            if (playerActionState.IsBusy) return;
+
+            currentNPC.StartDialogue();
+            playerActionState.SetActionState(PlayerState.Dialogue);
+        }
+    }
+
+    private void HandleTool()
+    {
+        switch (toolState.EquippedTool)
+        {
+            case EquippedTool.Axe:
+                axeController?.UseAxe();
+                break;
+
+            case EquippedTool.Machete:
+                macheteController?.UseMachete();
+                break;
+
+            case EquippedTool.Hoe:
+                hoeController?.UseHoe();
+                break;
         }
     }
 
