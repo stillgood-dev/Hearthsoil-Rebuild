@@ -21,6 +21,9 @@ public class PlayerInteractionController : MonoBehaviour
     [SerializeField] private PlayerMacheteController macheteController;
     [SerializeField] private PlayerHoeController hoeController;
 
+    [Header("Inventory")]
+    [SerializeField] private InventoryUIController inventoryUI;
+
 
     [Header("Debug")]
     [SerializeField] private bool showDebug;
@@ -38,8 +41,11 @@ public class PlayerInteractionController : MonoBehaviour
         if (!toolState) toolState = GetComponent<PlayerToolState>();
         if (!lightController) lightController = GetComponent<PlayerLightSourceController>();
         if (!inventoryState) inventoryState = GetComponent<PlayerInventoryState>();
+        if (!inventoryUI) inventoryUI = GetComponent<InventoryUIController>();
+
     }
 
+    // -------- on interact button ---------- //
     public void OnInteract()
     {
         if (showDebug) Debug.Log("INTERACT PRESSED");
@@ -127,12 +133,32 @@ public class PlayerInteractionController : MonoBehaviour
         }
     }
 
+    // ------ inventory ----- //
+
     public void OnInventory()
     {
         if(inventoryState == null) return;
         if (!inventoryState.HasSatchel) return;
-        Debug.Log("Inventory button pressed!");
+
+        if(playerActionState.IsBusy && 
+            playerActionState.State != PlayerState.Inventory)
+        {
+            return;
+        }
+
+        if(playerActionState.State == PlayerState.Inventory)
+        {
+            inventoryUI.CloseInventory();
+            playerActionState.ClearActionState();
+            return;
+        }
+
+        inventoryUI.OpenInventory();
+        playerActionState.SetActionState(PlayerState.Inventory);
+        
     }
+
+    // ----- controller handlers ---- //
 
     private void HandleSign()
     {

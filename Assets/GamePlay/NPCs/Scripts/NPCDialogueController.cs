@@ -23,7 +23,11 @@ public class NPCDialogueController : MonoBehaviour
 
 
     [Header("Debug")]
-    [SerializeField] private bool debug;
+    [SerializeField] private bool debug = false;
+
+    [Header("Test")]
+    [Tooltip("for testing, unlock items that have been locked until end of dialogue")]
+    [SerializeField] private bool unlockItems = false;
 
     // for playerInteractionController reference
     public bool IsTalking { get; private set; }
@@ -37,6 +41,14 @@ public class NPCDialogueController : MonoBehaviour
     {
         if (dialogueCanvas != null) 
             dialogueCanvas.SetActive(false);
+    }
+
+    private void Start()
+    {
+        if (unlockItems)
+        {
+            WorldState.SatchelUnlocked = true;
+        }
     }
 
     // public method for setting the name of the speaker to the npc header

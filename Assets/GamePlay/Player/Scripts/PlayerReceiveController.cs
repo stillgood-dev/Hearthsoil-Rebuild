@@ -23,13 +23,13 @@ public class PlayerReceiveController : MonoBehaviour
     [SerializeField] private ReceivableObjectController receivableObject; // receivable object to use in this script
     [SerializeField] private bool receivingObject = false; // bool of whether the object is in the receive state or has been received
     [SerializeField] private bool awaitingCarryHandoff = false; // is the player holding an object to be carried?
-    [SerializeField] private bool inInventory = false; // is the current receiveable object in our inventory yet?
+    
 
     [Header("Notification")]
     [SerializeField] private NotificationUI notificationUI; // show/hide notification
     [SerializeField] private ResourceChoiceUI resourceChoiceUI; // notification choices
 
-    public bool InInventory => inInventory; // other scripts can read if this object is in the player inventory
+    
 
 
     private void Awake()
@@ -171,7 +171,11 @@ public class PlayerReceiveController : MonoBehaviour
         }
 
         if (receivableObject.IsTool)
-            toolState.EquipTool(receivableObject.ToolType); // get the tool type on the receivable object tool
+        {
+            // get the tool type on the receivable object tool
+            toolState.EquipTool(receivableObject.ToolType); 
+            inventoryManager.AddTool(receivableObject.ToolType);
+        }
 
         if (receivableObject.IsSatchel)
         {

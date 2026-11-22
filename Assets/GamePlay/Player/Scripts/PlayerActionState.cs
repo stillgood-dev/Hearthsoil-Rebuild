@@ -11,7 +11,8 @@ public enum PlayerState
     Hoeing,
     Tilling, // walking while hoeing
     Interacting,
-    Dialogue 
+    Dialogue,
+    Inventory
 }
 
 public class PlayerActionState : MonoBehaviour
@@ -27,8 +28,9 @@ public class PlayerActionState : MonoBehaviour
         state == PlayerState.Macheting ||
         state == PlayerState.Hoeing ||
         state == PlayerState.Tilling ||
-        state == PlayerState.Interacting || 
-        state == PlayerState.Carrying;
+        state == PlayerState.Interacting ||
+        state == PlayerState.Carrying ||
+        state == PlayerState.Inventory;
 
     public bool LockMovement =>
         state == PlayerState.Receiving ||
@@ -36,6 +38,7 @@ public class PlayerActionState : MonoBehaviour
         state == PlayerState.Macheting ||
         state == PlayerState.Hoeing ||
         state == PlayerState.Interacting ||
+        state == PlayerState.Inventory ||
         state == PlayerState.Dialogue;
 
     public bool SlowSpeed =>
