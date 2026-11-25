@@ -99,7 +99,7 @@ public class PlayerMacheteController : MonoBehaviour
 
         lockedObject = currentObject;
 
-        if (lockedObject == null) return;
+        // if (lockedObject == null) return;
 
         animator.SetBool("IsMacheting", true);
         machete.PlayMacheteSideSwing();
@@ -132,6 +132,9 @@ public class PlayerMacheteController : MonoBehaviour
 
     public void EndSwing()
     {
+        // in case player gets stuck in swing
+        Debug.Log("EndSwing triggered");
+
         lockedObject = null;
         animator.SetBool("IsMacheting", false);
         isMacheting = false;

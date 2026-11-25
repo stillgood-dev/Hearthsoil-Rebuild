@@ -8,6 +8,7 @@ public class PlayerCarryController : MonoBehaviour
     [SerializeField] private Transform holdAnchor;
     [SerializeField] private PlayerActionState actionState;
     [SerializeField] private PlayerController playerController;
+    [SerializeField] private ResourceChoiceController resourceChoiceController;
     [SerializeField] private Animator animator;
 
     // Carryable Object
@@ -21,7 +22,6 @@ public class PlayerCarryController : MonoBehaviour
     [Header("UI References")]
     [SerializeField] private ResourceChoiceUI resourceChoiceUI;
     [SerializeField] private PlayerInventoryState inventoryState;
-    [SerializeField] private NotificationUI notificationUI;
 
     // facing parameters so we can update the object's position in the world when the player is carrying
     [Header("Facing References")]
@@ -62,7 +62,7 @@ public class PlayerCarryController : MonoBehaviour
         if (!actionState) actionState = GetComponent<PlayerActionState>();
         if (!playerController) playerController = GetComponent<PlayerController>();
         if (!inventoryState) inventoryState = GetComponent<PlayerInventoryState>();
-        if (!notificationUI) notificationUI = GetComponent<NotificationUI>();
+        if (!resourceChoiceController) resourceChoiceController = GetComponent<ResourceChoiceController>();
     }
 
     // Always update the hold anchor and object sorting when carrying
@@ -76,6 +76,18 @@ public class PlayerCarryController : MonoBehaviour
         }
     }
 
+    // -------------------------- PICK UP OBJECT --------------------------- //
+    // first interaction loop
+    private void PickUpObject()
+    {
+        if (actionState.IsBusy && actionState.State != PlayerState.Carrying) return;
+        if (carryableObject == null) return;
+
+        BeginCarry();
+    }
+
+
+    // ------------------ CARRY OBJECT --------------------------------- //
     // set object reference
     public void GetCarryableObject(CarryableObjectController obj)
     {
@@ -93,23 +105,25 @@ public class PlayerCarryController : MonoBehaviour
         }
     }
 
+
     // interact button
     public bool Carry()
     {
         
         if (carryableObject == null) return false;
         if (holdAnchor == null) return false;
+        if (resourceChoiceController == null) return false; 
 
         // choice menu already open?
-        if (resourceChoiceUI.IsOpen)
+        if (resourceChoiceController.IsOpen)
         {
-            HandleResourceChoice();
+            resourceChoiceController.HandleResourceChoice();
             return true;
         }
 
         if (isCarrying)
         {
-            ShowResourceChoices();
+            resourceChoiceController.ShowResourceChoices(carryableObject);
             return true; // stop here
         }
 
@@ -118,62 +132,20 @@ public class PlayerCarryController : MonoBehaviour
 
     }
 
-    private void ShowResourceChoices()
-    {
-        if (carryableObject == null) return;
-        if (resourceChoiceUI == null) return;
-
-        ReceivableObjectController resource = carryableObject.ReceivableController;
-
-        if (resource == null) return;
-
-        bool canEat = resource.IsEdible;
-        bool canDrop = true;
-        bool canStore = resource.IsStorable && inventoryState.HasSatchel;
-
-        resourceChoiceUI.Show("What would you like to do?", canEat, canDrop, canStore);
-    }
-
-    private void HandleResourceChoice()
-    {
-        switch (resourceChoiceUI.CurrentChoice)
-        {
-            case ResourceChoiceUI.ResourceChoice.Drop:
-                resourceChoiceUI.Hide();
-                DropObject();
-                break;
-
-            case ResourceChoiceUI.ResourceChoice.Eat:
-                Debug.Log("Eat Selected");
-                break;
-
-            case ResourceChoiceUI.ResourceChoice.Store:
-                Debug.Log("Store selected");
-                break;
-        }
-    }
-
-    // first interaction loop -- pick up the object
-    private void PickUpObject()
-    {
-        if (actionState.IsBusy && actionState.State != PlayerState.Carrying) return;
-        if (carryableObject == null) return;
-
-        BeginCarry();
-    }
-
     // for passing to other PlayerController scripts
-    public void StartCarrying(CarryableObjectController obj)
+    public bool StartCarrying(CarryableObjectController obj)
     {
-        if (obj == null) return;
-        if (holdAnchor == null) return;
-        if (isCarrying) return;
+        if (obj == null) return false;
+        if (holdAnchor == null) return false;
+        if (isCarrying) return false;
 
         carryableObject = obj;
 
         playerController.FaceSouth();
 
         BeginCarry();
+
+        return true;
     }
 
     private void BeginCarry()
@@ -196,8 +168,11 @@ public class PlayerCarryController : MonoBehaviour
         carryableObject.CarryObject(holdAnchor);
     }
 
+
+    // ------------------------ DROP OBJECT ------------------------------ //
+
     // second interaction loop -- drop the object and restore original object parameters
-    private void DropObject()
+    public void DropObject()
     {
         if (carryableObject == null) return;
 
@@ -214,11 +189,7 @@ public class PlayerCarryController : MonoBehaviour
 
         carryableObject.DropObject(dropPosition);
 
-        actionState.ClearActionState();
-        animator.SetBool("IsCarrying", false);
-        isCarrying = false;
-        carryableObject = null;
-        carryingsr = null;
+        EndCarry();
 
     }
 
@@ -314,5 +285,18 @@ public class PlayerCarryController : MonoBehaviour
         carryingsr.sortingOrder = ogSortingOrder;
 
     }
+
+    // --------------- COMPLETE CARRYING SEQUENCE ------------------------- //
+    private void EndCarry()
+    {
+        actionState.ClearActionState();
+        animator.SetBool("IsCarrying", false);
+
+        isCarrying = false;
+        carryableObject = null;
+        carryingsr = null;
+    }
+
+
 
 }

@@ -7,19 +7,11 @@ public class PlayerInteractionController : MonoBehaviour
     [SerializeField] private NPCDialogueController currentNPC;
 
     [Header("Player Refs")]
+    [SerializeField] private PlayerActionCoordinator actionCoordinator;
     [SerializeField] private PlayerActionState playerActionState;
-    [SerializeField] private PlayerToolState toolState;
     [SerializeField] private PlayerEnvironmentState playerEnvironment;
     [SerializeField] private PlayerInventoryState inventoryState;
 
-    [Header("Action Controllers")]
-    [SerializeField] private PlayerLightSourceController lightController;
-    [SerializeField] private PlayerDoorController doorController;
-    [SerializeField] private PlayerReceiveController receiveController;
-    [SerializeField] private PlayerCarryController carryController;
-    [SerializeField] private PlayerAxeController axeController;
-    [SerializeField] private PlayerMacheteController macheteController;
-    [SerializeField] private PlayerHoeController hoeController;
 
     [Header("Inventory")]
     [SerializeField] private InventoryUIController inventoryUI;
@@ -32,16 +24,9 @@ public class PlayerInteractionController : MonoBehaviour
     {
         if (!playerActionState) playerActionState = GetComponent<PlayerActionState>();
         if (!playerEnvironment) playerEnvironment = GetComponent<PlayerEnvironmentState>();  
-        if (!doorController) doorController = GetComponent<PlayerDoorController>();
-        if (!receiveController) receiveController = GetComponent<PlayerReceiveController>();
-        if (!carryController) carryController = GetComponent<PlayerCarryController>();
-        if (!axeController) axeController = GetComponent<PlayerAxeController>();
-        if (!macheteController) macheteController = GetComponent<PlayerMacheteController>();
-        if (!hoeController) hoeController = GetComponent<PlayerHoeController>();
-        if (!toolState) toolState = GetComponent<PlayerToolState>();
-        if (!lightController) lightController = GetComponent<PlayerLightSourceController>();
         if (!inventoryState) inventoryState = GetComponent<PlayerInventoryState>();
         if (!inventoryUI) inventoryUI = GetComponent<InventoryUIController>();
+        if (!actionCoordinator) actionCoordinator = GetComponent<PlayerActionCoordinator>();
 
     }
 
@@ -53,28 +38,22 @@ public class PlayerInteractionController : MonoBehaviour
         // 1. Handle sign interaction.
         if (currentSign != null)
         {
-            HandleSign();
+            actionCoordinator.HandleSign(currentSign);
             return; // don't fall through to next action
         }
 
         // 2. Handle NPC dialogue
         if (currentNPC != null)
         {
-            HandleDialogue();
+            actionCoordinator.HandleDialogue(currentNPC);
             return;
         }
 
         // 3. Open a door if there's a door to open.
-        if (doorController != null && doorController.OpenDoor())
-        {
-            return;
-        }
+        if (actionCoordinator.HandleDoor()) return;
 
         // 4. Light a candle or lantern.
-        if (lightController != null && lightController.ToggleLight())
-        {
-            return;
-        }
+        if (actionCoordinator.HandleLight()) return;
 
         // 5. Block other busy states, but allow multi-step
         // Receiving and Carrying interactions to continue.
@@ -91,45 +70,28 @@ public class PlayerInteractionController : MonoBehaviour
         // 6. If already carrying, Carry gets first priority.
         if (playerActionState.State == PlayerState.Carrying)
         {
-            if (carryController != null && carryController.Carry())
-            {
-                return;
-            }
+            if (actionCoordinator.HandleCarry()) return;
+            
         }
 
         // 7. Otherwise let Receive handle the interaction.
-        if (receiveController != null && receiveController.Receive())
-        {
-            return;
-        }
+        if (actionCoordinator.HandleReceive()) return;
+
 
         // 8. Carry interaction.
-        if (carryController != null && carryController.Carry())
-        {
-            return;
-        }
+        if (actionCoordinator.HandleCarry()) return;
 
 
         // 9. Try receiving a new object if Carry didn't handle it.
-        if (receiveController != null && receiveController.Receive())
-        {
-            return;
-        }
+        if (actionCoordinator.HandleReceive()) return;
 
         // 10. Tool use last.
-        if (toolState == null)
-        {
-            if (showDebug)
-                Debug.LogWarning("No PlayerToolState found on Player.");
-
-            return;
-        }
 
         // Only allow tools if player is outside.
         if (playerEnvironment != null &&
             playerEnvironment.PlayerEnvironment == PlayerEnvironment.Outside)
         {
-            HandleTool();
+            actionCoordinator.HandleTool();
         }
     }
 
@@ -158,74 +120,6 @@ public class PlayerInteractionController : MonoBehaviour
         
     }
 
-    // ----- controller handlers ---- //
-
-    private void HandleSign()
-    {
-        if (currentSign.IsOpen)
-        {
-            currentSign.Close();
-            playerActionState.ClearActionState();
-        }
-        else
-        {
-            if (playerActionState.IsBusy)
-                return;
-
-            currentSign.Open();
-        }
-    }
-
-    private void HandleDialogue()
-    {
-        // is the conversation open?
-        if (currentNPC.IsTalking)
-        {
-            // are the characters still being revealed?
-            if (currentNPC.IsTyping)
-            {
-                // reveal the remaining characters all at once
-                currentNPC.CompleteDialogueLines();
-            }
-            else
-            {
-                // advance conversation
-                currentNPC.AdvanceDialogue();
-
-                // allow player to move when conversation ends
-                if (!currentNPC.IsTalking)
-                {
-                    playerActionState.ClearActionState();
-                }
-            }
-        }
-        // otherwise lock player movement and begin conversation
-        else
-        {
-            if (playerActionState.IsBusy) return;
-
-            currentNPC.StartDialogue();
-            playerActionState.SetActionState(PlayerState.Dialogue);
-        }
-    }
-
-    private void HandleTool()
-    {
-        switch (toolState.EquippedTool)
-        {
-            case EquippedTool.Axe:
-                axeController?.UseAxe();
-                break;
-
-            case EquippedTool.Machete:
-                macheteController?.UseMachete();
-                break;
-
-            case EquippedTool.Hoe:
-                hoeController?.UseHoe();
-                break;
-        }
-    }
 
     private void OnTriggerEnter2D(Collider2D other)
     {

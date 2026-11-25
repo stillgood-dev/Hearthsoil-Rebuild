@@ -27,9 +27,6 @@ public class PlayerReceiveController : MonoBehaviour
 
     [Header("Notification")]
     [SerializeField] private NotificationUI notificationUI; // show/hide notification
-    [SerializeField] private ResourceChoiceUI resourceChoiceUI; // notification choices
-
-    
 
 
     private void Awake()
@@ -67,11 +64,6 @@ public class PlayerReceiveController : MonoBehaviour
 
         if (receivableObject == null) return false; // nothing to receive, receiving = false
 
-        // ---- INTERACTION 3. DECIDE WHAT TO DO WHEN RESOURCE CHOICE UI IS OPEN ---- //
-        if (resourceChoiceUI.IsOpen)
-        {
-            return SelectChoice();
-        }
 
         // --------------- INTERACTION 2. ACCEPT OBJECT OR HAND OFF TO CARRY --------------- //
         // If the object has been received (is currently being held above the head by the player)
@@ -137,14 +129,14 @@ public class PlayerReceiveController : MonoBehaviour
     // second interaction
     private bool AcceptOrHandOff()
     {
-        notificationUI.Hide(); // as soon as the player accepts the object, hide the "You have received ... !" notifcation
-
+        // --- newly discovered resource --- //
         if (!receivableObject.IsTool && !receivableObject.IsSatchel)
         {
-            // --- newly discovered resource --- //
             if (awaitingCarryHandoff)
             {
-                HandOffToCarry(); // start using the object's carryable object controller
+                if(!HandOffToCarry()) return false; // start using the object's carryable object controller
+
+                notificationUI.Hide(); // as soon as the player accepts the object, hide the "You have received ... !" notifcation
 
                 awaitingCarryHandoff = false;
                 receivingObject = false;
@@ -152,23 +144,9 @@ public class PlayerReceiveController : MonoBehaviour
 
                 return true; // stop here, carryable object controller's got it now
             }
-
-            // ---- existing resource ---- //
-            // change this later because we want the object to be handed straight to carry controller
-            bool canEat = receivableObject.IsEdible;
-            bool canDrop = true;
-            bool canStore =
-                receivableObject.IsStorable &&
-                inventoryState.HasSatchel;
-
-            resourceChoiceUI.Show(
-                "What would you like to do?",
-                canEat,
-                canDrop,
-                canStore
-            );
-            return true;
         }
+
+        notificationUI.Hide(); // as soon as the player accepts the object, hide the "You have received ... !" notifcation
 
         if (receivableObject.IsTool)
         {
@@ -190,48 +168,7 @@ public class PlayerReceiveController : MonoBehaviour
 
         return true;
     }
-
-    // third interaction
-    private bool SelectChoice()
-    {
-        // pipeline when Resource Choices is open
-        switch (resourceChoiceUI.CurrentChoice)
-        {
-            // drop resource
-            case ResourceChoiceUI.ResourceChoice.Drop:
-                DropResource();
-                break;
-
-
-            // eat resource
-            case ResourceChoiceUI.ResourceChoice.Eat:
-                Debug.Log("Eat selected");
-                break;
-
-            // store resource
-            case ResourceChoiceUI.ResourceChoice.Store:
-                Debug.Log("Store selected");
-                break;
-        }
-        return true;
-    }
     
-
-    public void DropResource()
-    {
-        if (receivableObject == null) return;
-
-        Vector3 dropPosition = transform.position + new Vector3(0f, -0.25f, 0f);
-
-        receivableObject.DropObject(dropPosition);
-
-        resourceChoiceUI.Hide();
-
-        receivingObject = false;
-        receivableObject = null;
-
-        PlayIdle();
-    }
 
     private void PlayIdle()
     {
@@ -244,17 +181,18 @@ public class PlayerReceiveController : MonoBehaviour
 
 
     // pass this object to carryable object controller
-    private void HandOffToCarry()
+    private bool HandOffToCarry()
     {
         // bail out if nothing to hand off
-        if (receivableObject == null) return;
-        if (carryController == null) return;
-        if (receivableObject.CarryableController == null) return;
+        if (receivableObject == null) return false;
+        if (carryController == null) return false;
+        if (receivableObject.CarryableController == null) return false;
 
         animator.ResetTrigger("Receive"); // stop receiving object animation
         animator.Play("Idle"); // reset player back to idle
 
-        carryController.StartCarrying(receivableObject.CarryableController);
+        return carryController.StartCarrying(receivableObject.CarryableController);
+
     }
 
 }
