@@ -5656,6 +5656,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5440220082731777454, guid: 61d2396b9ef288e42acfad5da703a457, type: 3}
+      propertyPath: debug
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5440220082731777454, guid: 61d2396b9ef288e42acfad5da703a457, type: 3}
       propertyPath: npcHeader
       value: 
       objectReference: {fileID: 1565491598}

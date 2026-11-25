@@ -3,7 +3,8 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerMacheteController : MonoBehaviour
-{
+{ 
+
     [Header("Player Refs")]
     [SerializeField] private PlayerController playerController;
     [SerializeField] private PlayerActionState playerActionState;
@@ -22,6 +23,9 @@ public class PlayerMacheteController : MonoBehaviour
     [Header("Object Refs")]
     [SerializeField] private DamageableObjectController currentObject;
     [SerializeField] private DamageableObjectController lockedObject;
+
+    [Header("Debug")]
+    [SerializeField] private bool debug = false;
 
     [SerializeField] private bool hitMultipleTargets = false;
     private readonly List<DamageableObjectController> hitTargets = new();
@@ -133,7 +137,7 @@ public class PlayerMacheteController : MonoBehaviour
     public void EndSwing()
     {
         // in case player gets stuck in swing
-        Debug.Log("EndSwing triggered");
+        if (debug) Debug.Log("EndSwing triggered");
 
         lockedObject = null;
         animator.SetBool("IsMacheting", false);

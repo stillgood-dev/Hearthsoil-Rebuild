@@ -537,11 +537,6 @@ PolygonCollider2D:
       - {x: -0.8300277, y: -0.23996276}
       - {x: -0.5921414, y: 0.7526865}
   m_UseDelaunayMesh: 0
---- !u!1 &402937986 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 146874527565538804, guid: 014d0faf53466834fb7069c920d3e46c, type: 3}
-  m_PrefabInstance: {fileID: 1547522038}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &413200445
 GameObject:
   m_ObjectHideFlags: 0
@@ -2462,17 +2457,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9f7546164fe014d4590c7c47011a8457, type: 3}
---- !u!114 &1523638454 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 871538372557755898, guid: 014d0faf53466834fb7069c920d3e46c, type: 3}
-  m_PrefabInstance: {fileID: 1547522038}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62c48db8be9259e41ad744e77e635306, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1543850562
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2585,10 +2569,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 146874527565538804, guid: 014d0faf53466834fb7069c920d3e46c, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2141491628}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 014d0faf53466834fb7069c920d3e46c, type: 3}
 --- !u!1001 &1550089770
 PrefabInstance:
@@ -4307,22 +4288,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1021859513952468278, guid: 014d0faf53466834fb7069c920d3e46c, type: 3}
   m_PrefabInstance: {fileID: 1547522038}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2141491628
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 402937986}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a970a22e3689f24f8b50a21d3712c6b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inventoryState: {fileID: 0}
-  actionCoordinator: {fileID: 0}
-  carryController: {fileID: 0}
-  resourceChoiceUI: {fileID: 1523638454}
 --- !u!1 &2143572574
 GameObject:
   m_ObjectHideFlags: 0

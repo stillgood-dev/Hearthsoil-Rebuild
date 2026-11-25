@@ -97,6 +97,8 @@ public class PlayerInteractionController : MonoBehaviour
 
     // ------ inventory ----- //
 
+    // move to inventory controller script
+
     public void OnInventory()
     {
         if(inventoryState == null) return;

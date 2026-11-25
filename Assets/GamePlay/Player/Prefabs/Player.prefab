@@ -9,27 +9,28 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1021859513952468278}
+  - component: {fileID: 6574427585883489204}
   - component: {fileID: 1680984908005015173}
   - component: {fileID: 7368578140805150708}
   - component: {fileID: 520854878156007972}
-  - component: {fileID: 6574427585883489204}
+  - component: {fileID: 4402879546855571086}
   - component: {fileID: 2764163135476947425}
   - component: {fileID: 5346065802901183597}
+  - component: {fileID: 2145090100212790785}
+  - component: {fileID: 3418260705937176354}
   - component: {fileID: 2685208603339887518}
-  - component: {fileID: 4402879546855571086}
+  - component: {fileID: 3978414546688770538}
+  - component: {fileID: 6048135362091091654}
   - component: {fileID: 3981985285830431412}
   - component: {fileID: 2670102063151453681}
   - component: {fileID: 7580047833583719697}
   - component: {fileID: 5060243519150972395}
   - component: {fileID: 2333618756408087481}
-  - component: {fileID: 2145090100212790785}
-  - component: {fileID: 3978414546688770538}
   - component: {fileID: 5156637050322841905}
   - component: {fileID: 4475351761670759487}
   - component: {fileID: 4900863117862929232}
-  - component: {fileID: 6048135362091091654}
   - component: {fileID: 1847389989208233203}
-  - component: {fileID: 3418260705937176354}
+  - component: {fileID: 5008471429624649828}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -56,6 +57,36 @@ Transform:
   - {fileID: 1766196753459256457}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6574427585883489204
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 146874527565538804}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 1
+  m_DefaultControlScheme: Keyboard&Mouse
+  m_DefaultActionMap: Player
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!95 &1680984908005015173
 Animator:
   serializedVersion: 7
@@ -151,7 +182,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.098178595, y: 0.040355086}
   m_EdgeRadius: 0
---- !u!114 &6574427585883489204
+--- !u!114 &4402879546855571086
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -160,27 +191,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 146874527565538804}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Script: {fileID: 11500000, guid: 51de10bdb2a23da4a94753e064137ab9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
-  m_NotificationBehavior: 0
-  m_UIInputModule: {fileID: 0}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents: []
-  m_NeverAutoSwitchControlSchemes: 1
-  m_DefaultControlScheme: Keyboard&Mouse
-  m_DefaultActionMap: Player
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
+  environment: 0
 --- !u!114 &2764163135476947425
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -217,6 +231,47 @@ MonoBehaviour:
   resourceChoiceUI: {fileID: 871538372557755898}
   showDebugMessages: 0
   debugIsMoving: 0
+--- !u!114 &2145090100212790785
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 146874527565538804}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 273ffe1217d49f041a32ac5ab5910c49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentSign: {fileID: 0}
+  currentNPC: {fileID: 0}
+  actionCoordinator: {fileID: 0}
+  playerActionState: {fileID: 2685208603339887518}
+  playerEnvironment: {fileID: 0}
+  inventoryState: {fileID: 0}
+  inventoryUI: {fileID: 0}
+  showDebug: 0
+--- !u!114 &3418260705937176354
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 146874527565538804}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e4fdae488c58534e808c1da923c4409, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerActionState: {fileID: 0}
+  toolState: {fileID: 0}
+  receiveController: {fileID: 0}
+  carryController: {fileID: 0}
+  axeController: {fileID: 0}
+  macheteController: {fileID: 0}
+  hoeController: {fileID: 0}
+  doorController: {fileID: 0}
+  lightController: {fileID: 0}
 --- !u!114 &2685208603339887518
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -230,7 +285,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   state: 0
---- !u!114 &4402879546855571086
+--- !u!114 &3978414546688770538
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -239,10 +294,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 146874527565538804}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51de10bdb2a23da4a94753e064137ab9, type: 3}
+  m_Script: {fileID: 11500000, guid: 8341766acca438e4994c99ed3c63eeb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  environment: 0
+  equippedTool: 0
+--- !u!114 &6048135362091091654
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 146874527565538804}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c47605c4f04ae5f4fa475c1750b8158c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hasSatchel: 0
 --- !u!114 &3981985285830431412
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -283,6 +351,7 @@ MonoBehaviour:
   holdAnchor: {fileID: 7351036259826570358}
   actionState: {fileID: 2685208603339887518}
   playerController: {fileID: 0}
+  resourceChoiceController: {fileID: 0}
   animator: {fileID: 1680984908005015173}
   carryableObject: {fileID: 0}
   isCarrying: 0
@@ -291,7 +360,6 @@ MonoBehaviour:
   ogSortingOrder: 0
   resourceChoiceUI: {fileID: 871538372557755898}
   inventoryState: {fileID: 6048135362091091654}
-  notificationUI: {fileID: 0}
   facing: 0
   baseHoldPosition: {x: 0, y: 0.75, z: 0}
   northOffset: {x: 0, y: -0.4, z: 0}
@@ -400,41 +468,6 @@ MonoBehaviour:
   soilVerticalBottomTile: {fileID: 11400000, guid: f69f50a5d672365439975bf1f412f3a0, type: 2}
   hoe: {fileID: 2323674728342118300}
   isHoeing: 0
---- !u!114 &2145090100212790785
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 146874527565538804}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 273ffe1217d49f041a32ac5ab5910c49, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentSign: {fileID: 0}
-  currentNPC: {fileID: 0}
-  actionCoordinator: {fileID: 0}
-  playerActionState: {fileID: 2685208603339887518}
-  playerEnvironment: {fileID: 0}
-  inventoryState: {fileID: 0}
-  receiveController: {fileID: 0}
-  carryController: {fileID: 0}
-  inventoryUI: {fileID: 0}
-  showDebug: 1
---- !u!114 &3978414546688770538
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 146874527565538804}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8341766acca438e4994c99ed3c63eeb5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  equippedTool: 0
 --- !u!114 &5156637050322841905
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -482,19 +515,6 @@ MonoBehaviour:
   tools: 
   testTool: 1
   testToolType: 2
---- !u!114 &6048135362091091654
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 146874527565538804}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c47605c4f04ae5f4fa475c1750b8158c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hasSatchel: 0
 --- !u!114 &1847389989208233203
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -510,7 +530,7 @@ MonoBehaviour:
   inventoryManager: {fileID: 0}
   inventoryCanvas: {fileID: 276093965804015663}
   macheteIcon: {fileID: 7200661157858969990}
---- !u!114 &3418260705937176354
+--- !u!114 &5008471429624649828
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -519,16 +539,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 146874527565538804}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3e4fdae488c58534e808c1da923c4409, type: 3}
+  m_Script: {fileID: 11500000, guid: 1a970a22e3689f24f8b50a21d3712c6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerActionState: {fileID: 0}
-  toolState: {fileID: 0}
-  axeController: {fileID: 0}
-  macheteController: {fileID: 0}
-  hoeController: {fileID: 0}
-  doorController: {fileID: 0}
-  lightController: {fileID: 0}
+  inventoryState: {fileID: 0}
+  actionCoordinator: {fileID: 0}
+  carryController: {fileID: 0}
+  resourceChoiceUI: {fileID: 871538372557755898}
 --- !u!1 &276093965804015663
 GameObject:
   m_ObjectHideFlags: 0

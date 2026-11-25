@@ -54,6 +54,9 @@ public class PlayerCarryController : MonoBehaviour
     [Header("Blocking Layers")]
     [SerializeField] private LayerMask dropBlockingLayer;
 
+    [Header("Debug")]
+    [SerializeField] private bool debug = false;
+
    
 
     private void Awake()
@@ -181,6 +184,7 @@ public class PlayerCarryController : MonoBehaviour
        
         if (IsDropPositionBlocked(dropPosition))
         {
+            // show debug log until I create notification for forbidden actions
             Debug.Log("Can't drop here!");
             return;
         } 
@@ -224,7 +228,8 @@ public class PlayerCarryController : MonoBehaviour
 
         foreach (Collider2D hit in hits)
         {
-            Debug.Log($"Drop check hit: {hit.name}, trigger: {hit.isTrigger}");
+            if(debug)
+             Debug.Log($"Drop check hit: {hit.name}, trigger: {hit.isTrigger}");
             return true;
         }
 
@@ -261,6 +266,8 @@ public class PlayerCarryController : MonoBehaviour
     }
 
     // adjust the object sorting position and layer when the player is carrying
+
+    // move this over to carryable object controller? 
     private void AdjustObjectSorting()
     {
         if (carryableObject == null) return;
@@ -278,6 +285,8 @@ public class PlayerCarryController : MonoBehaviour
     }
 
     // restore the object's sorting layer and order
+
+    // move this over to carryable object controller? 
     private void RestoreObjectSorting()
     {
         if (carryingsr == null) return;

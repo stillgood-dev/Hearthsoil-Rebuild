@@ -10,6 +10,8 @@ public class PersistentDestroyableObject : MonoBehaviour
 
     [SerializeField] private GameObject objectToDisable;
 
+    [SerializeField] private bool debug = false;
+
     private void Awake()
     {
         if (!string.IsNullOrEmpty(objectID))
@@ -46,7 +48,8 @@ public class PersistentDestroyableObject : MonoBehaviour
         WorldState.ObjectPositions[objectID] = worldPosition;
         WorldState.ObjectScenes[objectID] = SceneManager.GetActiveScene().name;
 
-        Debug.Log(
+        if(debug) 
+            Debug.Log(
             $"{objectID} dropped in {SceneManager.GetActiveScene().name} " +
             $"at {worldPosition}"
         );
