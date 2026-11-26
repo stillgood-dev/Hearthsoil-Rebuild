@@ -142,4 +142,9 @@ public class CarryableObjectController : MonoBehaviour
         if (worldSR != null) worldSR.enabled = true;
         if(heldSR != null) heldSR.enabled = false;
     }
+
+    public void DestroyObject()
+    {
+        Destroy(carryableObject);
+    }
 }

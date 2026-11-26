@@ -10,10 +10,11 @@ public class PlayerCarryController : MonoBehaviour
     [SerializeField] private PlayerController playerController;
     [SerializeField] private ResourceChoiceController resourceChoiceController;
     [SerializeField] private Animator animator;
+    [SerializeField] private InventoryManager inventoryManager;
 
     // Carryable Object
     [Header("Object References")]
-    [SerializeField] private CarryableObjectController carryableObject;
+    [SerializeField] private CarryableObjectController carryableObjectController;
     [SerializeField] private bool isCarrying = false;
     [SerializeField] private SpriteRenderer carryingsr;
     [SerializeField] private string ogSortingLayer;
@@ -66,6 +67,7 @@ public class PlayerCarryController : MonoBehaviour
         if (!playerController) playerController = GetComponent<PlayerController>();
         if (!inventoryState) inventoryState = GetComponent<PlayerInventoryState>();
         if (!resourceChoiceController) resourceChoiceController = GetComponent<ResourceChoiceController>();
+        if (!inventoryManager) inventoryManager = GetComponent<InventoryManager>();
     }
 
     // Always update the hold anchor and object sorting when carrying
@@ -84,7 +86,7 @@ public class PlayerCarryController : MonoBehaviour
     private void PickUpObject()
     {
         if (actionState.IsBusy && actionState.State != PlayerState.Carrying) return;
-        if (carryableObject == null) return;
+        if (carryableObjectController == null) return;
 
         BeginCarry();
     }
@@ -94,17 +96,17 @@ public class PlayerCarryController : MonoBehaviour
     // set object reference
     public void GetCarryableObject(CarryableObjectController obj)
     {
-        if (isCarrying) return; // do not override carryableObject with another object if you walk into its interact zone
-        carryableObject = obj;
+        if (isCarrying) return; // do not override carryableObjectController with another object if you walk into its interact zone
+        carryableObjectController = obj;
     }
 
     // clear object reference if not carrying
     public void ClearCarryableObject(CarryableObjectController obj)
     {
         if (isCarrying) return;
-        if (carryableObject != null && carryableObject == obj)
+        if (carryableObjectController != null && carryableObjectController == obj)
         {
-            carryableObject = null;
+            carryableObjectController = null;
         }
     }
 
@@ -113,7 +115,7 @@ public class PlayerCarryController : MonoBehaviour
     public bool Carry()
     {
         
-        if (carryableObject == null) return false;
+        if (carryableObjectController == null) return false;
         if (holdAnchor == null) return false;
         if (resourceChoiceController == null) return false; 
 
@@ -126,7 +128,7 @@ public class PlayerCarryController : MonoBehaviour
 
         if (isCarrying)
         {
-            resourceChoiceController.ShowResourceChoices(carryableObject);
+            resourceChoiceController.ShowResourceChoices(carryableObjectController);
             return true; // stop here
         }
 
@@ -142,7 +144,7 @@ public class PlayerCarryController : MonoBehaviour
         if (holdAnchor == null) return false;
         if (isCarrying) return false;
 
-        carryableObject = obj;
+        carryableObjectController = obj;
 
         playerController.FaceSouth();
 
@@ -160,7 +162,7 @@ public class PlayerCarryController : MonoBehaviour
         // Otherwise OnTriggerExit2D can clear our object reference.
         isCarrying = true;
 
-        carryingsr = carryableObject.HeldSR;
+        carryingsr = carryableObjectController.HeldSR;
 
         if (carryingsr != null)
         {
@@ -168,7 +170,69 @@ public class PlayerCarryController : MonoBehaviour
             ogSortingOrder = carryingsr.sortingOrder;
         }
 
-        carryableObject.CarryObject(holdAnchor);
+        carryableObjectController.CarryObject(holdAnchor);
+    }
+
+    // adjust the hold anchor as the player moves
+    private void AdjustHoldAnchor()
+    {
+        if (holdAnchor == null) return;
+
+        Vector3 facingOffset = Vector3.zero;
+
+        switch (facing)
+        {
+            case FacingDirection.North:
+                facingOffset = northOffset;
+                break;
+
+            case FacingDirection.South:
+                facingOffset = southOffset;
+                break;
+
+            case FacingDirection.East:
+                facingOffset = eastOffset;
+                break;
+
+            case FacingDirection.West:
+                facingOffset = westOffset;
+                break;
+        }
+
+        holdAnchor.localPosition = baseHoldPosition + facingOffset;
+    }
+
+    // adjust the object sorting position and layer when the player is carrying
+    private void AdjustObjectSorting()
+    {
+        if (carryableObjectController == null) return;
+        if (carryingsr == null) return;
+
+        carryingsr.sortingLayerName = "Characters";
+
+        if(facing == FacingDirection.South)
+        {
+            carryingsr.sortingOrder = 100;
+        } else
+        {
+            carryingsr.sortingOrder = -100;
+        }
+    }
+
+    // -------------------------- STORE OBJECT ------------------------- //
+    public void StoreObject()
+    {
+        if (carryableObjectController == null) return;
+        if (inventoryManager == null) return;
+        if (carryingsr == null) return;
+
+        ResourceType resource = carryableObjectController.ReceivableController.ResourceType;
+        inventoryManager.AddResource(resource);
+
+        carryableObjectController.DestroyObject();
+
+        EndCarry();
+
     }
 
 
@@ -177,7 +241,7 @@ public class PlayerCarryController : MonoBehaviour
     // second interaction loop -- drop the object and restore original object parameters
     public void DropObject()
     {
-        if (carryableObject == null) return;
+        if (carryableObjectController == null) return;
 
         Vector3 dropPosition = transform.position + GetDropOffset();
 
@@ -191,7 +255,7 @@ public class PlayerCarryController : MonoBehaviour
 
         RestoreObjectSorting();
 
-        carryableObject.DropObject(dropPosition);
+        carryableObjectController.DropObject(dropPosition);
 
         EndCarry();
 
@@ -236,57 +300,9 @@ public class PlayerCarryController : MonoBehaviour
         return false;
     }
 
-    // adjust the hold anchor as the player moves
-    private void AdjustHoldAnchor()
-    {
-        if (holdAnchor == null) return;
-
-        Vector3 facingOffset = Vector3.zero;
-
-        switch (facing)
-        {
-            case FacingDirection.North:
-                facingOffset = northOffset;
-                break;
-
-            case FacingDirection.South:
-                facingOffset = southOffset;
-                break;
-
-            case FacingDirection.East:
-                facingOffset = eastOffset;
-                break;
-
-            case FacingDirection.West:
-                facingOffset = westOffset;
-                break;
-        }
-
-        holdAnchor.localPosition = baseHoldPosition + facingOffset;
-    }
-
-    // adjust the object sorting position and layer when the player is carrying
-
-    // move this over to carryable object controller? 
-    private void AdjustObjectSorting()
-    {
-        if (carryableObject == null) return;
-        if (carryingsr == null) return;
-
-        carryingsr.sortingLayerName = "Characters";
-
-        if(facing == FacingDirection.South)
-        {
-            carryingsr.sortingOrder = 100;
-        } else
-        {
-            carryingsr.sortingOrder = -100;
-        }
-    }
+    
 
     // restore the object's sorting layer and order
-
-    // move this over to carryable object controller? 
     private void RestoreObjectSorting()
     {
         if (carryingsr == null) return;
@@ -302,7 +318,7 @@ public class PlayerCarryController : MonoBehaviour
         animator.SetBool("IsCarrying", false);
 
         isCarrying = false;
-        carryableObject = null;
+        carryableObjectController = null;
         carryingsr = null;
     }
 

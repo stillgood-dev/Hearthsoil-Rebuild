@@ -13,6 +13,8 @@ public class InventoryManager : MonoBehaviour
     [SerializeField] private bool testTool = false;
     [SerializeField] private EquippedTool testToolType = EquippedTool.None;
 
+    public List<InventoryResource> Resources => resources;
+
     private void Start()
     {
         if (testTool)

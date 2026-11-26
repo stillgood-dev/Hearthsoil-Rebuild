@@ -353,7 +353,8 @@ MonoBehaviour:
   playerController: {fileID: 0}
   resourceChoiceController: {fileID: 0}
   animator: {fileID: 1680984908005015173}
-  carryableObject: {fileID: 0}
+  inventoryManager: {fileID: 0}
+  carryableObjectController: {fileID: 0}
   isCarrying: 0
   carryingsr: {fileID: 0}
   ogSortingLayer: 
@@ -373,6 +374,7 @@ MonoBehaviour:
   dropBlockingLayer:
     serializedVersion: 2
     m_Bits: 8
+  debug: 0
 --- !u!114 &7580047833583719697
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -418,6 +420,7 @@ MonoBehaviour:
   isMacheting: 0
   currentObject: {fileID: 0}
   lockedObject: {fileID: 0}
+  debug: 0
   hitMultipleTargets: 0
 --- !u!114 &2333618756408087481
 MonoBehaviour:
@@ -513,7 +516,7 @@ MonoBehaviour:
     quantity: 0
     discovered: 0
   tools: 
-  testTool: 1
+  testTool: 0
   testToolType: 2
 --- !u!114 &1847389989208233203
 MonoBehaviour:
@@ -529,7 +532,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inventoryManager: {fileID: 0}
   inventoryCanvas: {fileID: 276093965804015663}
-  macheteIcon: {fileID: 7200661157858969990}
+  toolIcons:
+  - {fileID: 7200661157858969990}
+  toolTypes: 020000000100000003000000
+  resourceIcon:
+  - {fileID: 8261344254010697254}
 --- !u!114 &5008471429624649828
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1826,7 +1833,7 @@ GameObject:
   - component: {fileID: 6080028275508893107}
   - component: {fileID: 1105981959784860153}
   m_Layer: 0
-  m_Name: ItemIcon
+  m_Name: MacheteIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2175,7 +2182,7 @@ GameObject:
   - component: {fileID: 347054783805443670}
   - component: {fileID: 1081582588835544360}
   m_Layer: 0
-  m_Name: ItemIcon
+  m_Name: BrambleberryIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

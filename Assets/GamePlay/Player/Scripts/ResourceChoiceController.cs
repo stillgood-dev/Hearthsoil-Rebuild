@@ -45,7 +45,7 @@ public class ResourceChoiceController : MonoBehaviour
         switch (resourceChoiceUI.CurrentChoice)
         {
             case ResourceChoiceUI.ResourceChoice.Drop:
-                resourceChoiceUI.Hide();
+                resourceChoiceUI?.Hide();
                 carryController?.DropObject();
                 break;
 
@@ -54,7 +54,8 @@ public class ResourceChoiceController : MonoBehaviour
                 break;
 
             case ResourceChoiceUI.ResourceChoice.Store:
-                Debug.Log("Store selected");
+                resourceChoiceUI?.Hide();
+                carryController?.StoreObject();
                 break;
         }
     }
