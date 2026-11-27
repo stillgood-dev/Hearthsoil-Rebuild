@@ -82,6 +82,17 @@ public class PlayerCarryController : MonoBehaviour
     }
 
     // -------------------------- PICK UP OBJECT --------------------------- //
+
+    // bypass trigger colliders and directly pick up the object to carry it
+    public void CarryFromInventory(CarryableObjectController obj)
+    {
+        if (obj == null) return;
+
+        obj.SetCarryController(this);
+        GetCarryableObject(obj);
+        PickUpObject();
+    }
+
     // first interaction loop
     private void PickUpObject()
     {

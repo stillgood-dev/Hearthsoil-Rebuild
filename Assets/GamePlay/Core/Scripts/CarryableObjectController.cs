@@ -90,6 +90,12 @@ public class CarryableObjectController : MonoBehaviour
         }
     }
 
+    // so that inventory prefabs have a reference to the player controller
+    public void SetCarryController(PlayerCarryController controller)
+    {
+        carryController = controller;
+    }
+
     // Snap to player (used by PlayerCarryController)
     public void CarryObject(Transform holdAnchor)
     {

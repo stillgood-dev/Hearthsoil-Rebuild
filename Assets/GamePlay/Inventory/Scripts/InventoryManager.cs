@@ -70,7 +70,19 @@ public class InventoryManager : MonoBehaviour
         {
             if(resource.resourceType == resourceType)
             {
-                resource.quantity += amount;
+                resource.quantity = Mathf.Max(0, resource.quantity + amount);
+                return;
+            }
+        }
+    }
+
+    public void DepleteResource(ResourceType resourceType, int amount = 1)
+    {
+        foreach(InventoryResource resource in resources)
+        {
+            if(resource.resourceType == resourceType)
+            {
+                resource.quantity = Mathf.Max(0, resource.quantity - amount);
                 return;
             }
         }

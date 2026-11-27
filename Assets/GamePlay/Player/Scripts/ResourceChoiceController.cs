@@ -50,6 +50,8 @@ public class ResourceChoiceController : MonoBehaviour
                 break;
 
             case ResourceChoiceUI.ResourceChoice.Eat:
+                resourceChoiceUI?.Hide();
+                // carryController?.EatObject();
                 Debug.Log("Eat Selected");
                 break;
 

@@ -95,33 +95,6 @@ public class PlayerInteractionController : MonoBehaviour
         }
     }
 
-    // ------ inventory ----- //
-
-    // move to inventory controller script
-
-    public void OnInventory()
-    {
-        if(inventoryState == null) return;
-        if (!inventoryState.HasSatchel) return;
-
-        if(playerActionState.IsBusy && 
-            playerActionState.State != PlayerState.Inventory)
-        {
-            return;
-        }
-
-        if(playerActionState.State == PlayerState.Inventory)
-        {
-            inventoryUI.CloseInventory();
-            playerActionState.ClearActionState();
-            return;
-        }
-
-        inventoryUI.OpenInventory();
-        playerActionState.SetActionState(PlayerState.Inventory);
-        
-    }
-
 
     private void OnTriggerEnter2D(Collider2D other)
     {
