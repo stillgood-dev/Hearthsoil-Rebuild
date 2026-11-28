@@ -23,20 +23,25 @@ public class ReceivableObjectController : MonoBehaviour
 
 
     [Header("Tool References")]
-    [SerializeField] private bool isTool;
     [SerializeField] private EquippedTool toolType;
-    public bool IsTool => isTool;
-    public EquippedTool ToolType => toolType;
 
 
     [Header("Resource References")]
-    [SerializeField] private ResourceType resourceType = ResourceType.None;
-    [SerializeField] private bool isEdible;
-    [SerializeField] private bool isStorable;
-    public bool IsEdible => isEdible;
-    public bool IsStorable => isStorable;
-    public ResourceType ResourceType => resourceType;
-    public string ReceivableObjectName => receivableObjectName; 
+    [SerializeField] private ResourceData resourceData;
+
+    // make resource data public
+    public bool IsTool => toolType != EquippedTool.None;
+    public EquippedTool ToolType => toolType;
+
+    public bool IsEdible => resourceData != null && resourceData.isEdible;
+    public bool IsStorable => resourceData != null && resourceData.isStorable;
+    public ResourceType ResourceType => resourceData.resourceType;
+    public float SatietyRestoration => resourceData != null 
+        ? resourceData.satietyRestoration 
+        : 0f;
+    public string ResourceName => resourceData != null ? 
+        resourceData.resourceName 
+        : null;  
 
 
     private void Awake()

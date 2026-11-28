@@ -51,8 +51,7 @@ public class ResourceChoiceController : MonoBehaviour
 
             case ResourceChoiceUI.ResourceChoice.Eat:
                 resourceChoiceUI?.Hide();
-                // carryController?.EatObject();
-                Debug.Log("Eat Selected");
+                carryController?.EatObject();
                 break;
 
             case ResourceChoiceUI.ResourceChoice.Store:

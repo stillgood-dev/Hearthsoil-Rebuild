@@ -173,6 +173,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectID: BramblerryWorld
   objectToDisable: {fileID: 4799401769760028493}
+  debug: 0
 --- !u!1 &5989454734122578128
 GameObject:
   m_ObjectHideFlags: 0
@@ -388,6 +389,7 @@ MonoBehaviour:
   receivableGameObject: {fileID: 4799401769760028493}
   worldSR: {fileID: 2916236223705581224}
   heldSR: {fileID: 2065269552468883139}
+  isSatchel: 0
   receivableObjectCollider: {fileID: 0}
   animator: {fileID: 9190905929273237621}
   receivableObjectAnimationName: ReceiveBrambleberry
@@ -396,9 +398,7 @@ MonoBehaviour:
   carryableController: {fileID: 2251278511723918941}
   isTool: 0
   toolType: 0
-  resourceType: 1
-  isEdible: 1
-  isStorable: 1
+  resourceData: {fileID: 11400000, guid: 392d733eb31ff0c488b9ed4e7cd65364, type: 2}
 --- !u!61 &1910902229988750556
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -459,9 +459,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   carryController: {fileID: 0}
   carryableObject: {fileID: 4799401769760028493}
-  boxCollider: {fileID: 1910902229988750556}
   dropBlocker: {fileID: 6460034438173539621}
   worldSR: {fileID: 2916236223705581224}
   heldSR: {fileID: 2065269552468883139}
   persistentObject: {fileID: 8084679401720116492}
+  boxCollider: {fileID: 1910902229988750556}
   receivableController: {fileID: 0}

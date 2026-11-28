@@ -120,7 +120,7 @@ public class PlayerReceiveController : MonoBehaviour
         }
         else
         {
-            notificationUI.Show($"You have received the {receivableObject.ReceivableObjectName}!"); // show notification
+            notificationUI.Show($"You have received the {receivableObject.ResourceName}!"); // show notification
         }
 
         return true;

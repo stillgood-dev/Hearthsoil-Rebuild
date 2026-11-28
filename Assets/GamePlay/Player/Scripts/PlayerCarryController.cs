@@ -1,16 +1,18 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class PlayerCarryController : MonoBehaviour
 {
     // Player
     [Header("Player References")]
     [SerializeField] private Transform holdAnchor;
-    [SerializeField] private PlayerActionState actionState;
     [SerializeField] private PlayerController playerController;
     [SerializeField] private ResourceChoiceController resourceChoiceController;
     [SerializeField] private Animator animator;
     [SerializeField] private InventoryManager inventoryManager;
+
+    [Header("Player States")]
+    [SerializeField] private PlayerActionState actionState;
+    [SerializeField] private PlayerSatietyState satietyState;
 
     // Carryable Object
     [Header("Object References")]
@@ -68,6 +70,7 @@ public class PlayerCarryController : MonoBehaviour
         if (!inventoryState) inventoryState = GetComponent<PlayerInventoryState>();
         if (!resourceChoiceController) resourceChoiceController = GetComponent<ResourceChoiceController>();
         if (!inventoryManager) inventoryManager = GetComponent<InventoryManager>();
+        if (!satietyState) satietyState = GetComponent<PlayerSatietyState>();
     }
 
     // Always update the hold anchor and object sorting when carrying
@@ -244,6 +247,20 @@ public class PlayerCarryController : MonoBehaviour
 
         EndCarry();
 
+    }
+
+    // ------------------------- EAT OBJECT --------------------------------- //
+    public void EatObject()
+    {
+        if (carryableObjectController == null) return;
+        if (satietyState == null) return;
+        if(carryingsr == null) return;
+
+        float restorationPoints = carryableObjectController.ReceivableController.SatietyRestoration;
+        satietyState.RestoreSatiety(restorationPoints);
+
+        carryableObjectController.DestroyObject();
+        EndCarry();
     }
 
 
